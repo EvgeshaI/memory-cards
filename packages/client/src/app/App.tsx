@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import './App.css'
+import { RouterProvider } from './providers/router'
 
-function App() {
+export const App = () => {
   useEffect(() => {
     const fetchServerData = async () => {
       const url = `http://localhost:${__SERVER_PORT__}`
@@ -12,7 +12,10 @@ function App() {
 
     fetchServerData()
   }, [])
-  return <div className="App">Вот тут будет жить ваше приложение :)</div>
-}
 
-export default App
+  return (
+    <div className="app">
+      <RouterProvider />
+    </div>
+  )
+}
