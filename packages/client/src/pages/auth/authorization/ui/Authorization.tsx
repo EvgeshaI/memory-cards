@@ -1,6 +1,7 @@
 import { Title, Input, Button } from '@/shared/ui'
 import { routePaths, RouteNames } from '@/shared/constants/router'
 import { useNavigate, NavLink } from 'react-router-dom'
+import cls from './authorization.module.scss'
 
 export const Authorization = () => {
   const nav = useNavigate()
@@ -10,15 +11,15 @@ export const Authorization = () => {
   }
 
   return (
-    <div className="auth__container">
+    <div className={cls.auth_container}>
       <form
-        className="form__body"
+        className={cls.auth_body}
         style={{ display: 'flex', flexDirection: 'column' }}
         onSubmit={auth}>
         <Title>Войти в Memory Cards</Title>
         <Input placeholder="логин" />
         <Input placeholder="пароль " />
-        <Button type="submit">Зарегистрироваться</Button>
+        <Button type="submit">Войти</Button>
         <p>
           Нет аккаунта?{' '}
           <NavLink to={routePaths[RouteNames.REGISTRATION]}>

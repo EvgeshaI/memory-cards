@@ -26,7 +26,7 @@ export const Registration = () => {
         <Button type="submit">Зарегистрироваться</Button>
         <p>
           Есть аккаунт?{' '}
-          <NavLink to={routePaths[RouteNames.MAIN]}>Войти</NavLink>
+          <NavLink to={routePaths[RouteNames.AUTHORIZATION]}>Войти</NavLink>
         </p>
       </form>
     </div>
