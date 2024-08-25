@@ -5,6 +5,7 @@ import { MainPage } from '@/pages/main'
 import { ProfilePage } from '@/pages/profile'
 import { ForbiddenPage } from '@/pages/forbidden'
 import { NotFoundPage } from '@/pages/not-found'
+import { Authorization, Registration } from '@/pages/auth'
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,14 @@ export const router = createBrowserRouter([
       {
         path: routePaths[RouteNames.FORBIDDEN],
         element: <ForbiddenPage />,
+      },
+      {
+        path: routePaths[RouteNames.AUTHORIZATION],
+        element: <Authorization />,
+      },
+      {
+        path: routePaths[RouteNames.REGISTRATION],
+        element: <Registration />,
       },
       {
         path: '*',

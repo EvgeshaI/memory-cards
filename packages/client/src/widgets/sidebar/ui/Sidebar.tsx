@@ -15,6 +15,16 @@ export const Sidebar = () => {
           <li>
             <NavLink to={routePaths[RouteNames.FORBIDDEN]}>FORBIDDEN</NavLink>
           </li>
+          <li>
+            <NavLink to={routePaths[RouteNames.AUTHORIZATION]}>
+              AUTHORIZATION
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={routePaths[RouteNames.REGISTRATION]}>
+              REGISTRATION
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </aside>
