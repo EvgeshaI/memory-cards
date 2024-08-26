@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { routePaths, RouteNames } from '@/shared/constants/router'
+import { RouteNames, routePaths } from '@/shared/constants/router'
 import { MainLayout } from '@/app/layouts/main/MainLayout'
 import { MainPage } from '@/pages/main'
 import { ProfilePage } from '@/pages/profile'
 import { ForbiddenPage } from '@/pages/forbidden'
 import { NotFoundPage } from '@/pages/not-found'
+import { StartGamePage } from '@/pages/start-game'
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: routePaths[RouteNames.FORBIDDEN],
         element: <ForbiddenPage />,
+      },
+      {
+        path: routePaths[RouteNames.START_GAME],
+        element: <StartGamePage />,
       },
       {
         path: '*',
