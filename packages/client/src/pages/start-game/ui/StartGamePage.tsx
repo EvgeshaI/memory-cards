@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@mantine/core'
 import cls from './StartGamePage.module.scss'
-import { GameSettings } from '@/widgets/game-settings/ui/GameSettings'
+import { GameSettings } from '@/widgets/game-settings'
 
 export const StartGamePage = () => {
   return (
