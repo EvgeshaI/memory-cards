@@ -46,10 +46,10 @@ export const ProfilePage: React.FC = () => {
         />
 
         <div className={cls.userDetails}>
-          <h2>
+          <h2 className={cls.userName}>
             {user.first_name} {user.second_name}
           </h2>
-          <p>{user.email}</p>
+          <p className={cls.userEmail}>{user.email}</p>
         </div>
 
         <ProfileActions

@@ -1,64 +1,112 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 65%;
+}
+
+.userDetails {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 6vh;
+}
+
+.userName {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.userEmail {
+  font-size: 20px;
+  margin-top: 2vh;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+.actions-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.actions-right {
+  display: flex;
+  align-items: flex-start;
+}
+
+.actionButton span span {
+  font-size: clamp(12px, 2vw, 18px);
 }
 
 .changeAvatar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    margin-top: 20px;
-  
-    .avatarContainer {
-      position: relative;
-      width: 11vw;
-      height: 11vw;
-      border-radius: 50%;
-      overflow: hidden;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-  
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-      }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 20px;
 
-      .placeholderAvatar {
-        width: 100%;
-        height: 100%;
-        background-color: rgba(72, 90, 212, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        border-radius: 50%;
-      }
-  
-      .hoverText {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 1.5vw;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #3E4CBC;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        border-radius: 50%;
-        font-size: 18px;
-        text-align: center;
-      }
-  
-      &:hover .hoverText {
-        opacity: 1;
-      }
+  .avatarContainer {
+    position: relative;
+    width: 11vw;
+    height: 11vw;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .placeholderAvatar {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(72, 90, 212, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 50%;
+    }
+
+    .hoverText {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 1.5vw;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    &:hover .hoverText {
+      opacity: 1;
     }
   }
+}
