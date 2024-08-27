@@ -1,16 +1,10 @@
-import cls from './GameSettings.module.scss'
-import headerIcon from '@/shared/svg/header.svg'
 import { Button, Select, Text } from '@mantine/core'
 import { PaperContainer } from '@/shared/ui/paper'
 import React from 'react'
 
 export const GameSettings = () => {
   return (
-    <PaperContainer>
-      <div className={cls.title}>
-        <img src={headerIcon} alt={'header'} />
-      </div>
-      <h2 className={cls.titleText}>Настройки</h2>
+    <PaperContainer text={'Настройки'}>
       <Text size="lg" mb="md" color="var(--accent-color)">
         выберите количество карточек
       </Text>
@@ -23,7 +17,6 @@ export const GameSettings = () => {
         mb="20px"
         defaultValue="10"
       />
-
       <Button fullWidth radius="md" size="md" color="var(--accent-color)">
         играть
       </Button>
