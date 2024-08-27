@@ -19,7 +19,11 @@ export const Authorization = () => {
           <Input placeholder="пароль " />
         </div>
         <div className={cls.authFooter}>
-          <Button type="submit">Войти</Button>
+          <Button
+            style={{ backgroundColor: 'rgba(48, 70, 211, 0.5)' }}
+            type="submit">
+            Войти
+          </Button>
           <p className={cls.NoAccount}>
             Нет аккаунта?{' '}
             <NavLink to={routePaths[RouteNames.REGISTRATION]}>
