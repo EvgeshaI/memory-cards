@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from '@/shared/ui'
+import clsx from 'clsx'
 
 interface ActionButtonProps {
   color: string
@@ -15,7 +16,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   className = '',
 }) => (
   <Button
-    className={`action-button ${className}`}
+    className={clsx('action-button', className)}
     variant="subtle"
     color={color}
     onClick={onClick}>

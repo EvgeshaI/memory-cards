@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal } from '@/shared/ui'
-import { ChangePassword } from '../../../../features/profilePage/ChangePassword'
+import { ChangePassword } from '@/features/profilePage/ChangePassword'
 
 interface PasswordModalProps {
   isOpen: boolean

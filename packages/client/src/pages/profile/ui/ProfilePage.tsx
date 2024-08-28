@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Notification, Loader, Modal } from '@/shared/ui'
+import { Notification, Loader } from '@/shared/ui'
 import { ChangeAvatar } from '@/features/profilePage/ChangeAvatar'
-import { ProfileActions } from '../../../widgets/sidebar/ui/profilePage/ProfileActions'
-import { PasswordModal } from '../../../widgets/sidebar/ui/profilePage/PasswordModal'
+import { ProfileActions } from '../../../widgets/profile/ProfileActions'
+import { PasswordModal } from '../../../widgets/profile/PasswordModal'
 import { useUserData } from '../../../entities/user/hooks/useUserData'
+import { handleAvatarChange } from '@/features/profilePage/handleAvatarChange'
 import cls from './ProfilePage.module.scss'
-
-const BASE_URL = 'https://ya-praktikum.tech/api/v2/resources'
+import { RESOURCES_URL } from '@/shared/constants/api'
 
 export const ProfilePage: React.FC = () => {
-  const { user, isLoading, error } = useUserData()
+  const { user, isLoading } = useUserData()
   const [avatar, setAvatarUrl] = useState(user?.avatar || '')
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false)
   const navigate = useNavigate()
@@ -29,12 +29,7 @@ export const ProfilePage: React.FC = () => {
       </Notification>
     )
 
-  const avatarUrl = avatar ? `${BASE_URL}${avatar}` : ''
-
-  const handleAvatarChange = (newAvatarUrl: string) => {
-    const fullAvatarUrl = `${newAvatarUrl}?${new Date().getTime()}`
-    setAvatarUrl(fullAvatarUrl)
-  }
+  const avatarUrl = avatar ? `${RESOURCES_URL}${avatar}` : ''
 
   return (
     <div className={cls.root}>
@@ -42,7 +37,9 @@ export const ProfilePage: React.FC = () => {
         <ChangeAvatar
           userId={user.id}
           avatarUrl={avatarUrl}
-          onAvatarChange={handleAvatarChange}
+          onAvatarChange={newAvatarUrl =>
+            handleAvatarChange(newAvatarUrl, setAvatarUrl)
+          }
         />
 
         <div className={cls.userDetails}>

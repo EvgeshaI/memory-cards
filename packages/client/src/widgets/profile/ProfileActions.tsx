@@ -1,6 +1,6 @@
 import React from 'react'
 import { ActionButton } from '@/shared/ui'
-import cls from '../../../../pages/profile/ui/ProfilePage.module.scss'
+import cls from './ProfileActions.module.scss'
 
 interface ProfileActionsProps {
   onPasswordChange: () => void

@@ -1,4 +1,4 @@
-import { API_BASE_URL } from './userApi'
+import { BASE_URL } from '@/shared/constants/api'
 
 export const changePassword = async (
   userId: string,
@@ -6,7 +6,7 @@ export const changePassword = async (
   newPassword: string
 ) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/user/password`, {
+    const response = await fetch(`${BASE_URL}/user/password`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -20,12 +20,18 @@ export const changePassword = async (
     })
 
     if (!response.ok) {
-      const errorData = await response.json()
-      console.error('Ошибка от сервера:', errorData)
-      throw new Error(errorData.message || 'Не удалось изменить пароль')
+      const errorText = await response.text()
+      console.error('Ошибка от сервера:', errorText)
+      throw new Error(errorText || 'Не удалось изменить пароль')
     }
 
-    return response.json()
+    const result = await response.text()
+
+    if (result === 'OK') {
+      return { status: 'ok' }
+    } else {
+      throw new Error('Некорректный ответ от сервера.')
+    }
   } catch (error) {
     console.error('Ошибка при изменении пароля:', error)
     throw error

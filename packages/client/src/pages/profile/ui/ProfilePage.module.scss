@@ -30,29 +30,6 @@
   margin-top: 2vh;
 }
 
-.actions {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 400px;
-  margin-top: 20px;
-}
-
-.actions-left {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.actions-right {
-  display: flex;
-  align-items: flex-start;
-}
-
-.actionButton span span {
-  font-size: clamp(12px, 2vw, 18px);
-}
-
 .changeAvatar {
   display: flex;
   flex-direction: column;

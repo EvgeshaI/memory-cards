@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { changePassword } from '../../entities/user/api/changePasswordApi'
-import { Notification } from '@/shared/ui'
+import { changePassword } from '@/entities/user'
+import { Notification, PasswordInput, Group, Button } from '@/shared/ui'
 
 interface ChangePasswordFormProps {
   userId: string
@@ -19,12 +19,23 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      await changePassword(userId, oldPassword, newPassword)
-      setSuccess(true)
-      setError(false)
-      setErrorMessage('')
-      onclose
+      console.log('Попытка изменить пароль')
+      const result = await changePassword(userId, oldPassword, newPassword)
+
+      if (result.status === 'ok') {
+        console.log('Пароль успешно изменен')
+        setSuccess(true)
+        setError(false)
+        setErrorMessage('')
+      } else {
+        console.log(
+          'Не удалось изменить пароль, статус от сервера:',
+          result.status
+        )
+        throw new Error('Не удалось изменить пароль.')
+      }
     } catch (error) {
+      console.error('Ошибка при изменении пароля:', error)
       setSuccess(false)
       setError(true)
       setErrorMessage('Не удалось изменить пароль.')
@@ -33,7 +44,6 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Изменение пароля</h3>
       {success && (
         <Notification color="green" title="Успешно">
           Пароль изменен
@@ -44,21 +54,28 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
           {errorMessage}
         </Notification>
       )}
-      <input
-        type="password"
-        placeholder="Старый пароль"
+
+      <PasswordInput
+        label="Старый пароль"
+        placeholder="Введите старый пароль"
         value={oldPassword}
         onChange={e => setOldPassword(e.target.value)}
         required
+        mt="md"
       />
-      <input
-        type="password"
-        placeholder="Новый пароль"
+
+      <PasswordInput
+        label="Новый пароль"
+        placeholder="Введите новый пароль"
         value={newPassword}
         onChange={e => setNewPassword(e.target.value)}
         required
+        mt="md"
       />
-      <button type="submit">Изменить пароль</button>
+
+      <Group mt="md">
+        <Button type="submit">Изменить пароль</Button>
+      </Group>
     </form>
   )
 }

@@ -1,8 +1,8 @@
-export const API_BASE_URL = 'https://ya-praktikum.tech/api/v2'
+import { BASE_URL } from '@/shared/constants/api'
 
 export const login = async (login: string, password: string) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/auth/signin`, {
+    const response = await fetch(`${BASE_URL}/auth/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const login = async (login: string, password: string) => {
 
 export const fetchUserData = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/auth/user`, {
+    const response = await fetch(`${BASE_URL}/auth/user`, {
       method: 'GET',
       credentials: 'include',
     })

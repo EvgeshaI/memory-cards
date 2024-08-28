@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react'
-import { changeAvatar } from '@/entities/user/api/changeAvatarApi'
+import { changeAvatar } from '@/entities/user'
 import { AvatarDisplay } from '@/pages/profile/ui/AvatarDisplay'
 import { FilePreview } from '@/pages/profile/ui/FilePreview'
 import { Notification, Button } from '@/shared/ui'
