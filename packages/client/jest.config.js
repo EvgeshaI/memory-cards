@@ -1,4 +1,5 @@
 import dotenv from 'dotenv'
+
 dotenv.config()
 
 export default {
@@ -11,5 +12,6 @@ export default {
   moduleNameMapper: {
     '\\.s?css$': 'babel-jest',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '\\.svg$': '<rootDir>/__mocks__/fileMock.js',
   }
 }

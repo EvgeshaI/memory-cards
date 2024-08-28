@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom'
 import { Sidebar } from '@/widgets/sidebar'
+import cls from './MainLayout.module.scss'
 
 export const MainLayout = () => {
   return (
-    <div>
+    <div className={cls.container}>
       <Sidebar />
 
       <main>

@@ -1,0 +1,57 @@
+.regContainer{
+    border-radius: 12px;
+    padding: 30px;
+    height: 500px;
+    margin: 120px auto 0;
+    max-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3mm solid rgba(48, 70, 211, 0.5);
+  
+  
+  }
+  .title {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(48, 70, 211, 0.5);
+  }
+  
+  input {
+    margin-bottom: 15px;
+  }
+
+  .regItem {  
+    &.btn {
+      color: var(--background-white);
+      background-color: rgba(48, 70, 211, 0.5);
+  
+      &:hover {
+        background-color: var(--background-hover);
+        color: var(--background-white);
+      }
+    }
+  }
+
+  .regFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .HaveAccount {
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px; 
+  }
+  
+  .HaveAccount a {
+    color: rgba(48, 70, 211, 0.5); 
+    text-decoration: none;
+  }
+  
+  .HaveAccount a:hover {
+    text-decoration: underline;
+  }

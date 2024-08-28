@@ -1,19 +1,51 @@
 import { NavLink } from 'react-router-dom'
-import { routePaths, RouteNames } from '@/shared/constants/router'
+import { RouteNames, routePaths } from '@/shared/constants/router'
+import cls from './Sidebar.module.scss'
+import clsx from 'clsx'
 
 export const Sidebar = () => {
   return (
-    <aside>
-      <nav>
-        <ul>
+    <aside className={cls.sidebar}>
+      <nav className={cls.navbarContainer}>
+        <h2 className={cls.logo}>Mnemo Cards</h2>
+        <ul className={cls.navList}>
           <li>
-            <NavLink to={routePaths[RouteNames.MAIN]}>MAIN</NavLink>
+            <NavLink
+              to={routePaths[RouteNames.START_GAME]}
+              className={clsx(cls.navItem, cls.btn)}>
+              Играть
+            </NavLink>
           </li>
           <li>
-            <NavLink to={routePaths[RouteNames.PROFILE]('5')}>PROFILE</NavLink>
+            <NavLink
+              to={routePaths[RouteNames.FORUM]}
+              className={clsx(cls.navItem, cls.btn)}>
+              Форум
+            </NavLink>
           </li>
           <li>
-            <NavLink to={routePaths[RouteNames.FORBIDDEN]}>FORBIDDEN</NavLink>
+            <NavLink
+              to={routePaths[RouteNames.LEADERBOARD]}
+              className={clsx(cls.navItem, cls.link)}>
+              Лидерборд
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={routePaths[RouteNames.PROFILE]('5')}
+              className={clsx(cls.navItem, cls.link)}>
+              Ваш профиль
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={routePaths[RouteNames.AUTHORIZATION]}>
+              AUTHORIZATION
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={routePaths[RouteNames.REGISTRATION]}>
+              REGISTRATION
+            </NavLink>
           </li>
         </ul>
       </nav>
