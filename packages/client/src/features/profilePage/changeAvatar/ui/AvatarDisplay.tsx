@@ -1,5 +1,5 @@
 import React from 'react'
-import cls from './ProfilePage.module.scss'
+import cls from './ChangeAvatar.module.scss'
 
 interface AvatarDisplayProps {
   avatarUrl?: string

@@ -1,9 +1,9 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { changeAvatar } from '@/entities/user'
-import { AvatarDisplay } from '@/pages/profile/ui/AvatarDisplay'
+import { AvatarDisplay } from '@/features/profilePage/changeAvatar/ui/AvatarDisplay'
 import { FilePreview } from '@/pages/profile/ui/FilePreview'
-import { Notification, Button } from '@/shared/ui'
-import cls from '../../pages/profile/ui/ProfilePage.module.scss'
+import { Notification } from '@/shared/ui'
+import cls from './ChangeAvatar.module.scss'
 
 interface ChangeAvatarProps {
   userId: string

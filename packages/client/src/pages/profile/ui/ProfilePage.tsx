@@ -1,16 +1,17 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Notification, Loader } from '@/shared/ui'
-import { ChangeAvatar } from '@/features/profilePage/ChangeAvatar'
-import { ProfileActions } from '../../../widgets/profile/ProfileActions'
-import { PasswordModal } from '../../../widgets/profile/PasswordModal'
-import { useUserData } from '../../../entities/user/hooks/useUserData'
-import { handleAvatarChange } from '@/features/profilePage/handleAvatarChange'
+import { PasswordModal } from '@/widgets/profile'
+import { useUserData } from '@/entities/user/hooks/useUserData'
+import { useLogout } from '@/entities/user/hooks/useLogout'
+import { handleAvatarChange } from '@/features/profilePage'
+import { ProfileInfo } from '@/widgets/profile'
 import cls from './ProfilePage.module.scss'
 import { RESOURCES_URL } from '@/shared/constants/api'
 
 export const ProfilePage: React.FC = () => {
   const { user, isLoading } = useUserData()
+  const { handleLogout } = useLogout()
   const [avatar, setAvatarUrl] = useState(user?.avatar || '')
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false)
   const navigate = useNavigate()
@@ -33,27 +34,18 @@ export const ProfilePage: React.FC = () => {
 
   return (
     <div className={cls.root}>
-      <div className={cls.profileInfo}>
-        <ChangeAvatar
-          userId={user.id}
-          avatarUrl={avatarUrl}
-          onAvatarChange={newAvatarUrl =>
-            handleAvatarChange(newAvatarUrl, setAvatarUrl)
-          }
-        />
-
-        <div className={cls.userDetails}>
-          <h2 className={cls.userName}>
-            {user.first_name} {user.second_name}
-          </h2>
-          <p className={cls.userEmail}>{user.email}</p>
-        </div>
-
-        <ProfileActions
-          onPasswordChange={() => setPasswordModalOpen(true)}
-          onNavigateHome={() => navigate('/')}
-        />
-      </div>
+      <ProfileInfo
+        userId={user.id}
+        avatarUrl={avatarUrl}
+        firstName={user.first_name}
+        secondName={user.second_name}
+        email={user.email}
+        onAvatarChange={newAvatarUrl =>
+          handleAvatarChange(newAvatarUrl, setAvatarUrl)
+        }
+        onPasswordChange={() => setPasswordModalOpen(true)}
+        onLogout={handleLogout}
+      />
 
       <PasswordModal
         isOpen={isPasswordModalOpen}

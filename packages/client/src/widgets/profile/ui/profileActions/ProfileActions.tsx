@@ -4,12 +4,12 @@ import cls from './ProfileActions.module.scss'
 
 interface ProfileActionsProps {
   onPasswordChange: () => void
-  onNavigateHome: () => void
+  onLogout: () => void
 }
 
 export const ProfileActions: React.FC<ProfileActionsProps> = ({
   onPasswordChange,
-  onNavigateHome,
+  onLogout,
 }) => (
   <div className={cls.actions}>
     <div className={cls.actionsLeft}>
@@ -19,15 +19,12 @@ export const ProfileActions: React.FC<ProfileActionsProps> = ({
         onClick={onPasswordChange}>
         Изменить пароль
       </ActionButton>
-      <ActionButton
-        className={cls.actionButton}
-        color="#3E4CBC"
-        onClick={onNavigateHome}>
-        Вернуться на главную
-      </ActionButton>
     </div>
     <div className={cls.actionsRight}>
-      <ActionButton className={cls.actionButton} color="#FF5555">
+      <ActionButton
+        className={cls.actionButton}
+        color="#FF5555"
+        onClick={onLogout}>
         Выйти
       </ActionButton>
     </div>

@@ -10,7 +10,7 @@ export const useUserData = () => {
   useEffect(() => {
     const loadUserData = async () => {
       try {
-        await login('supernova', 'qwagdaa0F')
+        await login('supernova', 'qwagdaa5L')
 
         const userData = await fetchUserData()
         setUser(userData)
