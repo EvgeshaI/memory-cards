@@ -2,6 +2,7 @@ import { Input, Button } from '@/shared/ui'
 import { routePaths, RouteNames } from '@/shared/constants/router'
 import { useNavigate, NavLink } from 'react-router-dom'
 import cls from './authorization.module.scss'
+import clsx from 'clsx'
 
 export const Authorization = () => {
   const nav = useNavigate()
@@ -19,9 +20,7 @@ export const Authorization = () => {
           <Input placeholder="пароль " />
         </div>
         <div className={cls.authFooter}>
-          <Button
-            style={{ backgroundColor: 'rgba(48, 70, 211, 0.5)' }}
-            type="submit">
+          <Button className={clsx(cls.authItem, cls.btn)} type="submit">
             Войти
           </Button>
           <p className={cls.NoAccount}>

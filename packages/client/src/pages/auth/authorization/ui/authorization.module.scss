@@ -1,9 +1,9 @@
 .authContainer{
   border-radius: 12px;
   padding: 30px;
-  height: 400px;
+  height: 500px;
   margin: 120px auto 0;
-  max-width: 300px;
+  max-width: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,11 +22,22 @@ input {
   margin-bottom: 15px;
 }
 
-.authFooter {
+.authItem {  
+  &.btn {
+    color: var(--background-white);
+    background-color: rgba(48, 70, 211, 0.5);
+
+    &:hover {
+      background-color: var(--background-hover);
+      color: var(--background-white);
+    }
+  }
+}
+  .authFooter {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .NoAccount {

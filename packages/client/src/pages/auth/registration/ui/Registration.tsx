@@ -2,6 +2,7 @@ import { Input, Button } from '@/shared/ui'
 import { routePaths, RouteNames } from '@/shared/constants/router'
 import { useNavigate, NavLink } from 'react-router-dom'
 import cls from './registration.module.scss'
+import clsx from 'clsx'
 
 export const Registration = () => {
   const nav = useNavigate()
@@ -23,9 +24,7 @@ export const Registration = () => {
           <Input placeholder="пароль" />
         </div>
         <div className={cls.regFooter}>
-          <Button
-            style={{ backgroundColor: 'rgba(48, 70, 211, 0.5)' }}
-            type="submit">
+          <Button className={clsx(cls.regItem, cls.btn)} type="submit">
             Зарегистрироваться
           </Button>
           <p className={cls.HaveAccount}>

@@ -3,7 +3,7 @@
     padding: 30px;
     height: 500px;
     margin: 120px auto 0;
-    max-width: 300px;
+    max-width: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,6 +20,18 @@
   
   input {
     margin-bottom: 15px;
+  }
+
+  .regItem {  
+    &.btn {
+      color: var(--background-white);
+      background-color: rgba(48, 70, 211, 0.5);
+  
+      &:hover {
+        background-color: var(--background-hover);
+        color: var(--background-white);
+      }
+    }
   }
 
   .regFooter {
