@@ -1,6 +1,9 @@
 import { Button, Group, Text } from '@mantine/core'
 import { PaperContainer } from '@/shared/ui/paper'
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { RouteNames, routePaths } from '@/shared/constants/router'
+import cls from './EndGameInfo.module.scss'
 
 export const EndGameInfo = () => {
   return (
@@ -21,7 +24,9 @@ export const EndGameInfo = () => {
         size="md"
         mb="20px"
         color="var(--accent-color)">
-        играть снова
+        <NavLink to={routePaths[RouteNames.START_GAME]} className={cls.link}>
+          играть снова
+        </NavLink>
       </Button>
       <Button w="70%" radius="md" size="md" color="var(--accent-color)">
         на главную
