@@ -1,2 +1,18 @@
 @import "reset";
 @import "@mantine/core/styles.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--background-base);
+}
+
+:root{
+  --background-base: #f5f5f5;
+  --background-muted: #e0e6f1;
+  --background-highlight: #ced5ef;
+  --background-hover: #4754d4;
+  --background-white: #ffffff;
+  --accent-color: #576ff8;
+  --error-color: #ff5555
+}
