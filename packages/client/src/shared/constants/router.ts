@@ -4,7 +4,8 @@ export enum RouteNames {
   FORBIDDEN = 'forbidden',
   FORUM = 'forum',
   LEADERBOARD = 'leaderboard',
-  START_GAME = 'startGame'
+  START_GAME = 'startGame',
+  END_GAME = 'endGame',
 }
 
 interface RoutePaths {
@@ -14,6 +15,7 @@ interface RoutePaths {
   [RouteNames.FORUM]: string
   [RouteNames.LEADERBOARD]: string
   [RouteNames.START_GAME]: string
+  [RouteNames.END_GAME]: string
 }
 
 export const routePaths: RoutePaths = {
@@ -22,5 +24,6 @@ export const routePaths: RoutePaths = {
   [RouteNames.FORBIDDEN]: '/forbidden',
   [RouteNames.FORUM]: '/forum',
   [RouteNames.LEADERBOARD]: '/leaderboard',
-  [RouteNames.START_GAME]: '/startGame'
+  [RouteNames.START_GAME]: '/startGame',
+  [RouteNames.END_GAME]: '/endGame',
 }

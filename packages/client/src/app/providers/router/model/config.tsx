@@ -6,6 +6,7 @@ import { ProfilePage } from '@/pages/profile'
 import { ForbiddenPage } from '@/pages/forbidden'
 import { NotFoundPage } from '@/pages/not-found'
 import { StartGamePage } from '@/pages/start-game'
+import { EndGamePage } from '@/pages/end-game'
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: routePaths[RouteNames.START_GAME],
         element: <StartGamePage />,
+      },
+      {
+        path: routePaths[RouteNames.END_GAME],
+        element: <EndGamePage />,
       },
       {
         path: '*',
