@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { RouteNames, routePaths } from '@/shared/constants/router'
 import cls from './Sidebar.module.scss'
-import clsx from 'clsx'
 
 export const Sidebar = () => {
+  const getNavLinkClass = (isActive: boolean) =>
+    `${cls.navItem} ${isActive ? cls.active : ''}`
   return (
     <aside className={cls.sidebar}>
       <nav className={cls.navbarContainer}>
@@ -12,38 +13,42 @@ export const Sidebar = () => {
           <li>
             <NavLink
               to={routePaths[RouteNames.START_GAME]}
-              className={clsx(cls.navItem, cls.btn)}>
+              className={({ isActive }) => getNavLinkClass(isActive)}>
               Играть
             </NavLink>
           </li>
           <li>
             <NavLink
               to={routePaths[RouteNames.FORUM]}
-              className={clsx(cls.navItem, cls.btn)}>
+              className={({ isActive }) => getNavLinkClass(isActive)}>
               Форум
             </NavLink>
           </li>
           <li>
             <NavLink
               to={routePaths[RouteNames.LEADERBOARD]}
-              className={clsx(cls.navItem, cls.link)}>
+              className={({ isActive }) => getNavLinkClass(isActive)}>
               Лидерборд
             </NavLink>
           </li>
           <li>
             <NavLink
               to={routePaths[RouteNames.PROFILE]('5')}
-              className={clsx(cls.navItem, cls.link)}>
+              className={({ isActive }) => getNavLinkClass(isActive)}>
               Ваш профиль
             </NavLink>
           </li>
           <li>
-            <NavLink to={routePaths[RouteNames.AUTHORIZATION]}>
+            <NavLink
+              to={routePaths[RouteNames.AUTHORIZATION]}
+              className={({ isActive }) => getNavLinkClass(isActive)}>
               AUTHORIZATION
             </NavLink>
           </li>
           <li>
-            <NavLink to={routePaths[RouteNames.REGISTRATION]}>
+            <NavLink
+              to={routePaths[RouteNames.REGISTRATION]}
+              className={({ isActive }) => getNavLinkClass(isActive)}>
               REGISTRATION
             </NavLink>
           </li>

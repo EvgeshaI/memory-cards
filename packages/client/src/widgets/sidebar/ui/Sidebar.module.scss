@@ -31,23 +31,15 @@
   font-size: 18px;
   font-weight: 300;
   text-decoration: none;
-
-  &.btn {
-    color: var(--background-white);
-    background-color: var(--accent-color);
+  color: var(--accent-color);
 
     &:hover {
-      background-color: var(--background-hover);
-      color: var(--background-white);
-    }
-  }
-
-  &.link {
-    color: var(--accent-color);
+      background-color: rgba(87,111,248,0.3);
+      color: var(--accent-color);
   }
 
   &.active {
-    background-color: var(--background-highlight);
-    color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: var(--background-white);
   }
 }

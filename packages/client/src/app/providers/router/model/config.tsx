@@ -8,6 +8,7 @@ import { NotFoundPage } from '@/pages/not-found'
 import { StartGamePage } from '@/pages/start-game'
 import { EndGamePage } from '@/pages/end-game'
 import { Authorization, Registration } from '@/pages/auth'
+import { Leaderboard } from '@/pages/leaderboard'
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: routePaths[RouteNames.PROFILE](':id'),
         element: <ProfilePage />,
+      },
+      {
+        path: routePaths[RouteNames.LEADERBOARD],
+        element: <Leaderboard />,
       },
       {
         path: routePaths[RouteNames.FORBIDDEN],
