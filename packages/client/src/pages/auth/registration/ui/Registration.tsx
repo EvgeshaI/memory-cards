@@ -1,37 +1,42 @@
 import { Input, Button } from '@/shared/ui'
 import { routePaths, RouteNames } from '@/shared/constants/router'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import cls from './registration.module.scss'
 import clsx from 'clsx'
-import useForm from '../../../../entities/hooks/useForm'
-import { useAppDispatch } from '@/entities/hooks/hooks'
-import { register } from '../../../../services/actions/user'
+import { fetchRegData } from '@/entities/user'
+import { useState } from 'react'
 
 export const Registration = () => {
-  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const [first_name, setFirstName] = useState('')
+  const [second_name, setSecondName] = useState('')
+  const [login, setLogin] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [phone, setPhone] = useState('')
 
-  const initialFormValues = {
-    first_name: '',
-    second_name: '',
-    login: '',
-    email: '',
-    password: '',
-    phone: '',
-  }
-
-  const { values, handleChange } = useForm(initialFormValues)
-
-  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const newUserData = {
-      first_name: values.first_name,
-      second_name: values.second_name,
-      login: values.login,
-      email: values.email,
-      password: values.password,
-      phone: values.phone,
+    try {
+      console.log('Попытка регистрации пользователя')
+      const result = await fetchRegData(
+        first_name,
+        second_name,
+        login,
+        email,
+        password,
+        phone
+      )
+      if (result.status === 'Ok') {
+        console.log('Пользователь зарегестрирован')
+        navigate('/main')
+      } else {
+        console.error('Не удалось', result.status)
+        throw new Error('Не удалось ')
+      }
+    } catch (error) {
+      console.error('Ошибка при регистрации:', error)
     }
-    dispatch(register(newUserData))
   }
 
   return (
@@ -41,38 +46,38 @@ export const Registration = () => {
           <div className={cls.title}>Регистрация</div>
           <Input
             type="text"
-            onChange={handleChange}
-            value={values.first_name}
+            onChange={e => setFirstName(e.target.value)}
+            value={first_name}
             name="first_name"
             placeholder="имя"
           />
           <Input
-            onChange={handleChange}
-            value={values.second_name}
+            onChange={e => setSecondName(e.target.value)}
+            value={second_name}
             name="second_name"
             placeholder="фамилия"
           />
           <Input
-            onChange={handleChange}
-            value={values.login}
+            onChange={e => setLogin(e.target.value)}
+            value={login}
             name="login"
             placeholder="логин"
           />
           <Input
-            onChange={handleChange}
-            value={values.email}
+            onChange={e => setEmail(e.target.value)}
+            value={email}
             name="email"
             placeholder="почта"
           />
           <Input
-            onChange={handleChange}
-            value={values.phone}
+            onChange={e => setPhone(e.target.value)}
+            value={phone}
             name="phone"
             placeholder="телефон"
           />
           <Input
-            onChange={handleChange}
-            value={values.password}
+            onChange={e => setPassword(e.target.value)}
+            value={password}
             name="password"
             placeholder="пароль"
           />

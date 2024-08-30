@@ -14,7 +14,6 @@ export const ProfilePage: React.FC = () => {
   const { handleLogout } = useLogout()
   const [avatar, setAvatarUrl] = useState(user?.avatar || '')
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false)
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (user?.avatar) {

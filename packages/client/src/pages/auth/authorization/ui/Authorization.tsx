@@ -1,37 +1,33 @@
 import { Input, Button } from '@/shared/ui'
 import { routePaths, RouteNames } from '@/shared/constants/router'
-import { NavLink } from 'react-router-dom'
-import { login } from '../../../../services/actions/user'
+import { NavLink, useNavigate } from 'react-router-dom'
 import cls from './authorization.module.scss'
 import clsx from 'clsx'
-import useForm from '../../../../entities/hooks/useForm'
-import { useAppDispatch } from '@/entities/hooks/hooks'
+import { useState } from 'react'
+import { fetchLoginData } from '@/entities/user'
 
 export const Authorization = () => {
-  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const [login, setLogin] = useState('')
+  const [password, setPassword] = useState('')
 
-  const initialFormValues = {
-    login: '',
-    password: '',
-  }
-
-  const { values, setValues } = useForm(initialFormValues)
-
-  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const registeredUserData = {
-      login: values.login,
-      password: values.password,
-    }
-    dispatch(login(registeredUserData))
-  }
+    try {
+      console.log('Попытка авторизации пользователя')
+      const result = await fetchLoginData(login, password)
+      console.log('result', result)
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target
-    setValues(prevValues => ({
-      ...prevValues,
-      [name]: value,
-    }))
+      if (result.status === 'Ok') {
+        console.log('Пользователь авторизован')
+        navigate('/main')
+      } else {
+        console.error('Не удалось', result.status)
+        throw new Error('Не удалось')
+      }
+    } catch (error) {
+      console.error('Ошибка при авторизации:', error)
+    }
   }
 
   return (
@@ -40,14 +36,14 @@ export const Authorization = () => {
         <div className={cls.authContent}>
           <div className={cls.title}>Войти</div>
           <Input
-            onChange={handleChange}
-            value={values.login}
+            onChange={e => setLogin(e.target.value)}
+            value={login}
             name="login"
             placeholder="логин"
           />
           <Input
-            onChange={handleChange}
-            value={values.password}
+            onChange={e => setPassword(e.target.value)}
+            value={password}
             name="password"
             placeholder="пароль "
             autoComplete="off"
