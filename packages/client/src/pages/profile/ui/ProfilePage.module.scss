@@ -1,0 +1,31 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 65%;
+}
+
+.userDetails {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 6vh;
+}
+
+.userName {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.userEmail {
+  font-size: 20px;
+  margin-top: 2vh;
+}

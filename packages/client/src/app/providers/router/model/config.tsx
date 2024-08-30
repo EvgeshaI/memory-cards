@@ -1,17 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { RouteNames, routePaths } from '@/shared/constants/router'
-import { MainLayout } from '@/app/layouts/main/MainLayout'
-import { MainPage } from '@/pages/main'
-import { ProfilePage } from '@/pages/profile'
-import { StartGamePage } from '@/pages/start-game'
-import { EndGamePage } from '@/pages/end-game'
-import { Authorization, Registration } from '@/pages/auth'
-import { Leaderboard } from '@/pages/leaderboard'
-import { ErrorPage } from '@/pages/error'
+import { MainLayout } from '@/shared/ui'
+import { Sidebar } from '@/widgets'
+import {
+  MainPage,
+  ProfilePage,
+  ForbiddenPage,
+  NotFoundPage,
+  StartGamePage,
+  EndGamePage,
+  Authorization,
+  Registration,
+} from '@/pages'
 
 export const router = createBrowserRouter([
   {
-    element: <MainLayout />,
+    element: <MainLayout sidebarSlot={<Sidebar />} />,
     children: [
       {
         path: routePaths[RouteNames.MAIN],
