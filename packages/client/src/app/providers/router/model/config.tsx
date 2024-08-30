@@ -3,14 +3,14 @@ import { RouteNames, routePaths } from '@/shared/constants/router'
 import { MainLayout } from '@/shared/ui'
 import { Sidebar } from '@/widgets'
 import {
+  Authorization,
+  EndGamePage,
+  ErrorPage,
+  Leaderboard,
   MainPage,
   ProfilePage,
-  ForbiddenPage,
-  NotFoundPage,
-  StartGamePage,
-  EndGamePage,
-  Authorization,
   Registration,
+  StartGamePage,
 } from '@/pages'
 
 export const router = createBrowserRouter([
