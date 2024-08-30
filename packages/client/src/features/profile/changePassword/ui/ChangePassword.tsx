@@ -28,7 +28,7 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
         setError(false)
         setErrorMessage('')
       } else {
-        console.log(
+        console.error(
           'Не удалось изменить пароль, статус от сервера:',
           result.status
         )

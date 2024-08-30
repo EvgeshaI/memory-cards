@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChangeAvatar } from '@/features/profilePage/changeAvatar'
+import { ChangeAvatar } from '@/features/profile/changeAvatar'
 import { ProfileActions } from '@/widgets/profile'
 import cls from './ProfileInfo.module.scss'
 

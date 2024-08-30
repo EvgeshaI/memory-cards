@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { changeAvatar } from '@/entities/user'
-import { AvatarDisplay } from '@/features/profilePage/changeAvatar/ui/AvatarDisplay'
+import { AvatarDisplay } from './AvatarDisplay'
 import { FilePreview } from '@/pages/profile/ui/FilePreview'
 import { Notification } from '@/shared/ui'
 import cls from './ChangeAvatar.module.scss'
