@@ -27,8 +27,13 @@ export const fetchRegData = async (
     if (!response.ok) {
       throw new Error('Не удалось получить данные пользователя')
     }
-    const data = await response.json()
-    return data
+    const result = await response.text()
+
+    if (result === 'OK') {
+      return { status: 'ok' }
+    } else {
+      throw new Error('Некорректный ответ от сервера.')
+    }
   } catch (error) {
     console.error('Ошибка в получении данных пользователя:', error)
     throw error
@@ -51,8 +56,13 @@ export const fetchLoginData = async (login: string, password: string) => {
     if (!response.ok) {
       throw new Error('Не удалось получить данные пользователя')
     }
-    const data = await response.json()
-    return data
+    const result = await response.text()
+
+    if (result === 'OK') {
+      return { status: 'ok' }
+    } else {
+      throw new Error('Некорректный ответ от сервера.')
+    }
   } catch (error) {
     console.error('Ошибка в получении данных пользователя:', error)
     throw error
@@ -69,6 +79,7 @@ export const fetchUserData = async () => {
       throw new Error('Не удалось получить данные пользователя')
     }
     const data = await response.json()
+
     return data
   } catch (error) {
     console.error('Ошибка в получении данных пользователя:', error)

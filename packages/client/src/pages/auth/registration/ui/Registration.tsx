@@ -27,9 +27,9 @@ export const Registration = () => {
         password,
         phone
       )
-      if (result.status === 'Ok') {
+      if (result.status === 'ok') {
         console.log('Пользователь зарегестрирован')
-        navigate('/main')
+        navigate('/')
       } else {
         console.error('Не удалось', result.status)
         throw new Error('Не удалось ')
