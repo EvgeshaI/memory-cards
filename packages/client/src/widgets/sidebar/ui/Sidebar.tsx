@@ -3,9 +3,10 @@ import { RouteNames, routePaths } from '@/shared/constants/router'
 import cls from './Sidebar.module.scss'
 import clsx from 'clsx'
 
+const getNavLinkClass = (isActive: boolean) =>
+  clsx(cls.navItem, { [cls.active]: isActive })
+
 export const Sidebar = () => {
-  const getNavLinkClass = (isActive: boolean) =>
-    clsx(cls.navItem, { [cls.active]: isActive })
   return (
     <aside className={cls.sidebar}>
       <nav className={cls.navbarContainer}>
