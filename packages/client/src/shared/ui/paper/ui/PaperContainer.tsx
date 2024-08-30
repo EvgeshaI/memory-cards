@@ -1,7 +1,7 @@
 import React from 'react'
 import { Paper } from '@mantine/core'
 import cls from './PaperContainer.module.scss'
-import headerIcon from '../../../svg/header.svg'
+import headerIcon from '../../../assets/header.svg'
 
 interface PaperContainerProps {
   children: React.ReactNode

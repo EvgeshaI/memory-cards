@@ -1,5 +1,5 @@
 import { Button, Select, Text } from '@mantine/core'
-import { PaperContainer } from '@/shared/ui/paper'
+import { PaperContainer } from '@/shared/ui'
 import React from 'react'
 
 export const GameSettings = () => {
