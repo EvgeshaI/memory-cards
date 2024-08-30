@@ -18,7 +18,7 @@ export const Authorization = () => {
       const result = await fetchLoginData(login, password)
       console.log('result', result)
 
-      if (result.status === 'Ok') {
+      if (result.status === 'ok') {
         console.log('Пользователь авторизован')
         navigate('/main')
       } else {
