@@ -1,4 +1,4 @@
-import { APIRoute } from '../../shared/constants/api'
+import { APIRoute, BASE_URL } from '../../shared/constants/api'
 import { User } from '../../types/user'
 import { AppDispatch } from '../types'
 
@@ -90,7 +90,7 @@ export function checkUserAuth() {
     }
   }
 }
-export function login(dataForLogin: { email: string; password: string }) {
+export function login(dataForLogin: { login: string; password: string }) {
   const loginOptions = {
     method: 'POST',
     headers: {
@@ -112,20 +112,6 @@ export function login(dataForLogin: { email: string; password: string }) {
         }
         return response.json()
       })
-      .then(
-        (data: {
-          accessToken: string
-          refreshToken: string
-          user: User | null
-        }) => {
-          dispatch({
-            type: FETCH_LOGIN_SUCCESS,
-          })
-          localStorage.setItem('accessToken', data.accessToken)
-          localStorage.setItem('refreshToken', data.refreshToken)
-          dispatch(setUser(data.user))
-        }
-      )
       .catch((err: any) => {
         console.log('Ошибка авторизации: ', err)
         dispatch({
@@ -136,9 +122,12 @@ export function login(dataForLogin: { email: string; password: string }) {
 }
 
 export function register(dataForRegister: {
-  name: string
+  first_name: string
+  second_name: string
+  login: string
   email: string
   password: string
+  phone: string
 }) {
   const registerOptions = {
     method: 'POST',
@@ -161,20 +150,20 @@ export function register(dataForRegister: {
         }
         return response.json()
       })
-      .then(
-        (data: {
-          accessToken: string
-          refreshToken: string
-          user: User | null
-        }) => {
-          dispatch({
-            type: FETCH_REGISTER_SUCCESS,
-          })
-          localStorage.setItem('accessToken', data.accessToken)
-          localStorage.setItem('refreshToken', data.refreshToken)
-          dispatch(setUser(data.user))
-        }
-      )
+      // .then(
+      //   (data: {
+      //     accessToken: string
+      //     refreshToken: string
+      //     user: User | null
+      //   }) => {
+      //     dispatch({
+      //       type: FETCH_REGISTER_SUCCESS,
+      //     })
+      //     localStorage.setItem('accessToken', data.accessToken)
+      //     localStorage.setItem('refreshToken', data.refreshToken)
+      //     dispatch(setUser(data.user))
+      //   }
+      // )
       .catch((err: any) => {
         console.log('Ошибка регистрации: ', err)
         dispatch({

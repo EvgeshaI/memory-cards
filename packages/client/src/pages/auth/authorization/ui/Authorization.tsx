@@ -1,16 +1,14 @@
 import { Input, Button } from '@/shared/ui'
 import { routePaths, RouteNames } from '@/shared/constants/router'
-import { useNavigate, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { login } from '../../../../services/actions/user'
 import cls from './authorization.module.scss'
 import clsx from 'clsx'
 import useForm from '../../../../entities/hooks/useForm'
+import { useAppDispatch } from '@/entities/hooks/hooks'
 
 export const Authorization = () => {
-  const nav = useNavigate()
-  const auth = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault()
-    nav('/')
-  }
+  const dispatch = useAppDispatch()
 
   const initialFormValues = {
     login: '',
@@ -18,6 +16,15 @@ export const Authorization = () => {
   }
 
   const { values, setValues } = useForm(initialFormValues)
+
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const registeredUserData = {
+      login: values.login,
+      password: values.password,
+    }
+    dispatch(login(registeredUserData))
+  }
 
   const handleChange = (e: any) => {
     const { name, value } = e.target
@@ -29,7 +36,7 @@ export const Authorization = () => {
 
   return (
     <div className={cls.authContainer}>
-      <form onSubmit={auth}>
+      <form onSubmit={e => onFormSubmit(e)}>
         <div className={cls.authContent}>
           <div className={cls.title}>Войти</div>
           <Input

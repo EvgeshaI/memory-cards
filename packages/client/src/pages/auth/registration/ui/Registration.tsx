@@ -1,18 +1,14 @@
 import { Input, Button } from '@/shared/ui'
 import { routePaths, RouteNames } from '@/shared/constants/router'
-import { useNavigate, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import cls from './registration.module.scss'
 import clsx from 'clsx'
 import useForm from '../../../../entities/hooks/useForm'
+import { useAppDispatch } from '@/entities/hooks/hooks'
+import { register } from '../../../../services/actions/user'
 
 export const Registration = () => {
-  const nav = useNavigate()
-  const reg = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault()
-    nav('/')
-  }
-
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const initialFormValues = {
     first_name: '',
@@ -35,15 +31,16 @@ export const Registration = () => {
       password: values.password,
       phone: values.phone,
     }
-    // dispatch(register(newUserData));
+    dispatch(register(newUserData))
   }
 
   return (
     <div className={cls.regContainer}>
-      <form onSubmit={reg}>
+      <form onSubmit={e => onFormSubmit(e)}>
         <div className={cls.regContent}>
           <div className={cls.title}>Регистрация</div>
           <Input
+            type="text"
             onChange={handleChange}
             value={values.first_name}
             name="first_name"
