@@ -46,46 +46,59 @@ export const Registration = () => {
           <div className={cls.title}>Регистрация</div>
           <Input
             type="text"
-            onChange={e => setFirstName(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setFirstName(e.target.value)
+            }
             value={first_name}
             name="first_name"
             required
             placeholder="имя"
           />
           <Input
-            onChange={e => setSecondName(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSecondName(e.target.value)
+            }
             value={second_name}
             name="second_name"
             required
             placeholder="фамилия"
           />
           <Input
-            onChange={e => setLogin(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setLogin(e.target.value)
+            }
             value={login}
             name="login"
             required
             placeholder="логин"
           />
           <Input
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
             value={email}
             name="email"
             required
             placeholder="почта"
           />
           <Input
-            onChange={e => setPhone(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPhone(e.target.value)
+            }
             value={phone}
             name="phone"
             required
             placeholder="телефон"
           />
           <Input
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
             value={password}
             name="password"
             required
             placeholder="пароль"
+            autoComplete="off"
           />
         </div>
         <div className={cls.regFooter}>
