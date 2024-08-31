@@ -11,7 +11,7 @@ export const Authorization = () => {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
 
-  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       console.log('Попытка авторизации пользователя')
@@ -39,12 +39,14 @@ export const Authorization = () => {
             onChange={e => setLogin(e.target.value)}
             value={login}
             name="login"
+            required
             placeholder="логин"
           />
           <Input
             onChange={e => setPassword(e.target.value)}
             value={password}
             name="password"
+            required
             placeholder="пароль "
             autoComplete="off"
           />

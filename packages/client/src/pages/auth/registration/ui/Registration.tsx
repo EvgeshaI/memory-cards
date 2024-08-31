@@ -15,7 +15,7 @@ export const Registration = () => {
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
 
-  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       console.log('Попытка регистрации пользователя')
@@ -49,36 +49,42 @@ export const Registration = () => {
             onChange={e => setFirstName(e.target.value)}
             value={first_name}
             name="first_name"
+            required
             placeholder="имя"
           />
           <Input
             onChange={e => setSecondName(e.target.value)}
             value={second_name}
             name="second_name"
+            required
             placeholder="фамилия"
           />
           <Input
             onChange={e => setLogin(e.target.value)}
             value={login}
             name="login"
+            required
             placeholder="логин"
           />
           <Input
             onChange={e => setEmail(e.target.value)}
             value={email}
             name="email"
+            required
             placeholder="почта"
           />
           <Input
             onChange={e => setPhone(e.target.value)}
             value={phone}
             name="phone"
+            required
             placeholder="телефон"
           />
           <Input
             onChange={e => setPassword(e.target.value)}
             value={password}
             name="password"
+            required
             placeholder="пароль"
           />
         </div>
