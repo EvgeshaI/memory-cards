@@ -20,7 +20,7 @@ export const Authorization = () => {
 
       if (result.status === 'ok') {
         console.log('Пользователь авторизован')
-        navigate('/')
+        navigate('/main')
       } else {
         console.error('Не удалось', result.status)
         throw new Error('Не удалось')

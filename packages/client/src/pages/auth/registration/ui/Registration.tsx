@@ -29,7 +29,7 @@ export const Registration = () => {
       )
       if (result.status === 'ok') {
         console.log('Пользователь зарегестрирован')
-        navigate('/')
+        navigate('/main')
       } else {
         console.error('Не удалось', result.status)
         throw new Error('Не удалось ')

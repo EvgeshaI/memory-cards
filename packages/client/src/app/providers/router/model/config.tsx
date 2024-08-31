@@ -18,6 +18,10 @@ export const router = createBrowserRouter([
     element: <MainLayout sidebarSlot={<Sidebar />} />,
     children: [
       {
+        path: routePaths[RouteNames.AUTHORIZATION],
+        element: <Authorization />,
+      },
+      {
         path: routePaths[RouteNames.MAIN],
         element: <MainPage />,
       },
@@ -37,10 +41,7 @@ export const router = createBrowserRouter([
         path: routePaths[RouteNames.END_GAME],
         element: <EndGamePage />,
       },
-      {
-        path: routePaths[RouteNames.AUTHORIZATION],
-        element: <Authorization />,
-      },
+
       {
         path: routePaths[RouteNames.REGISTRATION],
         element: <Registration />,
