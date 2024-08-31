@@ -36,14 +36,18 @@ export const Authorization = () => {
         <div className={cls.authContent}>
           <div className={cls.title}>Войти</div>
           <Input
-            onChange={e => setLogin(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setLogin(e.target.value)
+            }
             value={login}
             name="login"
             required
             placeholder="логин"
           />
           <Input
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
             value={password}
             name="password"
             required
