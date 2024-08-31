@@ -41,7 +41,7 @@ export const Registration = () => {
 
   return (
     <div className={cls.regContainer}>
-      <form onSubmit={e => onFormSubmit(e)}>
+      <form onSubmit={onFormSubmit}>
         <div className={cls.regContent}>
           <div className={cls.title}>Регистрация</div>
           <Input

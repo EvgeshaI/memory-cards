@@ -32,7 +32,7 @@ export const Authorization = () => {
 
   return (
     <div className={cls.authContainer}>
-      <form onSubmit={e => onFormSubmit(e)}>
+      <form onSubmit={onFormSubmit}>
         <div className={cls.authContent}>
           <div className={cls.title}>Войти</div>
           <Input
