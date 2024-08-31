@@ -3,14 +3,14 @@ import { RouteNames, routePaths } from '@/shared/constants/router'
 import { MainLayout } from '@/shared/ui'
 import { Sidebar } from '@/widgets'
 import {
+  Authorization,
+  EndGamePage,
+  ErrorPage,
+  Leaderboard,
   MainPage,
   ProfilePage,
-  ForbiddenPage,
-  NotFoundPage,
-  StartGamePage,
-  EndGamePage,
-  Authorization,
   Registration,
+  StartGamePage,
 } from '@/pages'
 
 export const router = createBrowserRouter([
@@ -30,8 +30,12 @@ export const router = createBrowserRouter([
         element: <ProfilePage />,
       },
       {
+        path: routePaths[RouteNames.LEADERBOARD],
+        element: <Leaderboard />,
+      },
+      {
         path: routePaths[RouteNames.FORBIDDEN],
-        element: <ForbiddenPage />,
+        element: <ErrorPage text={'500'} />,
       },
       {
         path: routePaths[RouteNames.START_GAME],
@@ -48,7 +52,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <NotFoundPage />,
+        element: <ErrorPage text={'404'} />,
       },
     ],
   },
