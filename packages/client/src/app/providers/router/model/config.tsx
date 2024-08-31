@@ -8,6 +8,8 @@ import { NotFoundPage } from '@/pages/not-found'
 import { StartGamePage } from '@/pages/start-game'
 import { EndGamePage } from '@/pages/end-game'
 import { Authorization, Registration } from '@/pages/auth'
+import { ForumPage } from '@/pages/forum'
+import { ForumTopicPage } from '@/pages/forum-topic'
 
 export const router = createBrowserRouter([
   {
@@ -46,5 +48,13 @@ export const router = createBrowserRouter([
         element: <NotFoundPage />,
       },
     ],
+  },
+  {
+    path: routePaths[RouteNames.FORUM],
+    element: <ForumPage />,
+  },
+  {
+    path: routePaths[RouteNames.FORUM_TOPIC](':id'),
+    element: <ForumTopicPage />,
   },
 ])

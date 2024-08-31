@@ -3,6 +3,7 @@ export enum RouteNames {
   PROFILE = 'profile',
   FORBIDDEN = 'forbidden',
   FORUM = 'forum',
+  FORUM_TOPIC = 'forumTopic',
   LEADERBOARD = 'leaderboard',
   START_GAME = 'startGame',
   END_GAME = 'endGame',
@@ -15,6 +16,7 @@ interface RoutePaths {
   [RouteNames.PROFILE]: (id: string) => string
   [RouteNames.FORBIDDEN]: string
   [RouteNames.FORUM]: string
+  [RouteNames.FORUM_TOPIC]: (id: string) => string
   [RouteNames.LEADERBOARD]: string
   [RouteNames.START_GAME]: string
   [RouteNames.END_GAME]: string
@@ -27,6 +29,7 @@ export const routePaths: RoutePaths = {
   [RouteNames.PROFILE]: (id: string) => `/profile/${id}`,
   [RouteNames.FORBIDDEN]: '/forbidden',
   [RouteNames.FORUM]: '/forum',
+  [RouteNames.FORUM_TOPIC]: (id: string) => `/forum/${id}`,
   [RouteNames.LEADERBOARD]: '/leaderboard',
   [RouteNames.START_GAME]: '/startGame',
   [RouteNames.END_GAME]: '/endGame',
