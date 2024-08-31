@@ -1,7 +1,7 @@
 import { Navigate, NavLink, useParams } from 'react-router-dom'
 import { Anchor, Container, Stack } from '@mantine/core'
 import { FORUM_TOPICS } from '@/entities/forum-topic'
-import { ForumTopicDetails } from '@/widgets/forum-topic-details'
+import { ForumTopicDetails } from '@/widgets'
 import { RouteNames, routePaths } from '@/shared/constants/router'
 import cls from './ForumTopic.module.scss'
 

@@ -11,9 +11,9 @@ import {
   ProfilePage,
   Registration,
   StartGamePage,
+  ForumPage,
+  ForumTopicPage,
 } from '@/pages'
-import { ForumPage } from '@/pages/forum'
-import { ForumTopicPage } from '@/pages/forum-topic'
 
 export const router = createBrowserRouter([
   {
@@ -52,17 +52,17 @@ export const router = createBrowserRouter([
         element: <Registration />,
       },
       {
+        path: routePaths[RouteNames.FORUM],
+        element: <ForumPage />,
+      },
+      {
+        path: routePaths[RouteNames.FORUM_TOPIC](':id'),
+        element: <ForumTopicPage />,
+      },
+      {
         path: '*',
         element: <ErrorPage text={'404'} />,
       },
     ],
-  },
-  {
-    path: routePaths[RouteNames.FORUM],
-    element: <ForumPage />,
-  },
-  {
-    path: routePaths[RouteNames.FORUM_TOPIC](':id'),
-    element: <ForumTopicPage />,
   },
 ])

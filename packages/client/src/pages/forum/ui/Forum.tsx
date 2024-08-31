@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { Anchor, Container, Stack } from '@mantine/core'
-import { ForumTopicList } from '@/widgets/forum-topic-list'
+import { ForumTopicList } from '@/widgets'
 import { RouteNames, routePaths } from '@/shared/constants/router'
 import cls from './Forum.module.scss'
 

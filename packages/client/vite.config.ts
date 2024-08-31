@@ -13,12 +13,7 @@ export default defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
-  plugins: [
-    svgr({
-      include: '**/*.svg',
-    }),
-    react(),
-  ],
+  plugins: [svgr(), react()],
   css: {
     preprocessorOptions: {
       scss: {

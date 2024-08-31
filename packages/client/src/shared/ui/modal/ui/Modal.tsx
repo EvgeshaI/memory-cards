@@ -5,7 +5,7 @@ import {
   Modal as MantineModal,
   ModalProps as MantineModalProps,
 } from '@mantine/core'
-import HeaderIcon from '@/shared/svg/header.svg'
+import HeaderIcon from '@/shared/assets/header.svg?react'
 import cls from './Modal.module.scss'
 
 export const Modal: FC<MantineModalProps> = props => {
