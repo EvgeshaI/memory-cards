@@ -12,8 +12,7 @@ export const useAddCommentForm = (payload: Payload) => {
     defaultValues: FORM_DEFAULT_VALUES,
   })
 
-  const onSubmit: SubmitHandler<FormValues> = data => {
-    console.log(data)
+  const onSubmit: SubmitHandler<FormValues> = () => {
     onSuccess?.()
   }
 
