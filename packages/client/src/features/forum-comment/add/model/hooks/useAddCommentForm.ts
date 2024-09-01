@@ -6,7 +6,7 @@ interface Payload {
   onSuccess?: () => void
 }
 
-export function useAddCommentForm(payload: Payload) {
+export const useAddCommentForm = (payload: Payload) => {
   const { onSuccess } = payload
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: FORM_DEFAULT_VALUES,

@@ -6,7 +6,7 @@ interface Payload {
   onSuccess?: () => void
 }
 
-export function useAddTopicForm(payload: Payload) {
+export const useAddTopicForm = (payload: Payload) => {
   const { onSuccess } = payload
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: FORM_DEFAULT_VALUES,
