@@ -1,4 +1,4 @@
-import { fetchUserData } from '../api/userApi'
+import { fetchUserData } from '../api/authApi'
 import { User } from '../model/types'
 
 interface LoadUserDataParams {

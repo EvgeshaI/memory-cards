@@ -1,4 +1,4 @@
-import { RegistrationForm } from '@/features/profile/signUpForm/ui/SignUpForm'
+import { RegistrationForm } from '@/features/auth'
 
 export const Registration = () => {
   return (
