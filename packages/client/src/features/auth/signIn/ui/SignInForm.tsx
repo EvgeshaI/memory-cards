@@ -14,12 +14,8 @@ export const AuthorizationForm = () => {
   const onFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      console.log('Попытка авторизации пользователя')
       const result = await fetchLoginData(login, password)
-      console.log('result', result)
-
       if (result.status === 'ok') {
-        console.log('Пользователь авторизован')
         navigate('/main')
       } else {
         console.error('Не удалось', result.status)

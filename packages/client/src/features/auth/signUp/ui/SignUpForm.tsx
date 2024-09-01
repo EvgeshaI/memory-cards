@@ -18,7 +18,6 @@ export const RegistrationForm = () => {
   const onFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      console.log('Попытка регистрации пользователя')
       const result = await fetchRegData(
         first_name,
         second_name,
@@ -28,7 +27,6 @@ export const RegistrationForm = () => {
         phone
       )
       if (result.status === 'ok') {
-        console.log('Пользователь зарегестрирован')
         navigate('/main')
       } else {
         console.error('Не удалось', result.status)

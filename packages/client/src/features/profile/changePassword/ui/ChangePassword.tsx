@@ -19,11 +19,8 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      console.log('Попытка изменить пароль')
       const result = await changePassword(userId, oldPassword, newPassword)
-
       if (result.status === 'ok') {
-        console.log('Пароль успешно изменен')
         setSuccess(true)
         setError(false)
         setErrorMessage('')
