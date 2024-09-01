@@ -1,3 +1,3 @@
-import { store } from '../store'
+import { store } from '../../../app/providers/store/store'
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
