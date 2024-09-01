@@ -11,6 +11,8 @@ import {
   ProfilePage,
   Registration,
   StartGamePage,
+  ForumPage,
+  ForumTopicPage,
 } from '@/pages'
 
 export const router = createBrowserRouter([
@@ -49,6 +51,14 @@ export const router = createBrowserRouter([
       {
         path: routePaths[RouteNames.REGISTRATION],
         element: <Registration />,
+      },
+      {
+        path: routePaths[RouteNames.FORUM],
+        element: <ForumPage />,
+      },
+      {
+        path: routePaths[RouteNames.FORUM_TOPIC](':id'),
+        element: <ForumTopicPage />,
       },
       {
         path: '*',
