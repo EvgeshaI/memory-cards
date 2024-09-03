@@ -1,24 +1,26 @@
-.settingsContainer{
-    width: 80%;
-    position: relative;
-    padding: 80px;
-    text-align: center;
-    margin: auto;
+.settingsContainer {
+  width: 80%;
+  position: relative;
+  padding: 80px;
+  text-align: center;
+  margin: auto;
 }
-.title{
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+
+.title {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
 }
-.titleText{
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--background-white);
-    z-index: 2;
+
+.titleText {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--background-white);
+  z-index: 2;
 }

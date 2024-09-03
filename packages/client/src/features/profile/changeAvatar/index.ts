@@ -1,2 +1,2 @@
-export { ChangeAvatar } from './ui/ChangeAvatar'
-export { handleAvatarChange } from './lib/handleAvatarChange'
+export { ChangeAvatar } from './ui/ChangeAvatar';
+export { handleAvatarChange } from './lib/handleAvatarChange';

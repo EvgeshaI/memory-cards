@@ -1,9 +1,7 @@
-import { AuthorizationForm } from '@/features/auth'
+import { AuthorizationForm } from '@/features/auth';
 
-export const Authorization = () => {
-  return (
-    <div>
-      <AuthorizationForm />
-    </div>
-  )
-}
+export const Authorization = () => (
+  <div>
+    <AuthorizationForm />
+  </div>
+);

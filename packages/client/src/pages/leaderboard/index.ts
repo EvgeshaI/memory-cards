@@ -1,1 +1,1 @@
-export { Leaderboard } from './ui/Leaderboard'
+export { Leaderboard } from './ui/Leaderboard';

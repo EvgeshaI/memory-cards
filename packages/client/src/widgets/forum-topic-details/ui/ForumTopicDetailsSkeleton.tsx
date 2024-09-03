@@ -1,18 +1,18 @@
-import clsx from 'clsx'
-import { FC } from 'react'
-import { Skeleton, Stack } from '@mantine/core'
-import { TopicCardSkeleton } from '@/entities/forum-topic'
-import { ForumCommentCardSkeleton } from '@/entities/forum-comment'
-import { Card, ScrollArea } from '@/shared/ui'
-import { times } from '@/shared/lib'
-import cls from './ForumTopicDetails.module.scss'
+import { Skeleton, Stack } from '@mantine/core';
+import clsx from 'clsx';
+import { FC } from 'react';
+import { ForumCommentCardSkeleton } from '@/entities/forum-comment';
+import { TopicCardSkeleton } from '@/entities/forum-topic';
+import { times } from '@/shared/lib';
+import { Card, ScrollArea } from '@/shared/ui';
+import cls from './ForumTopicDetails.module.scss';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export const ForumTopicDetailsSkeleton: FC<Props> = props => {
-  const { className } = props
+export const ForumTopicDetailsSkeleton: FC<Props> = (props) => {
+  const { className } = props;
 
   return (
     <div className={clsx(cls.root, className)}>
@@ -26,7 +26,7 @@ export const ForumTopicDetailsSkeleton: FC<Props> = props => {
             <Stack h="100%" gap={40}>
               <ScrollArea className={cls.comments}>
                 <Stack gap={15}>
-                  {times(3, index => (
+                  {times(3, (index) => (
                     <ForumCommentCardSkeleton key={index} />
                   ))}
                 </Stack>
@@ -40,5 +40,5 @@ export const ForumTopicDetailsSkeleton: FC<Props> = props => {
         </Stack>
       </Stack>
     </div>
-  )
-}
+  );
+};

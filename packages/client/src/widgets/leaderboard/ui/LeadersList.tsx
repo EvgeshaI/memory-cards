@@ -1,9 +1,9 @@
-import { PaperContainer } from '@/shared/ui/paper'
-import { PlayerInfo } from '@/entities/player-info'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { NavLink } from 'react-router-dom'
-import { Container } from '@mantine/core'
-import cls from './LeadersList.module.scss'
+import { Container } from '@mantine/core';
+import { NavLink } from 'react-router-dom';
+import { PlayerInfo } from '@/entities/player-info';
+import { RouteNames, routePaths } from '@/shared/constants/router';
+import { PaperContainer } from '@/shared/ui/paper';
+import cls from './LeadersList.module.scss';
 
 export const LeadersList = () => {
   const players = [
@@ -22,12 +22,12 @@ export const LeadersList = () => {
     },
     { avatar: '', name: 'Игрок 4', count: 198 },
     { avatar: '', name: 'Игрок 5', count: 333 },
-  ]
-  const filteredAndSortedPlayers = players.sort((a, b) => b.count - a.count)
+  ];
+  const filteredAndSortedPlayers = players.sort((a, b) => b.count - a.count);
   return (
     <Container w="100%">
-      <PaperContainer text={'Лидерборд'}>
-        {filteredAndSortedPlayers.map(player => (
+      <PaperContainer text="Лидерборд">
+        {filteredAndSortedPlayers.map((player) => (
           <PlayerInfo
             key={player.name}
             name={player.name}
@@ -40,5 +40,5 @@ export const LeadersList = () => {
         Вернуться на главную
       </NavLink>
     </Container>
-  )
-}
+  );
+};

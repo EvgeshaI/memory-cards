@@ -1,15 +1,15 @@
-import { FC } from 'react'
-import { Group, Stack, Text, Avatar } from '@mantine/core'
-import dayjs from '@/shared/config/dayjs'
-import { Comment } from '../../model/types'
+import { FC } from 'react';
+import { Group, Stack, Text, Avatar } from '@mantine/core';
+import dayjs from '@/shared/config/dayjs';
+import { Comment } from '../../model/types';
 
 interface Props {
-  comment: Comment
-  className?: string
+  comment: Comment;
+  className?: string;
 }
 
-export const CommentCard: FC<Props> = props => {
-  const { comment, className } = props
+export const CommentCard: FC<Props> = (props) => {
+  const { comment, className } = props;
 
   return (
     <Stack className={className} gap={10}>
@@ -30,5 +30,5 @@ export const CommentCard: FC<Props> = props => {
         {comment.text}
       </Text>
     </Stack>
-  )
-}
+  );
+};

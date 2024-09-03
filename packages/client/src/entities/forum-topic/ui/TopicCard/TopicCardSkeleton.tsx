@@ -1,15 +1,15 @@
-import clsx from 'clsx'
-import { FC } from 'react'
-import { Stack, Skeleton } from '@mantine/core'
-import { Card } from '@/shared/ui'
-import cls from './TopicCard.module.scss'
+import clsx from 'clsx';
+import { FC } from 'react';
+import { Stack, Skeleton } from '@mantine/core';
+import { Card } from '@/shared/ui';
+import cls from './TopicCard.module.scss';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export const TopicCardSkeleton: FC<Props> = props => {
-  const { className } = props
+export const TopicCardSkeleton: FC<Props> = (props) => {
+  const { className } = props;
 
   return (
     <Card className={clsx(cls.root, className)}>
@@ -23,5 +23,5 @@ export const TopicCardSkeleton: FC<Props> = props => {
         </div>
       </Stack>
     </Card>
-  )
-}
+  );
+};

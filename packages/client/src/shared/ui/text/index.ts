@@ -1,1 +1,1 @@
-export { Text } from '@mantine/core'
+export { Text } from '@mantine/core';

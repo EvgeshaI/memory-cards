@@ -1,4 +1,4 @@
-import { Topic } from '../types'
+import { Topic } from '../types';
 
 export const FORUM_TOPICS: Topic[] = [
   {
@@ -71,4 +71,4 @@ export const FORUM_TOPICS: Topic[] = [
     description: 'Описание топика 10',
     commentCount: 10,
   },
-]
+];

@@ -1,1 +1,1 @@
-export { EndGamePage } from './ui/EndGamePage'
+export { EndGamePage } from './ui/EndGamePage';

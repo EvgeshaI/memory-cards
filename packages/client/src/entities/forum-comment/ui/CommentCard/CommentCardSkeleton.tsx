@@ -1,12 +1,12 @@
-import { FC } from 'react'
-import { Group, Stack, Skeleton } from '@mantine/core'
+import { FC } from 'react';
+import { Group, Stack, Skeleton } from '@mantine/core';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export const CommentCardSkeleton: FC<Props> = props => {
-  const { className } = props
+export const CommentCardSkeleton: FC<Props> = (props) => {
+  const { className } = props;
 
   return (
     <Stack className={className} gap={10}>
@@ -21,5 +21,5 @@ export const CommentCardSkeleton: FC<Props> = props => {
 
       <Skeleton width="100%" height={50} />
     </Stack>
-  )
-}
+  );
+};

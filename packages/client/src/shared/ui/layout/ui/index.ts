@@ -1,1 +1,1 @@
-export { MainLayout } from './main/MainLayout'
+export { MainLayout } from './main/MainLayout';

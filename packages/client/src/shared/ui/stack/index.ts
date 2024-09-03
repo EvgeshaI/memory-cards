@@ -1,1 +1,1 @@
-export { Stack } from '@mantine/core'
+export { Stack } from '@mantine/core';

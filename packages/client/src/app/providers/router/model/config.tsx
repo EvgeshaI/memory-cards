@@ -1,7 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { MainLayout } from '@/shared/ui'
-import { Sidebar } from '@/widgets'
+import { createBrowserRouter } from 'react-router-dom';
+import { RouteNames, routePaths } from '@/shared/constants/router';
+import { MainLayout } from '@/shared/ui';
+import { Sidebar } from '@/widgets';
 import {
   Authorization,
   EndGamePage,
@@ -13,7 +13,7 @@ import {
   StartGamePage,
   ForumPage,
   ForumTopicPage,
-} from '@/pages'
+} from '@/pages';
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routePaths[RouteNames.FORBIDDEN],
-        element: <ErrorPage text={'500'} />,
+        element: <ErrorPage text="500" />,
       },
       {
         path: routePaths[RouteNames.START_GAME],
@@ -62,8 +62,8 @@ export const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <ErrorPage text={'404'} />,
+        element: <ErrorPage text="404" />,
       },
     ],
   },
-])
+]);

@@ -1,35 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Notification, Loader } from '@/shared/ui'
-import { PasswordModal } from '@/widgets/profile'
-import { useUserData } from '@/entities/user/'
-import { useLogout } from '@/entities/user/'
-import { handleAvatarChange } from '@/features/profile'
-import { ProfileInfo } from '@/widgets/profile'
-import cls from './ProfilePage.module.scss'
-import { RESOURCES_URL } from '@/shared/constants/api'
+import React, { useEffect, useState } from 'react';
+import { Notification, Loader } from '@/shared/ui';
+import { PasswordModal, ProfileInfo } from '@/widgets/profile';
+import { useUserData, useLogout } from '@/entities/user/';
+import { handleAvatarChange } from '@/features/profile';
+import { RESOURCES_URL } from '@/shared/constants/api';
+import cls from './ProfilePage.module.scss';
 
 export const ProfilePage: React.FC = () => {
-  const { user, isLoading } = useUserData()
-  const { handleLogout } = useLogout()
-  const [avatar, setAvatarUrl] = useState(user?.avatar || '')
-  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false)
+  const { user, isLoading } = useUserData();
+  const { handleLogout } = useLogout();
+  const [avatar, setAvatarUrl] = useState(user?.avatar || '');
+  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
 
   useEffect(() => {
     if (user?.avatar) {
-      setAvatarUrl(user.avatar)
+      setAvatarUrl(user.avatar);
     }
-  }, [user])
+  }, [user]);
 
-  if (isLoading) return <Loader size="xl" variant="bars" />
+  if (isLoading) return <Loader size="xl" variant="bars" />;
   if (!user)
     return (
       <Notification color="red" title="Ошибка">
         Пользователь не существует
       </Notification>
-    )
+    );
 
-  const avatarUrl = avatar ? `${RESOURCES_URL}${avatar}` : ''
+  const avatarUrl = avatar ? `${RESOURCES_URL}${avatar}` : '';
 
   return (
     <div className={cls.root}>
@@ -39,7 +36,7 @@ export const ProfilePage: React.FC = () => {
         firstName={user.first_name}
         secondName={user.second_name}
         email={user.email}
-        onAvatarChange={newAvatarUrl =>
+        onAvatarChange={(newAvatarUrl) =>
           handleAvatarChange(newAvatarUrl, setAvatarUrl)
         }
         onPasswordChange={() => setPasswordModalOpen(true)}
@@ -52,5 +49,5 @@ export const ProfilePage: React.FC = () => {
         userId={user.id}
       />
     </div>
-  )
-}
+  );
+};

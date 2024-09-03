@@ -1,5 +1,5 @@
-export * from './ui'
+export * from './ui';
 
-export * from './model/types'
+export * from './model/types';
 
-export * from './model/constants'
+export * from './model/constants';

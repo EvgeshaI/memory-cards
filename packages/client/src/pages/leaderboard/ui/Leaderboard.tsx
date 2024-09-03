@@ -1,11 +1,9 @@
-import { LeadersList } from '@/widgets'
-import cls from '@/pages/start-game/ui/StartGamePage.module.scss'
-import { Container } from '@mantine/core'
+import { Container } from '@mantine/core';
+import { LeadersList } from '@/widgets';
+import cls from './Leaderboard.module.scss';
 
-export const Leaderboard = () => {
-  return (
-    <Container size="sm" className={cls.container}>
-      <LeadersList />
-    </Container>
-  )
-}
+export const Leaderboard = () => (
+  <Container size="sm" className={cls.container}>
+    <LeadersList />
+  </Container>
+);

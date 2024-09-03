@@ -1,25 +1,22 @@
-@import "@mantine/core/styles.layer.css";
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import '@mantine/core/styles.layer.css';
+@import 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap';
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
   background: var(--background-base);
 }
 
-:root{
+:root {
   --background-base: #f5f5f5;
   --background-muted: #e0e6f1;
   --background-highlight: #ced5ef;
   --background-hover: #4754d4;
-  --background-white: #ffffff;
+  --background-white: #fff;
   --accent-color: #576ff8;
-  --error-color: #ff5555;
-
+  --error-color: #f55;
   --text-color: #3e4cbc;
   --dark-text-color: #022859;
-
   --card-background: #3e4cbc2b;
-
   --scrollbar-background: var(--card-background);
   --scrollbar-thumb-background: #3e4cbc80;
 }

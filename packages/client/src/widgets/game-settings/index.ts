@@ -1,1 +1,1 @@
-export { GameSettings } from './ui/GameSettings'
+export { GameSettings } from './ui/GameSettings';

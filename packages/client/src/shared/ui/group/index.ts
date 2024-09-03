@@ -1,1 +1,1 @@
-export { Group } from '@mantine/core'
+export { Group } from '@mantine/core';

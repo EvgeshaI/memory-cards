@@ -1,22 +1,22 @@
-import clsx from 'clsx'
-import { FC } from 'react'
-import { Button, Group, Stack, Title } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
-import { AddTopicModal } from '@/features/forum-topic/add'
-import { ScrollArea } from '@/shared/ui'
-import { Topics } from '../Topics/Topics'
-import cls from './ForumTopicList.module.scss'
+import clsx from 'clsx';
+import { FC } from 'react';
+import { Button, Group, Stack, Title } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { AddTopicModal } from '@/features/forum-topic/add';
+import { ScrollArea } from '@/shared/ui';
+import { Topics } from '../Topics/Topics';
+import cls from './ForumTopicList.module.scss';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export const ForumTopicList: FC<Props> = props => {
-  const { className } = props
+export const ForumTopicList: FC<Props> = (props) => {
+  const { className } = props;
   const [
     isAddTopicModalOpen,
     { open: openAddTopicModal, close: closeAddTopicModal },
-  ] = useDisclosure()
+  ] = useDisclosure();
 
   return (
     <div className={clsx(cls.root, className)}>
@@ -33,7 +33,8 @@ export const ForumTopicList: FC<Props> = props => {
             variant="transparent"
             c="var(--text-color)"
             onClick={openAddTopicModal}
-            p={0}>
+            p={0}
+          >
             Создать топик
           </Button>
         </Group>
@@ -43,5 +44,5 @@ export const ForumTopicList: FC<Props> = props => {
         </ScrollArea>
       </Stack>
     </div>
-  )
-}
+  );
+};
