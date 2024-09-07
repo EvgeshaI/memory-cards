@@ -1,6 +1,6 @@
 import { Button, Select, Text } from '@mantine/core';
 import React from 'react';
-import { PaperContainer } from '@/shared/ui';
+import { PaperContainer, FullscreenButton } from '@/shared/ui';
 
 export const GameSettings = () => (
   <PaperContainer text="Настройки">
@@ -19,5 +19,6 @@ export const GameSettings = () => (
     <Button fullWidth radius="md" size="md" color="var(--accent-color)">
       играть
     </Button>
+    <FullscreenButton />
   </PaperContainer>
 );
