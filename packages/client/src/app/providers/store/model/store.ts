@@ -1,6 +1,9 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import userReducer from '../../../../entities/user/model/slice/userSlice';
 
-const rootReducers = combineReducers({});
+const rootReducers = combineReducers({
+  user: userReducer,
+});
 
 export const store = configureStore({
   reducer: rootReducers,

@@ -5,6 +5,7 @@ import { Input, Button } from '@/shared/ui';
 import { routePaths, RouteNames } from '@/shared/constants/router';
 import { fetchLoginData } from '@/entities/user';
 import cls from './authorization.module.scss';
+import { setUser } from '@/entities/user/model/slice/userSlice';
 
 export const AuthorizationForm = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export const AuthorizationForm = () => {
       const result = await fetchLoginData(login, password);
       if (result.status === 'ok') {
         navigate('/main');
+        setUser({ login, password });
       } else {
         console.error('Не удалось', result.status);
         throw new Error('Не удалось');

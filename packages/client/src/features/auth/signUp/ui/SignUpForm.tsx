@@ -8,6 +8,7 @@ import cls from './registration.module.scss';
 
 export const RegistrationForm = () => {
   const navigate = useNavigate();
+
   const [first_name, setFirstName] = useState('');
   const [second_name, setSecondName] = useState('');
   const [login, setLogin] = useState('');
