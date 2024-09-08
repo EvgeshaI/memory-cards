@@ -1,9 +1,9 @@
-import React from 'react'
-import { Button } from '@/shared/ui'
+import React from 'react';
+import { Button } from '@/shared/ui';
 
 interface FilePreviewProps {
-  selectedFile: File
-  onSubmit: () => void
+  selectedFile: File;
+  onSubmit: () => void;
 }
 
 export const FilePreview: React.FC<FilePreviewProps> = ({
@@ -16,4 +16,4 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
       Сохранить
     </Button>
   </div>
-)
+);

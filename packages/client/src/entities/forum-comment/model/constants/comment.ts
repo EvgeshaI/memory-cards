@@ -1,4 +1,4 @@
-import { Comment } from '../types'
+import { Comment } from '../types';
 
 export const FORUM_TOPIC_COMMENTS: Comment[] = [
   {
@@ -81,4 +81,4 @@ export const FORUM_TOPIC_COMMENTS: Comment[] = [
     text: 'Команда — это не случайные люди, оказавшиеся в одном проекте, и не сотрудники, которые сидят в одном офисе.',
     date: '2024-08-31 12:20:00',
   },
-]
+];

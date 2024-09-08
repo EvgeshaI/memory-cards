@@ -1,22 +1,22 @@
-import { Input, Button } from '@/shared/ui'
-import { routePaths, RouteNames } from '@/shared/constants/router'
-import { NavLink, useNavigate } from 'react-router-dom'
-import cls from './registration.module.scss'
-import clsx from 'clsx'
-import { fetchRegData } from '@/entities/user'
-import { useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
+import { useState } from 'react';
+import { Input, Button } from '@/shared/ui';
+import { routePaths, RouteNames } from '@/shared/constants/router';
+import { fetchRegData } from '@/entities/user';
+import cls from './registration.module.scss';
 
 export const RegistrationForm = () => {
-  const navigate = useNavigate()
-  const [first_name, setFirstName] = useState('')
-  const [second_name, setSecondName] = useState('')
-  const [login, setLogin] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [phone, setPhone] = useState('')
+  const navigate = useNavigate();
+  const [first_name, setFirstName] = useState('');
+  const [second_name, setSecondName] = useState('');
+  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
 
   const onFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const result = await fetchRegData(
         first_name,
@@ -24,18 +24,18 @@ export const RegistrationForm = () => {
         login,
         email,
         password,
-        phone
-      )
+        phone,
+      );
       if (result.status === 'ok') {
-        navigate('/main')
+        navigate('/main');
       } else {
-        console.error('Не удалось', result.status)
-        throw new Error('Не удалось ')
+        console.error('Не удалось', result.status);
+        throw new Error('Не удалось ');
       }
     } catch (error) {
-      console.error('Ошибка при регистрации:', error)
+      console.error('Ошибка при регистрации:', error);
     }
-  }
+  };
 
   return (
     <div className={cls.regContainer}>
@@ -110,5 +110,5 @@ export const RegistrationForm = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};

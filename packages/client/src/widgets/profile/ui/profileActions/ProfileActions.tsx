@@ -1,10 +1,10 @@
-import React from 'react'
-import { ActionButton } from '@/shared/ui'
-import cls from './ProfileActions.module.scss'
+import React from 'react';
+import { ActionButton } from '@/shared/ui';
+import cls from './ProfileActions.module.scss';
 
 interface ProfileActionsProps {
-  onPasswordChange: () => void
-  onLogout: () => void
+  onPasswordChange: () => void;
+  onLogout: () => void;
 }
 
 export const ProfileActions: React.FC<ProfileActionsProps> = ({
@@ -16,7 +16,8 @@ export const ProfileActions: React.FC<ProfileActionsProps> = ({
       <ActionButton
         className={cls.actionButton}
         color="#3E4CBC"
-        onClick={onPasswordChange}>
+        onClick={onPasswordChange}
+      >
         Изменить пароль
       </ActionButton>
     </div>
@@ -24,9 +25,10 @@ export const ProfileActions: React.FC<ProfileActionsProps> = ({
       <ActionButton
         className={cls.actionButton}
         color="#FF5555"
-        onClick={onLogout}>
+        onClick={onLogout}
+      >
         Выйти
       </ActionButton>
     </div>
   </div>
-)
+);

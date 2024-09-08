@@ -1,36 +1,36 @@
-import clsx from 'clsx'
-import { FC, useEffect, useState } from 'react'
-import { Stack, Title } from '@mantine/core'
-import { Topic, TopicCard } from '@/entities/forum-topic'
+import { Stack, Title } from '@mantine/core';
+import clsx from 'clsx';
+import { FC, useEffect, useState } from 'react';
+import { AddCommentForm } from '@/features/forum-comment/add';
 import {
   FORUM_TOPIC_COMMENTS,
   ForumCommentCard,
-} from '@/entities/forum-comment'
-import { AddCommentForm } from '@/features/forum-comment/add'
-import { Card, ScrollArea } from '@/shared/ui'
-import { ForumTopicDetailsSkeleton } from './ForumTopicDetailsSkeleton'
-import cls from './ForumTopicDetails.module.scss'
+} from '@/entities/forum-comment';
+import { Topic, TopicCard } from '@/entities/forum-topic';
+import { Card, ScrollArea } from '@/shared/ui';
+import { ForumTopicDetailsSkeleton } from './ForumTopicDetailsSkeleton';
+import cls from './ForumTopicDetails.module.scss';
 
 interface Props {
-  topic: Topic
-  className?: string
+  topic: Topic;
+  className?: string;
 }
 
-export const ForumTopicDetails: FC<Props> = props => {
-  const { topic, className } = props
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+export const ForumTopicDetails: FC<Props> = (props) => {
+  const { topic, className } = props;
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // Временно, для тестирования
     const timeoutId = setTimeout(() => {
-      setIsLoading(false)
-    }, 500)
+      setIsLoading(false);
+    }, 500);
 
-    return () => clearTimeout(timeoutId)
-  }, [])
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   if (isLoading) {
-    return <ForumTopicDetailsSkeleton className={className} />
+    return <ForumTopicDetailsSkeleton className={className} />;
   }
 
   return (
@@ -45,7 +45,7 @@ export const ForumTopicDetails: FC<Props> = props => {
             <Stack h="100%" gap={40}>
               <ScrollArea className={cls.comments}>
                 <Stack gap={15}>
-                  {FORUM_TOPIC_COMMENTS.map(comment => (
+                  {FORUM_TOPIC_COMMENTS.map((comment) => (
                     <ForumCommentCard key={comment.id} comment={comment} />
                   ))}
                 </Stack>
@@ -59,5 +59,5 @@ export const ForumTopicDetails: FC<Props> = props => {
         </Stack>
       </Stack>
     </div>
-  )
-}
+  );
+};

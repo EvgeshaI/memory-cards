@@ -1,6 +1,6 @@
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
-dotenv.config()
+dotenv.config();
 
 export default {
   preset: 'ts-jest',
@@ -16,5 +16,5 @@ export default {
   },
   transform: {
     '\\.svg$': 'jest-transformer-svg',
-  }
-}
+  },
+};

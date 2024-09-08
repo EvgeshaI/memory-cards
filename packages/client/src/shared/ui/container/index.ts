@@ -1,1 +1,1 @@
-export { Container } from '@mantine/core'
+export { Container } from '@mantine/core';

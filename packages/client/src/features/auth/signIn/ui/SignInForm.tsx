@@ -1,30 +1,30 @@
-import { Input, Button } from '@/shared/ui'
-import { routePaths, RouteNames } from '@/shared/constants/router'
-import { NavLink, useNavigate } from 'react-router-dom'
-import cls from './authorization.module.scss'
-import clsx from 'clsx'
-import { useState } from 'react'
-import { fetchLoginData } from '@/entities/user'
+import { NavLink, useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
+import { useState } from 'react';
+import { Input, Button } from '@/shared/ui';
+import { routePaths, RouteNames } from '@/shared/constants/router';
+import { fetchLoginData } from '@/entities/user';
+import cls from './authorization.module.scss';
 
 export const AuthorizationForm = () => {
-  const navigate = useNavigate()
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
+  const navigate = useNavigate();
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
 
   const onFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const result = await fetchLoginData(login, password)
+      const result = await fetchLoginData(login, password);
       if (result.status === 'ok') {
-        navigate('/main')
+        navigate('/main');
       } else {
-        console.error('Не удалось', result.status)
-        throw new Error('Не удалось')
+        console.error('Не удалось', result.status);
+        throw new Error('Не удалось');
       }
     } catch (error) {
-      console.error('Ошибка при авторизации:', error)
+      console.error('Ошибка при авторизации:', error);
     }
-  }
+  };
 
   return (
     <div className={cls.authContainer}>
@@ -64,5 +64,5 @@ export const AuthorizationForm = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};

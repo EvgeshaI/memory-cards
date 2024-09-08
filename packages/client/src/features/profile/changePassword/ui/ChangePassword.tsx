@@ -1,43 +1,42 @@
-import React, { useState } from 'react'
-import { changePassword } from '@/entities/user'
-import { Notification, PasswordInput, Group, Button } from '@/shared/ui'
+import React, { useState } from 'react';
+import { changePassword } from '@/entities/user';
+import { Notification, PasswordInput, Group, Button } from '@/shared/ui';
 
 interface ChangePasswordFormProps {
-  userId: string
-  onClose: () => void
+  userId: string;
 }
 
 export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
   userId,
 }) => {
-  const [oldPassword, setOldPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const result = await changePassword(userId, oldPassword, newPassword)
+      const result = await changePassword(userId, oldPassword, newPassword);
       if (result.status === 'ok') {
-        setSuccess(true)
-        setError(false)
-        setErrorMessage('')
+        setSuccess(true);
+        setError(false);
+        setErrorMessage('');
       } else {
         console.error(
           'Не удалось изменить пароль, статус от сервера:',
-          result.status
-        )
-        throw new Error('Не удалось изменить пароль.')
+          result.status,
+        );
+        throw new Error('Не удалось изменить пароль.');
       }
-    } catch (error) {
-      console.error('Ошибка при изменении пароля:', error)
-      setSuccess(false)
-      setError(true)
-      setErrorMessage('Не удалось изменить пароль.')
+    } catch (err) {
+      console.error('Ошибка при изменении пароля:', err);
+      setSuccess(false);
+      setError(true);
+      setErrorMessage('Не удалось изменить пароль.');
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -56,7 +55,7 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
         label="Старый пароль"
         placeholder="Введите старый пароль"
         value={oldPassword}
-        onChange={e => setOldPassword(e.target.value)}
+        onChange={(e) => setOldPassword(e.target.value)}
         required
         mt="md"
       />
@@ -65,7 +64,7 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
         label="Новый пароль"
         placeholder="Введите новый пароль"
         value={newPassword}
-        onChange={e => setNewPassword(e.target.value)}
+        onChange={(e) => setNewPassword(e.target.value)}
         required
         mt="md"
       />
@@ -74,5 +73,5 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = ({
         <Button type="submit">Изменить пароль</Button>
       </Group>
     </form>
-  )
-}
+  );
+};

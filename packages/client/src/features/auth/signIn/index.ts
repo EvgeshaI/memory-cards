@@ -1,1 +1,1 @@
-export { AuthorizationForm } from './ui/SignInForm'
+export { AuthorizationForm } from './ui/SignInForm';

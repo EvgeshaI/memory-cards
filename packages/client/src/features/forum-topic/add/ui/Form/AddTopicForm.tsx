@@ -1,15 +1,15 @@
-import { FC } from 'react'
-import { Controller } from 'react-hook-form'
-import { Button, Input, Textarea, Stack } from '@mantine/core'
-import { useAddTopicForm } from '../../model/hooks/useAddTopicForm'
+import { FC } from 'react';
+import { Controller } from 'react-hook-form';
+import { Button, Input, Textarea, Stack } from '@mantine/core';
+import { useAddTopicForm } from '../../model/hooks/useAddTopicForm';
 
 interface Props {
-  onSuccess?: () => void
+  onSuccess?: () => void;
 }
 
-export const AddTopicForm: FC<Props> = props => {
-  const { onSuccess } = props
-  const { control, handleSubmit, onSubmit } = useAddTopicForm({ onSuccess })
+export const AddTopicForm: FC<Props> = (props) => {
+  const { onSuccess } = props;
+  const { control, handleSubmit, onSubmit } = useAddTopicForm({ onSuccess });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,10 +48,11 @@ export const AddTopicForm: FC<Props> = props => {
           radius="md"
           size="md"
           color="var(--accent-color)"
-          h={50}>
+          h={50}
+        >
           создать
         </Button>
       </Stack>
     </form>
-  )
-}
+  );
+};

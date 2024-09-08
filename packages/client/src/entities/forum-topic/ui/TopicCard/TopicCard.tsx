@@ -1,32 +1,33 @@
-import clsx from 'clsx'
-import { FC } from 'react'
-import { Stack, Text } from '@mantine/core'
-import { Card } from '@/shared/ui'
-import { Topic } from '../../model/types'
-import cls from './TopicCard.module.scss'
+import clsx from 'clsx';
+import { FC } from 'react';
+import { Stack, Text } from '@mantine/core';
+import { Card } from '@/shared/ui';
+import { Topic } from '../../model/types';
+import cls from './TopicCard.module.scss';
 
-type View = 'title' | 'description'
+type View = 'title' | 'description';
 
 interface Props {
-  topic: Topic
-  view?: View
-  className?: string
-  onClick?: (topic: Topic) => void
+  topic: Topic;
+  view?: View;
+  className?: string;
+  onClick?: (topic: Topic) => void;
 }
 
-export const TopicCard: FC<Props> = props => {
-  const { topic, view = 'title', onClick, className } = props
+export const TopicCard: FC<Props> = (props) => {
+  const { topic, view = 'title', onClick, className } = props;
 
-  const onClickHandler = () => onClick?.(topic)
+  const onClickHandler = () => onClick?.(topic);
 
   return (
     <Card
       className={clsx(
         cls.root,
         { [cls.clickable]: onClick !== undefined },
-        className
+        className,
       )}
-      onClick={onClickHandler}>
+      onClick={onClickHandler}
+    >
       <Stack gap={20}>
         <Text fw={700} fz={20} c="var(--text-color)">
           {view === 'title' ? topic.title : topic.description}
@@ -49,5 +50,5 @@ export const TopicCard: FC<Props> = props => {
         </div>
       </Stack>
     </Card>
-  )
-}
+  );
+};

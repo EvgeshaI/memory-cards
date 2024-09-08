@@ -1,3 +1,3 @@
-export * from './api'
-export * from './hooks'
-export * from './services'
+export * from './api';
+export * from './model/hooks';
+export * from './model/services';

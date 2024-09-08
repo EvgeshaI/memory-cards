@@ -1,24 +1,24 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { FORM_DEFAULT_VALUES } from '../constants/form'
-import { FormValues } from '../types/form'
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { FORM_DEFAULT_VALUES } from '../constants/form';
+import { FormValues } from '../types/form';
 
 interface Payload {
-  onSuccess?: () => void
+  onSuccess?: () => void;
 }
 
 export const useAddCommentForm = (payload: Payload) => {
-  const { onSuccess } = payload
+  const { onSuccess } = payload;
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: FORM_DEFAULT_VALUES,
-  })
+  });
 
   const onSubmit: SubmitHandler<FormValues> = () => {
-    onSuccess?.()
-  }
+    onSuccess?.();
+  };
 
   return {
     control,
     handleSubmit,
     onSubmit,
-  }
-}
+  };
+};

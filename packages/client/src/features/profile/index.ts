@@ -1,2 +1,2 @@
-export * from './changeAvatar'
-export * from './changePassword'
+export * from './changeAvatar';
+export * from './changePassword';

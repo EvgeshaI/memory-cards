@@ -1,12 +1,12 @@
-import React from 'react'
-import { Button } from '@/shared/ui'
-import clsx from 'clsx'
+import React from 'react';
+import clsx from 'clsx';
+import { Button } from '@mantine/core';
 
 interface ActionButtonProps {
-  color: string
-  children: React.ReactNode
-  onClick?: () => void
-  className?: string
+  color: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
 }
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
@@ -19,7 +19,8 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
     className={clsx('action-button', className)}
     variant="subtle"
     color={color}
-    onClick={onClick}>
+    onClick={onClick}
+  >
     {children}
   </Button>
-)
+);

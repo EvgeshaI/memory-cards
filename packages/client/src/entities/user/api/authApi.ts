@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/shared/constants/api'
+import { BASE_URL } from '@/shared/constants/api';
 
 export const fetchRegData = async (
   first_name: string,
@@ -6,7 +6,7 @@ export const fetchRegData = async (
   login: string,
   email: string,
   password: string,
-  phone: string
+  phone: string,
 ) => {
   try {
     const response = await fetch(`${BASE_URL}/auth/signup`, {
@@ -15,30 +15,29 @@ export const fetchRegData = async (
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        first_name: first_name,
-        second_name: second_name,
-        login: login,
-        email: email,
-        password: password,
-        phone: phone,
+        first_name,
+        second_name,
+        login,
+        email,
+        password,
+        phone,
       }),
       credentials: 'include',
-    })
+    });
     if (!response.ok) {
-      throw new Error('Не удалось получить данные пользователя')
+      throw new Error('Не удалось получить данные пользователя');
     }
-    const result = await response.text()
+    const result = await response.text();
 
     if (result === 'OK') {
-      return { status: 'ok' }
-    } else {
-      throw new Error('Некорректный ответ от сервера.')
+      return { status: 'ok' };
     }
+    throw new Error('Некорректный ответ от сервера.');
   } catch (error) {
-    console.error('Ошибка в получении данных пользователя:', error)
-    throw error
+    console.error('Ошибка в получении данных пользователя:', error);
+    throw error;
   }
-}
+};
 
 export const fetchLoginData = async (login: string, password: string) => {
   try {
@@ -48,59 +47,58 @@ export const fetchLoginData = async (login: string, password: string) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        login: login,
-        password: password,
+        login,
+        password,
       }),
       credentials: 'include',
-    })
+    });
     if (!response.ok) {
-      throw new Error('Не удалось получить данные пользователя')
+      throw new Error('Не удалось получить данные пользователя');
     }
-    const result = await response.text()
+    const result = await response.text();
 
     if (result === 'OK') {
-      return { status: 'ok' }
-    } else {
-      throw new Error('Некорректный ответ от сервера.')
+      return { status: 'ok' };
     }
+    throw new Error('Некорректный ответ от сервера.');
   } catch (error) {
-    console.error('Ошибка в получении данных пользователя:', error)
-    throw error
+    console.error('Ошибка в получении данных пользователя:', error);
+    throw error;
   }
-}
+};
 
 export const fetchUserData = async () => {
   try {
     const response = await fetch(`${BASE_URL}/auth/user`, {
       method: 'GET',
       credentials: 'include',
-    })
+    });
     if (!response.ok) {
-      throw new Error('Не удалось получить данные пользователя')
+      throw new Error('Не удалось получить данные пользователя');
     }
-    const data = await response.json()
+    const data = await response.json();
 
-    return data
+    return data;
   } catch (error) {
-    console.error('Ошибка в получении данных пользователя:', error)
-    throw error
+    console.error('Ошибка в получении данных пользователя:', error);
+    throw error;
   }
-}
+};
 
 export const logout = async () => {
   try {
     const response = await fetch(`${BASE_URL}/auth/logout`, {
       method: 'POST',
       credentials: 'include',
-    })
+    });
 
     if (!response.ok) {
-      throw new Error('Не удалось выполнить выход')
+      throw new Error('Не удалось выполнить выход');
     }
 
-    return response.status
+    return response.status;
   } catch (error) {
-    console.error('Ошибка разлогирования:', error)
-    throw error
+    console.error('Ошибка разлогирования:', error);
+    throw error;
   }
-}
+};
