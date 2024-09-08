@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../api';
 import { routePaths, RouteNames } from '@/shared/constants/router';
+import { logout } from '../../api';
 
 export const useLogout = () => {
   const [error, setError] = useState<string | null>(null);
