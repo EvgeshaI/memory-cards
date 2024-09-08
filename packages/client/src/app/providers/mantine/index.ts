@@ -1,1 +1,1 @@
-export { MantineProvider } from './ui/MantineProvider'
+export { MantineProvider } from './ui/MantineProvider';

@@ -1,11 +1,11 @@
-import React from 'react'
-import { Modal } from '@/shared/ui'
-import { ChangePassword } from '@/features/profile'
+import React from 'react';
+import { ChangePassword } from '@/features/profile';
+import { Modal } from '@/shared/ui';
 
 interface PasswordModalProps {
-  isOpen: boolean
-  onClose: () => void
-  userId: string
+  isOpen: boolean;
+  onClose: () => void;
+  userId: string;
 }
 
 export const PasswordModal: React.FC<PasswordModalProps> = ({
@@ -14,6 +14,6 @@ export const PasswordModal: React.FC<PasswordModalProps> = ({
   userId,
 }) => (
   <Modal opened={isOpen} onClose={onClose} title="Изменение пароля" centered>
-    <ChangePassword userId={userId} onClose={onClose} />
+    <ChangePassword userId={userId} />
   </Modal>
-)
+);

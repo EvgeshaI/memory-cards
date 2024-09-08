@@ -1,0 +1,10 @@
+.scrollbar {
+  &,
+  &:hover {
+    background-color: var(--scrollbar-background);
+  }
+
+  .thumb {
+    background-color: var(--scrollbar-thumb-background);
+  }
+}

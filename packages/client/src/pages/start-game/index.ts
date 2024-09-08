@@ -1,1 +1,1 @@
-export { StartGamePage } from './ui/StartGamePage'
+export { StartGamePage } from './ui/StartGamePage';

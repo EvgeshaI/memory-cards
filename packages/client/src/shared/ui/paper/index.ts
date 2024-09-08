@@ -1,1 +1,1 @@
-export { PaperContainer } from './ui/PaperContainer'
+export { PaperContainer } from './ui/PaperContainer';

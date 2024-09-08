@@ -1,7 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { MainLayout } from '@/shared/ui'
-import { Sidebar } from '@/widgets'
+import { createBrowserRouter } from 'react-router-dom';
+import { RouteNames, routePaths } from '@/shared/constants/router';
+import { MainLayout } from '@/shared/ui';
+import { Sidebar } from '@/widgets';
 import {
   Authorization,
   EndGamePage,
@@ -11,13 +11,19 @@ import {
   ProfilePage,
   Registration,
   StartGamePage,
+  ForumPage,
+  ForumTopicPage,
   Game,
-} from '@/pages'
+} from '@/pages';
 
 export const router = createBrowserRouter([
   {
     element: <MainLayout sidebarSlot={<Sidebar />} />,
     children: [
+      {
+        path: routePaths[RouteNames.AUTHORIZATION],
+        element: <Authorization />,
+      },
       {
         path: routePaths[RouteNames.MAIN],
         element: <MainPage />,
@@ -32,7 +38,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routePaths[RouteNames.FORBIDDEN],
-        element: <ErrorPage text={'500'} />,
+        element: <ErrorPage text="500" />,
       },
       {
         path: routePaths[RouteNames.START_GAME],
@@ -46,18 +52,23 @@ export const router = createBrowserRouter([
         path: routePaths[RouteNames.END_GAME],
         element: <EndGamePage />,
       },
-      {
-        path: routePaths[RouteNames.AUTHORIZATION],
-        element: <Authorization />,
-      },
+
       {
         path: routePaths[RouteNames.REGISTRATION],
         element: <Registration />,
       },
       {
+        path: routePaths[RouteNames.FORUM],
+        element: <ForumPage />,
+      },
+      {
+        path: routePaths[RouteNames.FORUM_TOPIC](':id'),
+        element: <ForumTopicPage />,
+      },
+      {
         path: '*',
-        element: <ErrorPage text={'404'} />,
+        element: <ErrorPage text="404" />,
       },
     ],
   },
-])
+]);

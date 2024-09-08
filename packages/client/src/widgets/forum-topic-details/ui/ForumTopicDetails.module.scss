@@ -1,0 +1,25 @@
+.root {
+  overflow: hidden;
+
+  .blocks {
+    overflow: hidden;
+
+    .topic {
+      flex: 0 0 auto;
+    }
+
+    .card {
+      flex: 1 1 auto;
+      overflow: hidden;
+
+      .form {
+        flex: 0 0 auto;
+      }
+
+      .comments {
+        padding-right: 20px;
+        height: 100%;
+      }
+    }
+  }
+}

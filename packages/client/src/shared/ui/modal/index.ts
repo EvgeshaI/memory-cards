@@ -1,1 +1,1 @@
-export { Modal } from '@mantine/core'
+export * from './ui';

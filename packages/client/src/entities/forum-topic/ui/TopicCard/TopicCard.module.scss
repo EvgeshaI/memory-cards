@@ -1,0 +1,11 @@
+.root {
+  &.clickable {
+    cursor: pointer;
+  }
+
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 50px;
+  }
+}

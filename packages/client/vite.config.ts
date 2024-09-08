@@ -1,8 +1,9 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import dotenv from 'dotenv'
-import { resolve } from 'path'
-dotenv.config()
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
+import dotenv from 'dotenv';
+import { resolve } from 'path';
+dotenv.config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,7 +13,12 @@ export default defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
-  plugins: [react()],
+  plugins: [
+    svgr({
+      include: '**/*.svg',
+    }),
+    react(),
+  ],
   css: {
     preprocessorOptions: {
       scss: {
@@ -25,4 +31,4 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-})
+});

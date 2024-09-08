@@ -1,2 +1,2 @@
-export { Button } from '@mantine/core'
-export { ActionButton } from './ActionButton'
+export { Button } from '@mantine/core';
+export { ActionButton } from './ActionButton';

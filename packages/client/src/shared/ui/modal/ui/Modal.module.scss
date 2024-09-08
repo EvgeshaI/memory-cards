@@ -1,0 +1,44 @@
+.root {
+  .content {
+    overflow: visible;
+    border-radius: 50px;
+
+    .header {
+      border-radius: 50px 50px 0 0;
+
+      &Icon {
+        position: absolute;
+        top: -70px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 1;
+      }
+
+      &Title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 60px;
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--background-white);
+        text-align: center;
+        z-index: 2;
+      }
+    }
+
+    .body {
+      padding-top: 50px;
+      padding-bottom: 90px;
+    }
+  }
+}
