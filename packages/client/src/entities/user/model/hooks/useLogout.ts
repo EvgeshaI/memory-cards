@@ -11,7 +11,7 @@ export const useLogout = () => {
     setLoading(true);
     try {
       await logout();
-      navigate('/authorization');
+      navigate('/');
     } catch (err) {
       setError('Ошибка при выходе');
       console.error('Ошибка разлогирования:', err);
