@@ -5,7 +5,7 @@ import { Input, Button } from '@/shared/ui';
 import { routePaths, RouteNames } from '@/shared/constants/router';
 import { fetchLoginData } from '@/entities/user';
 import cls from './authorization.module.scss';
-import { setUser } from '@/entities/user/model/slice/userSlice';
+import { setUser } from '../../../../entities/user/model/slice/userSlice';
 
 export const AuthorizationForm = () => {
   const navigate = useNavigate();
