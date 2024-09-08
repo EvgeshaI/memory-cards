@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../api';
+import { routePaths, RouteNames } from '@/shared/constants/router';
 
 export const useLogout = () => {
   const [error, setError] = useState<string | null>(null);
@@ -11,7 +12,7 @@ export const useLogout = () => {
     setLoading(true);
     try {
       await logout();
-      navigate('/');
+      navigate(routePaths[RouteNames.AUTHORIZATION]);
     } catch (err) {
       setError('Ошибка при выходе');
       console.error('Ошибка разлогирования:', err);
