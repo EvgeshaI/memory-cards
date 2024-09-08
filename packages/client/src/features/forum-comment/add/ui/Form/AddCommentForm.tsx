@@ -9,7 +9,7 @@ interface Props {
 
 export const AddCommentForm: FC<Props> = (props) => {
   const { onSuccess } = props;
-  const { control, handleSubmit, onSubmit } = useAddCommentForm({
+  const { control, handleSubmit, onSubmit, errors } = useAddCommentForm({
     onSuccess,
   });
 
@@ -26,6 +26,7 @@ export const AddCommentForm: FC<Props> = (props) => {
               radius={10}
               rows={2}
               placeholder="введите комментарий"
+              error={!!errors.text?.message}
             />
           )}
         />

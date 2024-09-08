@@ -1,6 +1,6 @@
+import dayjs from 'dayjs';
 import { FC } from 'react';
 import { Group, Stack, Text, Avatar } from '@mantine/core';
-import dayjs from '@/shared/config/dayjs';
 import { Comment } from '../../model/types';
 
 interface Props {
