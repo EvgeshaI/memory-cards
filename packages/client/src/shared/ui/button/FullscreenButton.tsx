@@ -1,26 +1,8 @@
-import React, { useEffect } from 'react';
 import { Button } from '@mantine/core';
-import { enterFullscreen, exitFullscreen, isFullscreen } from '@/shared/lib';
+import { useFullscreen } from '@/shared/lib';
 
 export const FullscreenButton = () => {
-  const [fullscreen, setFullscreen] = React.useState(isFullscreen());
-
-  useEffect(() => {
-    const handleFullscreenChange = () => setFullscreen(isFullscreen());
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-    };
-  }, []);
-
-  const toggleFullscreen = () => {
-    if (fullscreen) {
-      exitFullscreen();
-    } else {
-      enterFullscreen(document.documentElement);
-    }
-  };
+  const { fullscreen, toggleFullscreen } = useFullscreen();
 
   return (
     <Button
