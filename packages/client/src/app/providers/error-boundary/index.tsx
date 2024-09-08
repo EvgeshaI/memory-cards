@@ -1,6 +1,5 @@
 import React, { Component, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Center } from '@mantine/core/lib';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 import cls from './ErrorPage.module.scss';
 
@@ -31,10 +30,10 @@ class ErrorBoundary extends Component<
     const { hasError } = this.state;
     if (hasError) {
       return (
-        <Center className={cls.errorPageContainer}>
+        <div className={cls.errorPageContainer}>
           <h1>Что-то пошло не так.</h1>
           <NavLink to={routePaths[RouteNames.START_GAME]}>на главную</NavLink>
-        </Center>
+        </div>
       );
     }
     return children;
