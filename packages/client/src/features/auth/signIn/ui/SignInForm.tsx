@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { Input, Button } from '@/shared/ui';
 import { routePaths, RouteNames } from '@/shared/constants/router';
 import { fetchLoginData } from '@/entities/user';
-import cls from './authorization.module.scss';
 import { setUser } from '@/entities/user/model/slice/userSlice';
+import cls from './authorization.module.scss';
 
 export const AuthorizationForm = () => {
   const navigate = useNavigate();
