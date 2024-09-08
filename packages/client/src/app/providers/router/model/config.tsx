@@ -11,6 +11,7 @@ import {
   ProfilePage,
   Registration,
   StartGamePage,
+  Game,
 } from '@/pages'
 
 export const router = createBrowserRouter([
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: routePaths[RouteNames.START_GAME],
         element: <StartGamePage />,
+      },
+      {
+        path: routePaths[RouteNames.GAME],
+        element: <Game />,
       },
       {
         path: routePaths[RouteNames.END_GAME],
