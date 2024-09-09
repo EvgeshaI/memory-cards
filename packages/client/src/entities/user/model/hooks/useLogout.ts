@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RouteNames, routePaths } from '@/shared/constants/router';
+import { routePaths, RouteNames } from '@/shared/constants/router';
 import { logout } from '../../api';
 
 export const useLogout = () => {
