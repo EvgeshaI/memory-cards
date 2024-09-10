@@ -14,7 +14,7 @@ import {
   ForumPage,
   ForumTopicPage,
 } from '@/pages';
-import ErrorBoundary from '../../error-boundary/ui/errorBoundary';
+import { ErrorBoundary } from '../../error-boundary';
 
 export const router = createBrowserRouter([
   {
