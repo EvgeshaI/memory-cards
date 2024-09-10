@@ -1,1 +1,1 @@
-export { PasswordInput, Input } from '@mantine/core';
+export { PasswordInput, Input, TextInput } from '@mantine/core';

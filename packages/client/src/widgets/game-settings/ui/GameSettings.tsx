@@ -1,6 +1,7 @@
 import { Button, Select, Text } from '@mantine/core';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { PaperContainer } from '@/shared/ui';
+import { PaperContainer, FullscreenButton } from '@/shared/ui';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 
 export const GameSettings = () => (
@@ -22,5 +23,6 @@ export const GameSettings = () => (
         играть
       </Button>
     </Link>
+    <FullscreenButton />
   </PaperContainer>
 );

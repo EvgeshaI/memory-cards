@@ -1,8 +1,7 @@
-.authContainer {
+.regContainer {
+  position: relative;
   border-radius: 12px;
   padding: 30px;
-  height: 500px;
-  margin: 120px auto 0;
   max-width: 350px;
   display: flex;
   justify-content: center;
@@ -17,11 +16,7 @@
   color: rgb(48 70 211 / 50%);
 }
 
-input {
-  margin-bottom: 15px;
-}
-
-.authItem {
+.regItem {
   &.btn {
     color: var(--background-white);
     background-color: rgb(48 70 211 / 50%);
@@ -33,24 +28,24 @@ input {
   }
 }
 
-.authFooter {
+.regFooter {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
-.NoAccount {
+.HaveAccount {
   font-size: 14px;
   color: #666;
   margin-top: 20px;
 }
 
-.NoAccount a {
+.HaveAccount a {
   color: rgb(48 70 211 / 50%);
   text-decoration: none;
 }
 
-.NoAccount a:hover {
+.HaveAccount a:hover {
   text-decoration: underline;
 }
