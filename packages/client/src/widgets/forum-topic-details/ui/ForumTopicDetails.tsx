@@ -39,7 +39,11 @@ export const ForumTopicDetails: FC<Props> = (props) => {
         <Title c="var(--text-color)">{topic.title}</Title>
 
         <Stack className={cls.blocks} gap={15} h="100%">
-          <TopicCard view="description" className={cls.topic} topic={topic} />
+          <TopicCard
+            className={cls.topic}
+            topic={topic}
+            renderTitle={(item) => item.description}
+          />
 
           <Card className={cls.card}>
             <Stack h="100%" gap={40}>
