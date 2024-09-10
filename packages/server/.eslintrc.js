@@ -18,4 +18,4 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 1,
     '@typescript-eslint/no-var-requires': 'off',
   },
-}
+};

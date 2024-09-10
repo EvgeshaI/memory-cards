@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { notifications } from '@mantine/notifications';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { fetchLoginData } from '@/entities/user';
-import { RouteNames, routePaths } from '@/shared/constants/router';
-import { validationSchema } from '../constants/validationSchema';
-import { FORM_DEFAULT_VALUES } from '../constants/form';
-import { FormValues } from '../types/form';
+import { useState } from 'react'
+import { notifications } from '@mantine/notifications'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { fetchLoginData } from '@/entities/user'
+import { RouteNames, routePaths } from '@/shared/constants/router'
+import { validationSchema } from '../constants/validationSchema'
+import { FORM_DEFAULT_VALUES } from '../constants/form'
+import { FormValues } from '../types/form'
 
 export const useSignInForm = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export const useSignInForm = () => {
     try {
       await fetchLoginData(values.login, values.password);
       reset();
-      navigate(routePaths[RouteNames.MAIN]);
+      navigate(routePaths[RouteNames.START_GAME]);
     } catch (error) {
       notifications.show({
         color: 'red',

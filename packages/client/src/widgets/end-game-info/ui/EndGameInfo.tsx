@@ -1,9 +1,9 @@
-import { Button, Group, Text } from '@mantine/core';
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { RouteNames, routePaths } from '@/shared/constants/router';
-import { PaperContainer } from '@/shared/ui';
-import cls from './EndGameInfo.module.scss';
+import { Button, Group, Text } from '@mantine/core'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { RouteNames, routePaths } from '@/shared/constants/router'
+import { PaperContainer } from '@/shared/ui'
+import cls from './EndGameInfo.module.scss'
 
 export const EndGameInfo = () => (
   <PaperContainer text="Конец игры">
@@ -23,7 +23,9 @@ export const EndGameInfo = () => (
       </NavLink>
     </Button>
     <Button w="70%" radius="md" size="md" color="var(--accent-color)">
-      на главную
+      <NavLink to={routePaths[RouteNames.MAIN]} className={cls.link}>
+        на главную
+      </NavLink>
     </Button>
   </PaperContainer>
 );
