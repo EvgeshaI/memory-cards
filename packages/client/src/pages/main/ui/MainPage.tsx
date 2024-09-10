@@ -1,10 +1,10 @@
-import { Title } from '@/shared/ui'
-import { Card } from '@/entities/card'
-import { Box, SimpleGrid, Space, Text } from '@mantine/core'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { NavLink } from 'react-router-dom'
-import { useUserData } from '@/entities/user'
-import cls from './MainPage.module.scss'
+import { NavLink } from 'react-router-dom';
+import { Box, SimpleGrid, Space, Text } from '@mantine/core';
+import { Title } from '@/shared/ui';
+import { Card } from '@/entities/card';
+import { RouteNames, routePaths } from '@/shared/constants/router';
+import { useUserData } from '@/entities/user';
+import cls from './MainPage.module.scss';
 
 export const MainPage = () => {
   const { user } = useUserData();
@@ -24,7 +24,7 @@ export const MainPage = () => {
           <Text fz="14" color="var(--dark-text-color)" fw="bold">
             Игра состоит из множества карточек на экране. Все карточки скрыты.
             Нужно переворачивать карточки, и ваша задача состоит в том, чтобы
-            угадать все карточки попарно.
+            угадать все карточки попарно!
           </Text>
           <SimpleGrid cols={3} spacing="sm" w="400" m="auto">
             {emoji.map((em) => (
