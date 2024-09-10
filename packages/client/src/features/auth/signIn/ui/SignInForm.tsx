@@ -1,55 +1,49 @@
-import { NavLink, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
-import { useState } from 'react';
-import { Input, Button } from '@/shared/ui';
+import { NavLink } from 'react-router-dom';
+import { Controller } from 'react-hook-form';
+import { LoadingOverlay, Stack } from '@mantine/core';
+import { TextInput, PasswordInput, Button } from '@/shared/ui';
 import { routePaths, RouteNames } from '@/shared/constants/router';
-import { fetchLoginData } from '@/entities/user';
-import cls from './authorization.module.scss';
+import { useSignInForm } from '../model/hooks/useSignInForm';
+import cls from './SignInForm.module.scss';
 
 export const AuthorizationForm = () => {
-  const navigate = useNavigate();
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const result = await fetchLoginData(login, password);
-      if (result.status === 'ok') {
-        navigate('/main');
-      } else {
-        console.error('Не удалось', result.status);
-        throw new Error('Не удалось');
-      }
-    } catch (error) {
-      console.error('Ошибка при авторизации:', error);
-    }
-  };
+  const { control, handleSubmit, onSubmit, errors, isLoading } =
+    useSignInForm();
 
   return (
     <div className={cls.authContainer}>
-      <form onSubmit={onFormSubmit}>
+      <LoadingOverlay visible={isLoading} />
+
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className={cls.authContent}>
           <div className={cls.title}>Войти</div>
-          <Input
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setLogin(e.target.value)
-            }
-            value={login}
-            name="login"
-            required
-            placeholder="логин"
-          />
-          <Input
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value)
-            }
-            value={password}
-            name="password"
-            required
-            placeholder="пароль"
-            autoComplete="off"
-          />
+          <Stack gap={10}>
+            <Controller
+              name="login"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  placeholder="логин"
+                  error={errors.login?.message}
+                />
+              )}
+            />
+
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => (
+                <PasswordInput
+                  {...field}
+                  placeholder="пароль"
+                  autoComplete="off"
+                  error={errors.password?.message}
+                />
+              )}
+            />
+          </Stack>
         </div>
         <div className={cls.authFooter}>
           <Button className={clsx(cls.authItem, cls.btn)} type="submit">

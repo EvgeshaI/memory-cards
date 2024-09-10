@@ -4,5 +4,3 @@ import 'dayjs/locale/ru';
 
 dayjs?.extend(relativeTime);
 dayjs?.locale('ru');
-
-export default dayjs;

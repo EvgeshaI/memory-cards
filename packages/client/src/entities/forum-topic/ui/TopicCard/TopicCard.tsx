@@ -1,21 +1,19 @@
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { Stack, Text } from '@mantine/core';
 import { Card } from '@/shared/ui';
 import { Topic } from '../../model/types';
 import cls from './TopicCard.module.scss';
 
-type View = 'title' | 'description';
-
 interface Props {
   topic: Topic;
-  view?: View;
+  renderTitle?: (topic: Topic) => ReactNode;
   className?: string;
   onClick?: (topic: Topic) => void;
 }
 
 export const TopicCard: FC<Props> = (props) => {
-  const { topic, view = 'title', onClick, className } = props;
+  const { topic, renderTitle, onClick, className } = props;
 
   const onClickHandler = () => onClick?.(topic);
 
@@ -30,7 +28,7 @@ export const TopicCard: FC<Props> = (props) => {
     >
       <Stack gap={20}>
         <Text fw={700} fz={20} c="var(--text-color)">
-          {view === 'title' ? topic.title : topic.description}
+          {renderTitle ? renderTitle(topic) : topic.title}
         </Text>
 
         <div className={cls.info}>
