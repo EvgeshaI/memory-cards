@@ -14,10 +14,15 @@ import {
   ForumPage,
   ForumTopicPage,
 } from '@/pages';
+import ErrorBoundary from '../../error-boundary/ui/errorBoundary';
 
 export const router = createBrowserRouter([
   {
-    element: <MainLayout sidebarSlot={<Sidebar />} />,
+    element: (
+      <ErrorBoundary>
+        <MainLayout sidebarSlot={<Sidebar />} />
+      </ErrorBoundary>
+    ),
     children: [
       {
         path: routePaths[RouteNames.AUTHORIZATION],
