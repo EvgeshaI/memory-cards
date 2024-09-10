@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { RouteNames, routePaths } from '@/shared/constants/router';
-import cls from '@/pages/error/ui/ErrorPage.module.scss';
+import cls from './ErrorBoundary.module.scss';
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -30,7 +30,7 @@ export class ErrorBoundary extends Component<
     const { hasError } = this.state;
     if (hasError) {
       return (
-        <div className={cls.errorPageContainer}>
+        <div className={cls.errorBoundaryContainer}>
           <h1>Что-то пошло не так.</h1>
           <NavLink to={routePaths[RouteNames.START_GAME]}>на главную</NavLink>
         </div>
