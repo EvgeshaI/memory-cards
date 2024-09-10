@@ -1,12 +1,8 @@
 import React, { Component, ReactNode } from 'react';
-import { NavLink } from 'react-router-dom';
-import { RouteNames, routePaths } from '@/shared/constants/router';
-import cls from './ErrorPage.module.scss';
 
 interface ErrorBoundaryState {
   hasError: boolean;
 }
-
 class ErrorBoundary extends Component<
   { children: ReactNode },
   ErrorBoundaryState
@@ -23,6 +19,7 @@ class ErrorBoundary extends Component<
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     console.error(error, errorInfo);
+    this.setState({ hasError: true });
   }
 
   render(): ReactNode {
@@ -30,10 +27,10 @@ class ErrorBoundary extends Component<
     const { hasError } = this.state;
     if (hasError) {
       return (
-        <div className={cls.errorPageContainer}>
-          <h1>Что-то пошло не так.</h1>
-          <NavLink to={routePaths[RouteNames.START_GAME]}>на главную</NavLink>
-        </div>
+        // <div className={cls.errorPageContainer}>
+        <h1>Что-то пошло не так.</h1>
+        /* <NavLink to={routePaths[RouteNames.START_GAME]}>на главную</NavLink>
+        </div> */
       );
     }
     return children;
