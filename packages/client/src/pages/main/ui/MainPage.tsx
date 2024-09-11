@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { Box, SimpleGrid, Space, Text } from '@mantine/core';
 import { Title } from '@/shared/ui';
-import { Card } from '@/entities/card';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 import { useUserData } from '@/entities/user';
+import { EmojiCard } from '@/shared/ui/emoji-card';
 import cls from './MainPage.module.scss';
 
 const emoji = ['🎉', '😈', '🧠', '😈', '🎉', '🧠'];
@@ -28,7 +28,7 @@ export const MainPage = () => {
           </Text>
           <SimpleGrid cols={3} spacing="sm" w="400" m="auto">
             {emoji.map((em, i) => (
-              <Card emoji={em} key={i} />
+              <EmojiCard emoji={em} key={i} />
             ))}
           </SimpleGrid>
         </Box>

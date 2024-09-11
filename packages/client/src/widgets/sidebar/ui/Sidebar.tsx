@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import { RouteNames, routePaths } from '@/shared/constants/router';
-import { LogoutModal } from '@/features/auth/logout/ui/LogoutModal';
+import { LogoutModal } from '@/features/auth';
 import cls from './Sidebar.module.scss';
 
 const getNavLinkClass = (isActive: boolean) =>

@@ -1,11 +1,11 @@
-import React from 'react'
-import cls from './Card.module.scss'
+import React from 'react';
+import cls from './Card.module.scss';
 
 interface CardProps {
   emoji: string;
 }
 
-export const Card: React.FC<CardProps> = ({ emoji }) => (
+export const EmojiCard: React.FC<CardProps> = ({ emoji }) => (
   <div className={cls.card}>
     <div className={cls.front} />
     <div className={cls.back}>
