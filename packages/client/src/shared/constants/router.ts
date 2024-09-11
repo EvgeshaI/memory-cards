@@ -6,6 +6,7 @@ export enum RouteNames {
   FORUM_TOPIC = 'forumTopic',
   LEADERBOARD = 'leaderboard',
   START_GAME = 'startGame',
+  GAME = 'game',
   END_GAME = 'endGame',
   AUTHORIZATION = 'authorization',
   REGISTRATION = 'registration',
@@ -16,12 +17,13 @@ interface RoutePaths {
   [RouteNames.PROFILE]: (id: string) => string;
   [RouteNames.FORBIDDEN]: string;
   [RouteNames.FORUM]: string;
-  [RouteNames.FORUM_TOPIC]: (id: string) => string;
   [RouteNames.LEADERBOARD]: string;
   [RouteNames.START_GAME]: string;
+  [RouteNames.GAME]: string;
   [RouteNames.END_GAME]: string;
   [RouteNames.AUTHORIZATION]: string;
   [RouteNames.REGISTRATION]: string;
+  [RouteNames.FORUM_TOPIC]: (id: string) => string;
 }
 
 export const routePaths: RoutePaths = {
@@ -34,5 +36,6 @@ export const routePaths: RoutePaths = {
   [RouteNames.FORUM_TOPIC]: (id: string) => `/forum/${id}`,
   [RouteNames.LEADERBOARD]: '/leaderboard',
   [RouteNames.START_GAME]: '/startGame',
+  [RouteNames.GAME]: '/game',
   [RouteNames.END_GAME]: '/endGame',
 };

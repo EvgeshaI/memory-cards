@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { RouteNames, routePaths } from '@/shared/constants/router'
 import { MainLayout } from '@/shared/ui'
 import { Sidebar } from '@/widgets'
+import { ErrorBoundary } from '../../error-boundary';
 import {
   Authorization,
   EndGamePage,
@@ -29,7 +30,11 @@ export const router = createBrowserRouter([
     element: <Registration />,
   },
   {
-    element: <MainLayout sidebarSlot={<Sidebar />} />,
+    element: (
+      <ErrorBoundary>
+        <MainLayout sidebarSlot={<Sidebar />} />
+      </ErrorBoundary>
+    ),
     children: [
       {
         path: routePaths[RouteNames.PROFILE](':id'),
@@ -46,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: routePaths[RouteNames.START_GAME],
         element: <StartGamePage />,
+      },
+      {
+        path: routePaths[RouteNames.GAME],
+        element: <Game />,
       },
       {
         path: routePaths[RouteNames.END_GAME],

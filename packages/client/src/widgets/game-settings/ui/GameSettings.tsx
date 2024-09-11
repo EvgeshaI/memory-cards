@@ -1,6 +1,8 @@
 import { Button, Select, Text } from '@mantine/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { PaperContainer, FullscreenButton } from '@/shared/ui';
+import { RouteNames, routePaths } from '@/shared/constants/router';
 
 export const GameSettings = () => (
   <PaperContainer text="Настройки">
@@ -16,9 +18,11 @@ export const GameSettings = () => (
       mb="20px"
       defaultValue="10"
     />
-    <Button fullWidth radius="md" size="md" color="var(--accent-color)">
-      играть
-    </Button>
+    <Link to={routePaths[RouteNames.GAME]} style={{ textDecoration: 'none' }}>
+      <Button fullWidth radius="md" size="md" color="var(--accent-color)">
+        играть
+      </Button>
+    </Link>
     <FullscreenButton />
   </PaperContainer>
 );

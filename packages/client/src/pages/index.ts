@@ -7,3 +7,4 @@ export * from './error';
 export * from './leaderboard';
 export * from './forum';
 export * from './forum-topic';
+export * from './game';
