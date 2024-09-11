@@ -2,19 +2,20 @@ import { createBrowserRouter } from 'react-router-dom'
 import { RouteNames, routePaths } from '@/shared/constants/router'
 import { MainLayout } from '@/shared/ui'
 import { Sidebar } from '@/widgets'
-import { ErrorBoundary } from '../../error-boundary';
 import {
   Authorization,
   EndGamePage,
   ErrorPage,
   ForumPage,
   ForumTopicPage,
+  Game,
   Leaderboard,
   MainPage,
   ProfilePage,
   Registration,
   StartGamePage
 } from '@/pages'
+import { ErrorBoundary } from '../../error-boundary'
 
 export const router = createBrowserRouter([
   {

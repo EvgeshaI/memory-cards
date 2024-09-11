@@ -41,6 +41,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/no-array-index-key': 'off',
+    'no-console': 'off',
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
