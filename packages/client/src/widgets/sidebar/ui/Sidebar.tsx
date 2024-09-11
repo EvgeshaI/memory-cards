@@ -1,10 +1,9 @@
-import clsx from 'clsx'
-import { NavLink } from 'react-router-dom'
-import { useDisclosure } from '@mantine/hooks'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { useLogout } from '@/entities/user'
-import { LogoutModal } from '@/entities/logoutModal'
-import cls from './Sidebar.module.scss'
+import clsx from 'clsx';
+import { NavLink } from 'react-router-dom';
+import { useDisclosure } from '@mantine/hooks';
+import { RouteNames, routePaths } from '@/shared/constants/router';
+import { LogoutModal } from '@/features/auth/logout/ui/LogoutModal';
+import cls from './Sidebar.module.scss';
 
 const getNavLinkClass = (isActive: boolean) =>
   clsx(cls.navItem, { [cls.active]: isActive });
@@ -12,12 +11,6 @@ const getNavLinkClass = (isActive: boolean) =>
 export const Sidebar = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
-  const { handleLogout } = useLogout();
-
-  const logout = () => {
-    close();
-    return handleLogout();
-  };
   return (
     <aside className={cls.sidebar}>
       <nav className={cls.navbarContainer}>
@@ -60,7 +53,7 @@ export const Sidebar = () => {
           </li>
         </ul>
       </nav>
-      <LogoutModal opened={opened} onClose={close} onLogout={logout} />
+      <LogoutModal opened={opened} onClose={close} />
     </aside>
   );
 };

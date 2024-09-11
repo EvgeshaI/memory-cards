@@ -40,6 +40,7 @@ module.exports = {
     'no-param-reassign': 'warn',
     'no-underscore-dangle': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/no-array-index-key': 'off',
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },

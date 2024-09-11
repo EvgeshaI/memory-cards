@@ -6,10 +6,10 @@ import { RouteNames, routePaths } from '@/shared/constants/router';
 import { useUserData } from '@/entities/user';
 import cls from './MainPage.module.scss';
 
+const emoji = ['🎉', '😈', '🧠', '😈', '🎉', '🧠'];
+
 export const MainPage = () => {
   const { user } = useUserData();
-
-  const emoji = ['🎉', '😈', '🧠', '😈', '🎉', '🧠'];
 
   return (
     <div className={cls.root}>
@@ -27,8 +27,8 @@ export const MainPage = () => {
             угадать все карточки попарно!
           </Text>
           <SimpleGrid cols={3} spacing="sm" w="400" m="auto">
-            {emoji.map((em) => (
-              <Card emoji={em} key={Math.random()} />
+            {emoji.map((em, i) => (
+              <Card emoji={em} key={i} />
             ))}
           </SimpleGrid>
         </Box>
