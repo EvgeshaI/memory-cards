@@ -17,7 +17,9 @@ export const App = () => (
         <Notifications position="top-right" zIndex={1000} />
 
         <AuthInitializeProvider>
-          <RouterProvider errorElement={<ErrorBoundary hasError />} />
+          <div className="app">
+            <RouterProvider errorElement={<ErrorBoundary hasError />} />
+          </div>
         </AuthInitializeProvider>
       </MantineProvider>
     </StoreProvider>
