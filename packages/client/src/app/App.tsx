@@ -16,11 +16,11 @@ export const App = () => (
       <MantineProvider>
         <Notifications position="top-right" zIndex={1000} />
 
-        <AuthInitializeProvider>
-          <div className="app">
+        <div className="app">
+          <AuthInitializeProvider>
             <RouterProvider errorElement={<ErrorBoundary hasError />} />
-          </div>
-        </AuthInitializeProvider>
+          </AuthInitializeProvider>
+        </div>
       </MantineProvider>
     </StoreProvider>
   </ErrorBoundary>
