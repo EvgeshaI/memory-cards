@@ -1,9 +1,9 @@
-import { Container } from '@mantine/core'
-import { NavLink } from 'react-router-dom'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { PaperContainer } from '@/shared/ui/paper'
-import { PlayerInfo } from '@/entities/user/ui'
-import cls from './LeadersList.module.scss'
+import { Container } from '@mantine/core';
+import { NavLink } from 'react-router-dom';
+import { RouteNames, routePaths } from '@/shared/constants/router';
+import { PaperContainer } from '@/shared/ui/paper';
+import { PlayerInfo } from '@/entities/user/ui';
+import cls from './LeadersList.module.scss';
 
 export const LeadersList = () => {
   const players = [

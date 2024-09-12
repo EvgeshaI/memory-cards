@@ -1,9 +1,9 @@
-import { Button, Group, Text } from '@mantine/core'
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { PaperContainer } from '@/shared/ui'
-import cls from './EndGameInfo.module.scss'
+import React from 'react';
+import { Button, Group, Text } from '@mantine/core';
+import { NavLink } from 'react-router-dom';
+import { RouteNames, routePaths } from '@/shared/constants/router';
+import { PaperContainer } from '@/shared/ui';
+import cls from './EndGameInfo.module.scss';
 
 export const EndGameInfo = () => (
   <PaperContainer text="Конец игры">

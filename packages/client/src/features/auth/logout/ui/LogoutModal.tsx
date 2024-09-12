@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Modal } from '@mantine/core';
-import { useLogout } from '@/entities/user';
+import { useLogout } from '../model';
 
 interface LogoutModalProps {
   opened: boolean;

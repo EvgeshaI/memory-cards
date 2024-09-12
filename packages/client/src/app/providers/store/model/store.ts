@@ -1,14 +1,29 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
-import userReducer from '@/entities/user/model/slice/userSlice';
+import {
+  configureStore,
+  combineReducers,
+  Reducer,
+  UnknownAction,
+} from '@reduxjs/toolkit';
+import { rtkApi } from '@/shared/api/rtkApi';
+import { userReducer } from '@/entities/user';
+import { StateSchema } from './types';
 
-const rootReducers = combineReducers({
-  user: userReducer,
-});
+export const createReduxStore = (initialState?: Partial<StateSchema>) => {
+  const rootReducers: Reducer<
+    StateSchema,
+    UnknownAction,
+    Partial<StateSchema>
+  > = combineReducers({
+    user: userReducer,
+    [rtkApi.reducerPath]: rtkApi.reducer,
+  });
 
-export const store = configureStore({
-  reducer: rootReducers,
-});
+  return configureStore({
+    reducer: rootReducers,
+    preloadedState: initialState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(rtkApi.middleware),
+  });
+};
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

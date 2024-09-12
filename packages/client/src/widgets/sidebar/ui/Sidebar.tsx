@@ -42,7 +42,7 @@ export const Sidebar = () => {
           </li>
           <li>
             <NavLink
-              to={routePaths[RouteNames.PROFILE]('5')}
+              to={routePaths[RouteNames.PROFILE]}
               className={({ isActive }) => getNavLinkClass(isActive)}
             >
               Ваш профиль
