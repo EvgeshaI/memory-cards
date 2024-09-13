@@ -38,7 +38,7 @@ export const GameCanvas = () => {
 
   useEffect(() => {
     setCards(shuffleCards([...initialCards]));
-  }, [numCards, gameCards, initialCards]);
+  }, [initialCards]);
 
   const drawCards = useCallback(
     (ctx: CanvasRenderingContext2D) => {
