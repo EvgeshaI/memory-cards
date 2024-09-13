@@ -1,11 +1,12 @@
 import {
-  configureStore,
   combineReducers,
+  configureStore,
   Reducer,
   UnknownAction,
 } from '@reduxjs/toolkit';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { userReducer } from '@/entities/user';
+import { gameReducer } from '@/entities/game';
 import { StateSchema } from './types';
 
 export const createReduxStore = (initialState?: Partial<StateSchema>) => {
@@ -15,6 +16,7 @@ export const createReduxStore = (initialState?: Partial<StateSchema>) => {
     Partial<StateSchema>
   > = combineReducers({
     user: userReducer,
+    game: gameReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
   });
 
