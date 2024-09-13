@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { loadUserData } from '../services';
-import { UserSchema } from '../types';
+import { UserSchema, User } from '../types';
 
 const initialState: UserSchema = {
   isLoading: false,
@@ -10,7 +10,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, { payload }: PayloadAction<UserSchema['data']>) => {
+    setUserData: (state, { payload }: PayloadAction<User>) => {
       state.data = payload;
     },
     clearUser: (state) => {
