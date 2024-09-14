@@ -37,9 +37,11 @@ module.exports = {
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
-    'no-param-reassign': 'warn',
+    'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/no-array-index-key': 'off',
+    'no-console': 'off',
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },

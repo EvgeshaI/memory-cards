@@ -1,16 +1,27 @@
 import '@/shared/config/yup';
 import '@/shared/config/dayjs';
 import { Notifications } from '@mantine/notifications';
-import { RouterProvider } from './providers/router';
-import { MantineProvider } from './providers/mantine';
+import {
+  RouterProvider,
+  StoreProvider,
+  MantineProvider,
+  AuthInitializeProvider,
+  ErrorBoundary,
+} from './providers';
 import './styles/index.scss';
 
 export const App = () => (
-  <MantineProvider>
-    <Notifications position="top-right" zIndex={1000} />
+  <ErrorBoundary>
+    <StoreProvider>
+      <MantineProvider>
+        <Notifications position="top-right" zIndex={1000} />
 
-    <div className="app">
-      <RouterProvider />
-    </div>
-  </MantineProvider>
+        <div className="app">
+          <AuthInitializeProvider>
+            <RouterProvider errorElement={<ErrorBoundary hasError />} />
+          </AuthInitializeProvider>
+        </div>
+      </MantineProvider>
+    </StoreProvider>
+  </ErrorBoundary>
 );

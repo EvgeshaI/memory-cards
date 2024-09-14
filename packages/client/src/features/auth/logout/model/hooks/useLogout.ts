@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { userActions, logout } from '@/entities/user';
 import { routePaths, RouteNames } from '@/shared/constants/router';
-import { logout } from '../../api';
+import { useAppDispatch } from '@/shared/lib/store';
 
 export const useLogout = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleLogout = async () => {
     setLoading(true);
     try {
       await logout();
+      dispatch(userActions.clearUser());
       navigate(routePaths[RouteNames.AUTHORIZATION]);
     } catch (err) {
       setError('Ошибка при выходе');

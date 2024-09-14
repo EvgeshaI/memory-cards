@@ -1,3 +1,4 @@
 export { StoreProvider } from './ui/StoreProvider';
 
-export type { AppDispatch, RootState } from './model/store';
+export type { AppDispatch } from './model/store';
+export type { StateSchema } from './model/types';

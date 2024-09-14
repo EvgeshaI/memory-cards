@@ -1,8 +1,8 @@
 import { Container } from '@mantine/core';
 import { NavLink } from 'react-router-dom';
-import { PlayerInfo } from '@/entities/player-info';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 import { PaperContainer } from '@/shared/ui/paper';
+import { PlayerInfo } from '@/entities/user/ui';
 import cls from './LeadersList.module.scss';
 
 export const LeadersList = () => {
@@ -36,7 +36,7 @@ export const LeadersList = () => {
           />
         ))}
       </PaperContainer>
-      <NavLink to={routePaths[RouteNames.START_GAME]} className={cls.link}>
+      <NavLink to={routePaths[RouteNames.MAIN]} className={cls.link}>
         Вернуться на главную
       </NavLink>
     </Container>

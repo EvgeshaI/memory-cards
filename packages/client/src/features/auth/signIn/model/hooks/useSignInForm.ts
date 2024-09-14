@@ -3,14 +3,16 @@ import { notifications } from '@mantine/notifications';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { fetchLoginData } from '@/entities/user';
+import { fetchLoginData, loadUserData } from '@/entities/user';
 import { RouteNames, routePaths } from '@/shared/constants/router';
+import { useAppDispatch } from '@/shared/lib/store';
 import { validationSchema } from '../constants/validationSchema';
 import { FORM_DEFAULT_VALUES } from '../constants/form';
 import { FormValues } from '../types/form';
 
 export const useSignInForm = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [isSignInPending, setIsSignInPending] = useState(false);
   const {
     control,
@@ -27,8 +29,10 @@ export const useSignInForm = () => {
     setIsSignInPending(true);
     try {
       await fetchLoginData(values.login, values.password);
+      await dispatch(loadUserData());
+
       reset();
-      navigate(routePaths[RouteNames.MAIN]);
+      navigate(routePaths[RouteNames.START_GAME]);
     } catch (error) {
       notifications.show({
         color: 'red',

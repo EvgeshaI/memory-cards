@@ -14,7 +14,7 @@ export enum RouteNames {
 
 interface RoutePaths {
   [RouteNames.MAIN]: string;
-  [RouteNames.PROFILE]: (id: string) => string;
+  [RouteNames.PROFILE]: string;
   [RouteNames.FORBIDDEN]: string;
   [RouteNames.FORUM]: string;
   [RouteNames.LEADERBOARD]: string;
@@ -27,10 +27,10 @@ interface RoutePaths {
 }
 
 export const routePaths: RoutePaths = {
-  [RouteNames.AUTHORIZATION]: '/',
+  [RouteNames.AUTHORIZATION]: '/login',
   [RouteNames.REGISTRATION]: '/registration',
-  [RouteNames.MAIN]: '/main',
-  [RouteNames.PROFILE]: (id: string) => `/profile/${id}`,
+  [RouteNames.MAIN]: '/',
+  [RouteNames.PROFILE]: '/profile',
   [RouteNames.FORBIDDEN]: '/forbidden',
   [RouteNames.FORUM]: '/forum',
   [RouteNames.FORUM_TOPIC]: (id: string) => `/forum/${id}`,
