@@ -6,7 +6,7 @@ import {
   drawCards,
   gameActions,
   selectData,
-  shuffleCards,
+  setupGameImages,
 } from '@/entities/game';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 import cls from './GameCanvas.module.scss';
@@ -19,12 +19,7 @@ export const GameCanvas = () => {
   const cardSize = 100;
   const gap = 1;
 
-  const { emojis: gameCards, numCards } = useAppSelector(selectData);
-
-  const initialCards = useMemo(() => {
-    const selectedEmojis = gameCards.slice(0, numCards / 2);
-    return [...selectedEmojis, ...selectedEmojis];
-  }, [gameCards, numCards]);
+  const { numCards } = useAppSelector(selectData);
 
   const [time, setTime] = useState(0);
   const [cards, setCards] = useState<string[]>([]);
@@ -34,17 +29,21 @@ export const GameCanvas = () => {
   const cols = useMemo(() => Math.ceil(Math.sqrt(numCards)), [numCards]);
 
   useEffect(() => {
+    const loadImages = async () => {
+      const imagesForGame = await setupGameImages(numCards);
+      setCards(imagesForGame);
+    };
+
+    loadImages();
+  }, [numCards]);
+
+  useEffect(() => {
     const timerId = setInterval(() => {
       setTime((prevTime) => prevTime + 1);
     }, 1000);
 
     return () => clearInterval(timerId);
   }, []);
-
-  useEffect(() => {
-    setCards(shuffleCards([...initialCards]));
-  }, [initialCards]);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
