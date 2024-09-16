@@ -6,9 +6,11 @@ import {
   drawCards,
   gameActions,
   selectData,
-  setupGameImages,
+  shuffleCards,
+  preloadImages,
 } from '@/entities/game';
 import { RouteNames, routePaths } from '@/shared/constants/router';
+import { useGetImagesQuery } from '@/shared/api/pixabayApi';
 import cls from './GameCanvas.module.scss';
 
 export const GameCanvas = () => {
@@ -25,17 +27,24 @@ export const GameCanvas = () => {
   const [cards, setCards] = useState<string[]>([]);
   const [openCards, setOpenCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
+  const [preloadedImages, setPreloadedImages] = useState<{
+    [url: string]: HTMLImageElement;
+  }>({});
 
   const cols = useMemo(() => Math.ceil(Math.sqrt(numCards)), [numCards]);
 
-  useEffect(() => {
-    const loadImages = async () => {
-      const imagesForGame = await setupGameImages(numCards);
-      setCards(imagesForGame);
-    };
+  const { data: imagesForGame } = useGetImagesQuery(numCards);
 
-    loadImages();
-  }, [numCards]);
+  useEffect(() => {
+    if (imagesForGame) {
+      const shuffledImages = shuffleCards(
+        imagesForGame.hits.map((img) => img.previewURL),
+      );
+      setCards(shuffledImages);
+
+      preloadImages(shuffledImages).then(setPreloadedImages);
+    }
+  }, [imagesForGame, numCards]);
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -49,10 +58,19 @@ export const GameCanvas = () => {
     if (canvas) {
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        drawCards(ctx, cards, openCards, matchedCards, cols, cardSize, gap);
+        drawCards(
+          ctx,
+          cards,
+          openCards,
+          matchedCards,
+          cols,
+          cardSize,
+          gap,
+          preloadedImages,
+        );
       }
     }
-  }, [cards, openCards, matchedCards, cols]);
+  }, [cards, openCards, matchedCards, cols, preloadedImages]);
 
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current!.getBoundingClientRect();
