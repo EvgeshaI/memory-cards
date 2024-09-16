@@ -13,6 +13,10 @@ global.window.matchMedia = jest.fn().mockImplementation(() => ({
   removeEventListener: jest.fn(),
 }));
 
+beforeAll(() => {
+  process.env.API_KEY_PIXABAY = 'mocked_api_key';
+});
+
 test('Example test', async () => {
   const { container } = render(<App />);
   const app = container.querySelector('.app');
