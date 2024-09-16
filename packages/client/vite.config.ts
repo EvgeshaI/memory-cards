@@ -12,6 +12,7 @@ export default defineConfig({
   },
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
+    __API_KEY_PIXABAY__: JSON.stringify(process.env.API_KEY_PIXABAY),
   },
   plugins: [
     svgr({

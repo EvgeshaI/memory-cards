@@ -1,4 +1,4 @@
-import { API_KEY_PIXABAY } from '@/shared/constants/api';
+import { API_KEY_PIXABAY } from '@/shared/constants/config';
 
 interface PixabayImage {
   previewURL: string;
