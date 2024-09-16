@@ -1,6 +1,10 @@
 import { render } from '@testing-library/react';
 import { App } from './App';
 
+jest.mock('../shared/constants/config.ts', () => ({
+  API_KEY_PIXABAY: 'mocked_api_key',
+}));
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 global.fetch = jest.fn(() =>
@@ -12,10 +16,6 @@ global.window.matchMedia = jest.fn().mockImplementation(() => ({
   addEventListener: jest.fn(),
   removeEventListener: jest.fn(),
 }));
-
-beforeAll(() => {
-  process.env.API_KEY_PIXABAY = 'mocked_api_key';
-});
 
 test('Example test', async () => {
   const { container } = render(<App />);
