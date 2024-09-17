@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useUserData, useLogout } from '@/entities/user';
+import { useUserData } from '@/entities/user';
+import { useLogout } from '@/features/auth';
 import { handleAvatarChange } from '@/features/profile';
 import { Notification, Loader } from '@/shared/ui';
 import { RESOURCES_URL } from '@/shared/constants/api';
-import cls from './Profile.module.scss';
 import { PasswordModal } from '../passwordModal/PasswordModal';
 import { ProfileInfo } from '../profileInfo/ProfileInfo';
+import cls from './Profile.module.scss';
 
 export const ProfileSection: React.FC = () => {
   const { user, isLoading } = useUserData();

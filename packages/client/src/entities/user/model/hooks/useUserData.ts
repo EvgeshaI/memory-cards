@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react';
-import { loadUserData } from '../services/loadUserData';
-import { User } from '../types';
+import { useAppSelector } from '@/shared/lib/store';
+import { selectData, selectIsLoading } from '../selectors';
 
 export const useUserData = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const user = useAppSelector(selectData);
+  const isLoading = useAppSelector(selectIsLoading);
 
-  useEffect(() => {
-    loadUserData({ setUser, setError, setLoading });
-  }, []);
-
-  return { user, isLoading, error, setUser };
+  return {
+    user,
+    isLoading,
+  };
 };

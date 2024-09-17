@@ -6,13 +6,16 @@ import cls from './ErrorBoundary.module.scss';
 interface ErrorBoundaryState {
   hasError: boolean;
 }
-export class ErrorBoundary extends Component<
-  { children: ReactNode },
-  ErrorBoundaryState
-> {
-  constructor(props: { children: ReactNode }) {
+
+interface Props {
+  hasError?: boolean;
+  children?: ReactNode;
+}
+
+export class ErrorBoundary extends Component<Props, ErrorBoundaryState> {
+  constructor(props: Props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: props.hasError ?? false };
   }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {

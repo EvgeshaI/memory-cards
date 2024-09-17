@@ -1,20 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { loadUserData } from '../services';
+import { UserSchema, User } from '../types';
 
-interface User {
-  login: string;
-  password: string;
-}
-
-const initialState: User = { login: '', password: '' };
+const initialState: UserSchema = {
+  isLoading: false,
+};
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<User>) => action.payload,
-    clearUser: () => initialState,
+    setUserData: (state, { payload }: PayloadAction<User>) => {
+      state.data = payload;
+    },
+    clearUser: (state) => {
+      state.data = undefined;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loadUserData.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(loadUserData.fulfilled, (state, { payload }) => {
+      state.data = payload;
+      state.isLoading = false;
+    });
+    builder.addCase(loadUserData.rejected, (state) => {
+      state.isLoading = false;
+    });
   },
 });
 
-export const { setUser, clearUser } = userSlice.actions;
-export default userSlice.reducer;
+export const { reducer: userReducer, actions: userActions } = userSlice;

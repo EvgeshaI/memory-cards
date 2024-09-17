@@ -1,1 +1,2 @@
-export { LogoutModal } from './ui/LogoutModal';
+export * from './ui';
+export * from './model';

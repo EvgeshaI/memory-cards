@@ -1,92 +1,86 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
+import {
+  checkMatch,
+  drawCards,
+  gameActions,
+  selectData,
+  shuffleCards,
+} from '@/entities/game';
+import { RouteNames, routePaths } from '@/shared/constants/router';
 import cls from './GameCanvas.module.scss';
 
 export const GameCanvas = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const cardSize = 100;
   const gap = 1;
-  const initialCards: string[] = [
-    'A',
-    'A',
-    'B',
-    'B',
-    'C',
-    'C',
-    'D',
-    'D',
-    'E',
-    'E',
-  ];
-  const shuffleCards = (array: string[]) =>
-    array.sort(() => Math.random() - 0.5);
-  const [cards, setCards] = useState<string[]>(shuffleCards(initialCards));
+
+  const { emojis: gameCards, numCards } = useAppSelector(selectData);
+
+  const initialCards = useMemo(() => {
+    const selectedEmojis = gameCards.slice(0, numCards / 2);
+    return [...selectedEmojis, ...selectedEmojis];
+  }, [gameCards, numCards]);
+
+  const [time, setTime] = useState(0);
+  const [cards, setCards] = useState<string[]>([]);
   const [openCards, setOpenCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
 
-  const drawCards = useCallback(
-    (ctx: CanvasRenderingContext2D) => {
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      for (let i = 0; i < cards.length; i += 1) {
-        const x = (i % 5) * (cardSize + gap) + gap;
-        const y = Math.floor(i / 5) * (cardSize + gap) + gap;
+  const cols = useMemo(() => Math.ceil(Math.sqrt(numCards)), [numCards]);
 
-        ctx.fillStyle = 'black';
-        ctx.fillRect(x, y, cardSize + 2 * gap, cardSize + 2 * gap);
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setTime((prevTime) => prevTime + 1);
+    }, 1000);
 
-        ctx.fillStyle = matchedCards.includes(i) ? 'gray' : 'blue';
-        ctx.fillRect(x + gap, y + gap, cardSize, cardSize);
+    return () => clearInterval(timerId);
+  }, []);
 
-        ctx.fillStyle = 'white';
-        if (openCards.includes(i) || matchedCards.includes(i)) {
-          ctx.fillText(cards[i], x + gap + 40, y + gap + 60);
-        }
-      }
-    },
-    [cards, openCards, matchedCards],
-  );
-
-  const restartGame = () => {
-    setCards(shuffleCards(initialCards));
-    setMatchedCards([]);
-    setOpenCards([]);
-  };
-
-  const checkMatch = (currentCardIndex: number) => {
-    const [firstCardIndex] = openCards;
-
-    if (cards[firstCardIndex] === cards[currentCardIndex]) {
-      setMatchedCards((prev) => [...prev, firstCardIndex, currentCardIndex]);
-    }
-
-    setOpenCards([]);
-
-    // добавить вывод результата после окончания игры
-    if (matchedCards.length + 2 === cards.length) {
-      setTimeout(() => restartGame(), 1000);
-    }
-  };
+  useEffect(() => {
+    setCards(shuffleCards([...initialCards]));
+  }, [initialCards]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        drawCards(ctx);
+        drawCards(ctx, cards, openCards, matchedCards, cols, cardSize, gap);
       }
     }
-  }, [cards, openCards, matchedCards, drawCards]);
+  }, [cards, openCards, matchedCards, cols]);
 
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current!.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
+
     const cardIndex =
-      Math.floor(y / (cardSize + gap)) * 5 + Math.floor(x / (cardSize + gap));
+      Math.floor(y / (cardSize + gap)) * cols +
+      Math.floor(x / (cardSize + gap));
 
     if (!openCards.includes(cardIndex) && !matchedCards.includes(cardIndex)) {
       setOpenCards((prev) => [...prev, cardIndex]);
       if (openCards.length === 1) {
-        setTimeout(() => checkMatch(cardIndex), 1000);
+        setTimeout(() => {
+          checkMatch(
+            openCards[0],
+            cardIndex,
+            cards,
+            matchedCards,
+            setMatchedCards,
+            setOpenCards,
+            () => {
+              dispatch(gameActions.saveGameTime(time));
+              navigate(routePaths[RouteNames.END_GAME]);
+            },
+          );
+        }, 1000);
       }
     }
   };
@@ -95,8 +89,8 @@ export const GameCanvas = () => {
     <canvas
       ref={canvasRef}
       className={cls.canvas}
-      width={510}
-      height={200}
+      width={cols * (cardSize + gap)}
+      height={Math.ceil(numCards / cols) * (cardSize + gap)}
       onClick={handleClick}
     />
   );

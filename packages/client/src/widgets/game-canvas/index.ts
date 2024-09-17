@@ -1,1 +1,1 @@
-export { GameCanvas } from './ui/GameCanvas'
+export { GameCanvas } from './ui/GameCanvas';
