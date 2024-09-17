@@ -4,7 +4,9 @@ import { Notifications } from '@mantine/notifications';
 import { RouterProvider } from './providers/router';
 import { MantineProvider } from './providers/mantine';
 import './styles/index.scss';
-import './serviceWorker.js';
+import { startServiceWorker } from '@/shared/lib/startServiceWorker/startServiceWorker';
+
+startServiceWorker('/serviceWorker.js');
 
 export const App = () => (
   <MantineProvider>

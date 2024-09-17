@@ -1,20 +1,6 @@
 /* eslint-disable no-restricted-globals */
 const CACHE_NAME = 'my-site-cache-v1';
-const URLS = ['/', '/index.html', '/app.tsx'];
-
-function startServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/serviceWorker.js').then(registration => {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }).catch(error => {
-        console.log('ServiceWorker registration failed:', error);
-      });
-    });
-  }
-}
-
-startServiceWorker();
+const URLS = ['/', '/index.html'];
 
 self.addEventListener("install", event => {
   event.waitUntil(
