@@ -1,10 +1,10 @@
 import '@/shared/config/yup';
 import '@/shared/config/dayjs';
 import { Notifications } from '@mantine/notifications';
+import { startServiceWorker } from '@/shared/lib/startServiceWorker/startServiceWorker';
 import { RouterProvider } from './providers/router';
 import { MantineProvider } from './providers/mantine';
 import './styles/index.scss';
-import { startServiceWorker } from '@/shared/lib/startServiceWorker/startServiceWorker';
 
 startServiceWorker('/serviceWorker.js');
 
