@@ -92,6 +92,7 @@ export const GameCanvas = () => {
       width={cols * (cardSize + gap)}
       height={Math.ceil(numCards / cols) * (cardSize + gap)}
       onClick={handleClick}
+      data-testid="game-canvas"
     />
   );
 };

@@ -5,6 +5,6 @@ import cls from './EndGamePage.module.scss';
 
 export const EndGamePage = () => (
   <Container fluid className={cls.container}>
-    <EndGameInfo />
+    <EndGameInfo data-testid="end-game-info" />
   </Container>
 );
