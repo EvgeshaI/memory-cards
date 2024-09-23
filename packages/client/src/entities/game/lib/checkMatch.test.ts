@@ -1,4 +1,4 @@
-import { checkMatch } from '../checkMatch';
+import { checkMatch } from './checkMatch';
 
 describe('checkMatch функция', () => {
   let setMatchedCards: jest.Mock;

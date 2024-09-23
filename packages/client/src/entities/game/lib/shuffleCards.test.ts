@@ -1,4 +1,4 @@
-import { shuffleCards } from '../shuffleCards';
+import { shuffleCards } from './shuffleCards';
 
 describe('Тестирование shuffleCards', () => {
   let cards: string[];
