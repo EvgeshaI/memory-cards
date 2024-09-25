@@ -1,15 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
-import {
-  checkMatch,
-  drawCards,
-  gameActions,
-  selectData,
-  shuffleCards,
-} from '@/entities/game';
-import { RouteNames, routePaths } from '@/shared/constants/router';
-import cls from './GameCanvas.module.scss';
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
+import { checkMatch, drawCards, gameActions, selectData, shuffleCards } from '@/entities/game'
+import { RouteNames, routePaths } from '@/shared/constants/router'
+import { useUserData } from '@/entities/user'
+import { fetchNewLeader } from '@/entities/game/model/services'
+import cls from './GameCanvas.module.scss'
 
 export const GameCanvas = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +16,7 @@ export const GameCanvas = () => {
   const gap = 1;
 
   const { emojis: gameCards, numCards } = useAppSelector(selectData);
+  const { user } = useUserData();
 
   const initialCards = useMemo(() => {
     const selectedEmojis = gameCards.slice(0, numCards / 2);
@@ -55,6 +52,12 @@ export const GameCanvas = () => {
     }
   }, [cards, openCards, matchedCards, cols]);
 
+  const gamerInfo = {
+    avatar: user!.avatar,
+    name: user!.first_name,
+    count: time,
+  };
+
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current!.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -76,6 +79,7 @@ export const GameCanvas = () => {
             setMatchedCards,
             setOpenCards,
             () => {
+              dispatch(fetchNewLeader(gamerInfo));
               dispatch(gameActions.saveGameTime(time));
               navigate(routePaths[RouteNames.END_GAME]);
             },
