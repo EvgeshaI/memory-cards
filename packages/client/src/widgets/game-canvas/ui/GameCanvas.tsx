@@ -1,14 +1,20 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { routePaths, RouteNames } from '@/shared/constants/router';
+import {
+  CARD_WIDTH,
+  CARD_HEIGHT,
+  GAP,
+} from '@/entities/game/model/constants/game';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import {
-  checkMatch,
-  drawCards,
-  gameActions,
   selectData,
+  drawCards,
   shuffleCards,
+  animateCard,
+  checkMatch,
+  gameActions,
 } from '@/entities/game';
-import { RouteNames, routePaths } from '@/shared/constants/router';
 import cls from './GameCanvas.module.scss';
 
 export const GameCanvas = () => {
@@ -16,8 +22,6 @@ export const GameCanvas = () => {
   const navigate = useNavigate();
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const cardSize = 100;
-  const gap = 1;
 
   const { emojis: gameCards, numCards } = useAppSelector(selectData);
 
@@ -30,6 +34,10 @@ export const GameCanvas = () => {
   const [cards, setCards] = useState<string[]>([]);
   const [openCards, setOpenCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
+
+  const [cardAnimations, setCardAnimations] = useState<{
+    [key: number]: { progress: number; isOpening: boolean };
+  }>({});
 
   const cols = useMemo(() => Math.ceil(Math.sqrt(numCards)), [numCards]);
 
@@ -50,10 +58,52 @@ export const GameCanvas = () => {
     if (canvas) {
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        drawCards(ctx, cards, openCards, matchedCards, cols, cardSize, gap);
+        drawCards(ctx, cards, openCards, matchedCards, cardAnimations, cols);
       }
     }
-  }, [cards, openCards, matchedCards, cols]);
+  }, [cards, openCards, matchedCards, cardAnimations, cols]);
+
+  const startCardAnimation = (cardIndex: number, isOpening: boolean) => {
+    setCardAnimations((prev) => ({
+      ...prev,
+      [cardIndex]: { progress: 0, isOpening },
+    }));
+  };
+
+  useEffect(() => {
+    if (Object.keys(cardAnimations).length > 0) {
+      return animateCard(
+        cardAnimations,
+        setCardAnimations,
+        openCards,
+        setOpenCards,
+        (firstCardIndex, secondCardIndex) => {
+          checkMatch(
+            firstCardIndex,
+            secondCardIndex,
+            cards,
+            matchedCards,
+            setMatchedCards,
+            setOpenCards,
+            startCardAnimation,
+            () => {
+              dispatch(gameActions.saveGameTime(time));
+              navigate(routePaths[RouteNames.END_GAME]);
+            },
+          );
+        },
+      );
+    }
+    return undefined;
+  }, [
+    cardAnimations,
+    cards,
+    dispatch,
+    matchedCards,
+    navigate,
+    openCards,
+    time,
+  ]);
 
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current!.getBoundingClientRect();
@@ -61,27 +111,14 @@ export const GameCanvas = () => {
     const y = event.clientY - rect.top;
 
     const cardIndex =
-      Math.floor(y / (cardSize + gap)) * cols +
-      Math.floor(x / (cardSize + gap));
+      Math.floor(y / (CARD_HEIGHT + GAP)) * cols +
+      Math.floor(x / (CARD_WIDTH + GAP));
 
     if (!openCards.includes(cardIndex) && !matchedCards.includes(cardIndex)) {
-      setOpenCards((prev) => [...prev, cardIndex]);
-      if (openCards.length === 1) {
-        setTimeout(() => {
-          checkMatch(
-            openCards[0],
-            cardIndex,
-            cards,
-            matchedCards,
-            setMatchedCards,
-            setOpenCards,
-            () => {
-              dispatch(gameActions.saveGameTime(time));
-              navigate(routePaths[RouteNames.END_GAME]);
-            },
-          );
-        }, 1000);
+      if (Object.keys(cardAnimations).length > 0) {
+        return;
       }
+      startCardAnimation(cardIndex, true);
     }
   };
 
@@ -89,8 +126,8 @@ export const GameCanvas = () => {
     <canvas
       ref={canvasRef}
       className={cls.canvas}
-      width={cols * (cardSize + gap)}
-      height={Math.ceil(numCards / cols) * (cardSize + gap)}
+      width={cols * (CARD_WIDTH + GAP) + GAP * 2.5}
+      height={Math.ceil(numCards / cols) * (CARD_HEIGHT + GAP) + GAP * 2.5}
       onClick={handleClick}
     />
   );
