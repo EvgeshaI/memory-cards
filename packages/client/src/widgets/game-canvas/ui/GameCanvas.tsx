@@ -129,6 +129,7 @@ export const GameCanvas = () => {
       width={cols * (CARD_WIDTH + GAP) + GAP * 2.5}
       height={Math.ceil(numCards / cols) * (CARD_HEIGHT + GAP) + GAP * 2.5}
       onClick={handleClick}
+      data-testid="game-canvas"
     />
   );
 };

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameCanvas - тесты со снимками рендер с 6 карточками 1`] = `
+<DocumentFragment>
+  <canvas
+    data-testid="game-canvas"
+    height="202"
+    width="303"
+  />
+</DocumentFragment>
+`;
+
+exports[`GameCanvas - тесты со снимками рендер с 12 карточками 1`] = `
+<DocumentFragment>
+  <canvas
+    data-testid="game-canvas"
+    height="303"
+    width="404"
+  />
+</DocumentFragment>
+`;
+
+exports[`GameCanvas - тесты со снимками рендер с 20 карточками 1`] = `
+<DocumentFragment>
+  <canvas
+    data-testid="game-canvas"
+    height="404"
+    width="505"
+  />
+</DocumentFragment>
+`;
+
+exports[`GameCanvas - тесты со снимками состояние игрового поля после переворота карточки 1`] = `
+<DocumentFragment>
+  <canvas
+    data-testid="game-canvas"
+    height="202"
+    width="303"
+  />
+</DocumentFragment>
+`;

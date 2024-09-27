@@ -1,6 +1,7 @@
 import '@/shared/config/yup';
 import '@/shared/config/dayjs';
 import { Notifications } from '@mantine/notifications';
+import { startServiceWorker } from '@/shared/lib/startServiceWorker/startServiceWorker';
 import {
   RouterProvider,
   StoreProvider,
@@ -9,6 +10,8 @@ import {
   ErrorBoundary,
 } from './providers';
 import './styles/index.scss';
+
+startServiceWorker('/serviceWorker.js');
 
 export const App = () => (
   <ErrorBoundary>

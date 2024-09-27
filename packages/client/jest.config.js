@@ -17,4 +17,5 @@ export default {
   transform: {
     '\\.svg$': 'jest-transformer-svg',
   },
+  setupFiles: ['jest-canvas-mock'],
 };
