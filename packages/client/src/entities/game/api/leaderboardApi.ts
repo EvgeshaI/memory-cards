@@ -1,5 +1,5 @@
 import { BASE_URL } from '@/shared/constants/api'
-import { Leader } from '@/entities/game'
+import { Leader } from '@/entities/game/model/types'
 
 export const sendLeaderToServer = async (user: Leader) => {
   const formData = JSON.stringify({

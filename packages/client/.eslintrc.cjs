@@ -34,6 +34,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/ban-ts-comment': 1,
     '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
