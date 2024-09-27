@@ -6,7 +6,7 @@ export const checkMatch = (
   setMatchedCards: React.Dispatch<React.SetStateAction<number[]>>,
   setOpenCards: React.Dispatch<React.SetStateAction<number[]>>,
   startCardAnimation: (cardIndex: number, isOpening: boolean) => void,
-  onGameEnd: () => void,
+  onGameEnd?: () => void,
 ) => {
   if (cards[firstCardIndex] === cards[secondCardIndex]) {
     setMatchedCards((prev) => [...prev, firstCardIndex, secondCardIndex]);
@@ -15,7 +15,7 @@ export const checkMatch = (
     startCardAnimation(firstCardIndex, false);
     startCardAnimation(secondCardIndex, false);
   }
-  if (matchedCards.length + 2 === cards.length) {
+  if (matchedCards.length + 2 === cards.length && onGameEnd) {
     onGameEnd();
   }
 };
