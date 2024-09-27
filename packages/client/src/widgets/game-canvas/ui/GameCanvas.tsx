@@ -80,7 +80,7 @@ export const GameCanvas = () => {
             setOpenCards,
             () => {
               dispatch(fetchNewLeader(gamerInfo));
-              console.log(time)
+              console.log(time);
               dispatch(gameActions.saveGameTime(time));
               navigate(routePaths[RouteNames.END_GAME]);
             },

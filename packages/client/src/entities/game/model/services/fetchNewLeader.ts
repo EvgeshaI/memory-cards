@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Leader, sendLeaderToServer } from '@/entities/game'
+import { sendLeaderToServer } from '@/entities/game'
+import { Leader } from '@/entities/game/model/types'
 
 export const fetchNewLeader = createAsyncThunk(
   'game/fetchNewLeader',

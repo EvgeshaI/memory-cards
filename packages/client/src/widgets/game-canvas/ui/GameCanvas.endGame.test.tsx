@@ -1,16 +1,17 @@
-import { render, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { gameReducer } from '@/entities/game';
-import { GameCanvas } from './GameCanvas';
-import '@testing-library/jest-dom';
+import { fireEvent, render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
+import { gameReducer } from '@/entities/game'
+import { GameCanvas } from './GameCanvas'
+import '@testing-library/jest-dom'
 
 const initialState = {
   game: {
     numCards: 6,
     emojis: ['🎉', '😈', '🧠', '🐱', '🐶', '🍕'],
     gameTime: 0,
+    leaders: []
   },
 };
 

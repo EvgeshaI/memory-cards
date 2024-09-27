@@ -1,1 +1,1 @@
-export { timeFormat } from './timeFormat'
+export { timeFormat } from './timeFormat';

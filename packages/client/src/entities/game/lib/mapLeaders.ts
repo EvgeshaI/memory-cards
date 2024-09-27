@@ -1,4 +1,4 @@
-import { Leader } from '@/entities/game'
+import { Leader } from '@/entities/game/model/types'
 
 export const mapLeaders = (data: any[]): Leader[] =>
   data.map((entry) => ({
