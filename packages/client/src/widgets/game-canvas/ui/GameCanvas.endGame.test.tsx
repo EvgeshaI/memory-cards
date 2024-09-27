@@ -14,6 +14,15 @@ const initialState = {
     leaders: []
   },
 };
+jest.mock('@/entities/user', () => ({
+  useUserData: jest.fn(() => ({
+    user: {
+      avatar: 'test-avatar-url',
+      first_name: 'Test User',
+      score: 100,
+    },
+  })),
+}));
 
 const createMockStore = (state = initialState) =>
   configureStore({

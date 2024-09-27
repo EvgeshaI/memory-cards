@@ -19,6 +19,15 @@ const initialState: GameState = {
   gameTime: 0,
   leaders: []
 };
+jest.mock('@/entities/user', () => ({
+  useUserData: jest.fn(() => ({
+    user: {
+      avatar: 'test-avatar-url',
+      first_name: 'Test User',
+      score: 100,
+    },
+  })),
+}));
 
 const createMockStore = (numCards: number) =>
   configureStore({

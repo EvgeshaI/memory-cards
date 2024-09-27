@@ -11,6 +11,16 @@ jest.mock('@/entities/game', () => ({
   shuffleCards: jest.fn((cards) => cards),
 }));
 
+jest.mock('@/entities/user', () => ({
+  useUserData: jest.fn(() => ({
+    user: {
+      avatar: 'test-avatar-url',
+      first_name: 'Test User',
+      score: 100,
+    },
+  })),
+}));
+
 interface GameState {
   numCards: number;
   emojis: string[];
