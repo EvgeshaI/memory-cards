@@ -23,9 +23,7 @@ self.addEventListener('fetch', (event) => {
       if (cachedResponse) {
         return cachedResponse;
       }
-
-      const fetchRequest = event.request.clone();
-      return fetch(fetchRequest).then((fetchedResponse) => {
+      return fetch(event.request).then((fetchedResponse) => {
         if (
           !fetchedResponse ||
           fetchedResponse.status !== 200 ||
@@ -39,8 +37,10 @@ self.addEventListener('fetch', (event) => {
           cache.put(event.request, responseToCache);
         });
         return fetchedResponse;
+      }).catch(() => {
+        return caches.match(event.request);
       });
-    }),
+    })
   );
 });
 
@@ -55,7 +55,4 @@ self.addEventListener('activate', (event) => {
       ),
   );
 });
-event.respondWith(
-  fetch(event.request)
-    .catch(() => caches.match(event.request))
-);
+

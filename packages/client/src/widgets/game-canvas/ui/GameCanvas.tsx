@@ -1,22 +1,16 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
-import { checkMatch, drawCards, gameActions, selectData, shuffleCards } from '@/entities/game'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { useUserData } from '@/entities/user'
-import { fetchNewLeader } from '@/entities/game/model/services'
+import { useAppSelector } from '@/shared/lib/store'
+import { Notification } from '@mantine/core'
+import { checkMatch, drawCards, handleEndGame, NotificationProps, selectData, shuffleCards } from '@/entities/game'
 import cls from './GameCanvas.module.scss'
 
 export const GameCanvas = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
+  const [notification, setNotification] = useState<NotificationProps | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const cardSize = 100;
   const gap = 1;
 
   const { emojis: gameCards, numCards } = useAppSelector(selectData);
-  const { user } = useUserData();
 
   const initialCards = useMemo(() => {
     const selectedEmojis = gameCards.slice(0, numCards / 2);
@@ -52,11 +46,6 @@ export const GameCanvas = () => {
     }
   }, [cards, openCards, matchedCards, cols]);
 
-  const gamerInfo = {
-    avatar: user!.avatar,
-    name: user!.first_name,
-    count: time,
-  };
 
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current!.getBoundingClientRect();
@@ -78,12 +67,7 @@ export const GameCanvas = () => {
             matchedCards,
             setMatchedCards,
             setOpenCards,
-            () => {
-              dispatch(fetchNewLeader(gamerInfo));
-              console.log(time);
-              dispatch(gameActions.saveGameTime(time));
-              navigate(routePaths[RouteNames.END_GAME]);
-            },
+            () => handleEndGame(time, setNotification),
           );
         }, 1000);
       }
@@ -91,13 +75,20 @@ export const GameCanvas = () => {
   };
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={cls.canvas}
-      width={cols * (cardSize + gap)}
-      height={Math.ceil(numCards / cols) * (cardSize + gap)}
-      onClick={handleClick}
-      data-testid="game-canvas"
-    />
+    <div>
+      {notification && (
+        <Notification color={notification.type === 'success' ? 'green' : 'red'}>
+          {notification.message}
+        </Notification>
+      )}
+      <canvas
+        ref={canvasRef}
+        className={cls.canvas}
+        width={cols * (cardSize + gap)}
+        height={Math.ceil(numCards / cols) * (cardSize + gap)}
+        onClick={handleClick}
+        data-testid="game-canvas"
+      />
+    </div>
   );
 };

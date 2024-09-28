@@ -10,3 +10,7 @@ export interface Leader {
   name: string;
   count: number;
 }
+ export interface NotificationProps {
+   type: 'success' | 'error';
+   message: string;
+ }
