@@ -1,24 +1,15 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
-import { Notification } from '@mantine/core'
-import {
-  checkMatch,
-  drawCards,
-  fetchNewLeader,
-  gameActions,
-  NotificationProps,
-  selectData,
-  shuffleCards
-} from '@/entities/game'
+import { checkMatch, drawCards, fetchNewLeader, gameActions, selectData, shuffleCards } from '@/entities/game'
 import { useNavigate } from 'react-router-dom'
 import { RouteNames, routePaths } from '@/shared/constants/router'
 import cls from './GameCanvas.module.scss'
+import { notifications } from '@mantine/notifications'
 
 export const GameCanvas = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [notification, setNotification] = useState<NotificationProps | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const cardSize = 100;
   const gap = 1;
@@ -65,10 +56,10 @@ export const GameCanvas = () => {
       dispatch(gameActions.saveGameTime(time));
       navigate(routePaths[RouteNames.END_GAME]);
     } catch (error) {
-      setNotification({
-        type: 'error',
-        message: 'Ошибка при отправке лидера на сервер',
-      });
+      notifications.show({
+        title: 'error',
+        message: 'Ошибка при отправке лидера на сервер'
+      })
     }
   };
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
@@ -99,12 +90,6 @@ export const GameCanvas = () => {
   };
 
   return (
-    <div>
-      {notification && (
-        <Notification color={notification.type === 'success' ? 'green' : 'red'}>
-          {notification.message}
-        </Notification>
-      )}
       <canvas
         ref={canvasRef}
         className={cls.canvas}
@@ -113,6 +98,5 @@ export const GameCanvas = () => {
         onClick={handleClick}
         data-testid="game-canvas"
       />
-    </div>
   );
 };

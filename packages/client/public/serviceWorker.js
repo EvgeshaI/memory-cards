@@ -19,28 +19,8 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request).then((fetchedResponse) => {
-        if (
-          !fetchedResponse ||
-          fetchedResponse.status !== 200 ||
-          fetchedResponse.type !== 'basic'
-        ) {
-          return fetchedResponse;
-        }
-
-        const responseToCache = fetchedResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
-        return fetchedResponse;
-      }).catch(() => {
-        return caches.match(event.request);
-      });
-    })
+    fetch(event.request)
+      .catch(() => caches.match(event.request))
   );
 });
 
