@@ -1,11 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { sendLeaderToServer } from '@/entities/game'
+import { sendLeaderToServer } from '../../api/leaderboardApi'
 
 export const fetchNewLeader = createAsyncThunk(
   'game/fetchNewLeader',
   async (time: number, { getState }) => {
-    const state = getState();
-    // @ts-ignore
+    const state = getState() as any;
     const user = state.user?.data;
 
     if (!user) {

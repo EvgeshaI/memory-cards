@@ -1,10 +1,23 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useAppSelector } from '@/shared/lib/store'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Notification } from '@mantine/core'
-import { checkMatch, drawCards, handleEndGame, NotificationProps, selectData, shuffleCards } from '@/entities/game'
+import {
+  checkMatch,
+  drawCards,
+  fetchNewLeader,
+  gameActions,
+  NotificationProps,
+  selectData,
+  shuffleCards
+} from '@/entities/game'
+import { useNavigate } from 'react-router-dom'
+import { RouteNames, routePaths } from '@/shared/constants/router'
 import cls from './GameCanvas.module.scss'
 
 export const GameCanvas = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [notification, setNotification] = useState<NotificationProps | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const cardSize = 100;
@@ -46,7 +59,18 @@ export const GameCanvas = () => {
     }
   }, [cards, openCards, matchedCards, cols]);
 
-
+  const handleEndGame = async () => {
+    try {
+      await dispatch(fetchNewLeader(time));
+      dispatch(gameActions.saveGameTime(time));
+      navigate(routePaths[RouteNames.END_GAME]);
+    } catch (error) {
+      setNotification({
+        type: 'error',
+        message: 'Ошибка при отправке лидера на сервер',
+      });
+    }
+  };
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current!.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -67,7 +91,7 @@ export const GameCanvas = () => {
             matchedCards,
             setMatchedCards,
             setOpenCards,
-            () => handleEndGame(time, setNotification),
+            () => handleEndGame(),
           );
         }, 1000);
       }
