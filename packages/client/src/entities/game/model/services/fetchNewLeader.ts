@@ -4,7 +4,7 @@ import { sendLeaderToServer } from '../../api/leaderboardApi'
 export const fetchNewLeader = createAsyncThunk(
   'game/fetchNewLeader',
   async (time: number, { getState }) => {
-    const state = getState() as any;
+    const state = getState() as RootState;
     const user = state.user?.data;
 
     if (!user) {
