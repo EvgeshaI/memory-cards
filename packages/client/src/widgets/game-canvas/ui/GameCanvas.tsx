@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { checkMatch, drawCards, fetchNewLeader, gameActions, selectData, shuffleCards } from '@/entities/game'
 import { useNavigate } from 'react-router-dom'
 import { RouteNames, routePaths } from '@/shared/constants/router'
-import cls from './GameCanvas.module.scss'
 import { notifications } from '@mantine/notifications'
+import cls from './GameCanvas.module.scss'
 
 export const GameCanvas = () => {
   const dispatch = useAppDispatch();
