@@ -2,7 +2,7 @@ const router = require('express').Router();
 import { renderToString } from 'react-dom/server';
 import {MainPage} from '../../../client/src/pages'
 
-router.get('/main', (req, res) => {
+router.get('/', (req, res) => {
     const content = renderToString(<MainPage />);
     const html = `
         <!DOCTYPE html>
