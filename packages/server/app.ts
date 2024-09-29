@@ -5,12 +5,16 @@ import cors from 'cors';
 import { createClientAndConnect } from './db';
 import { Response } from 'express';
 const mainPageRoute = require('./routes/api/main.route');
+const path = require('path');
 
 const app = express();
 expressConfig(app);
 app.use(cors());
 
 createClientAndConnect();
+
+// Статические файлы
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/main', mainPageRoute);
 app.get('/debug', (res: Response) => {
