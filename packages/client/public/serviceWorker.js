@@ -53,42 +53,25 @@ self.addEventListener('message', async (event) => {
     const lastGameTime = event.data.lastGameTime;
     console.log('Получено время последней игры:', lastGameTime);
 
-    await setLastGameTime(lastGameTime);
+    setLastGameTime(lastGameTime);
   }
 });
 
-async function setLastGameTime(time) {
+function setLastGameTime(time) {
   try {
-    const db = await openDB();
-    const tx = db.transaction('gameData', 'readwrite');
-    const store = tx.objectStore('gameData');
-    console.log('Сохраняем время:', time);
-    await store.put(time, 'lastGameTime');
-    await tx.complete;
+    console.log('Сохраняем время в localStorage:', time);
+    localStorage.setItem('lastGameTime', time);
     console.log('Время последней игры сохранено');
   } catch (error) {
     console.error('Ошибка при сохранении времени игры:', error);
   }
 }
 
-async function getLastGameTime() {
+function getLastGameTime() {
   try {
-    const db = await openDB();
-    const tx = db.transaction('gameData', 'readonly');
-    const store = tx.objectStore('gameData');
-    const request = store.get('lastGameTime');
-
-    return new Promise((resolve, reject) => {
-      request.onsuccess = function () {
-        console.log('Извлеченное время игры:', request.result);
-        resolve(request.result);
-      };
-
-      request.onerror = function () {
-        console.error('Ошибка при получении времени игры:', request.error);
-        reject(request.error);
-      };
-    });
+    const lastGameTime = localStorage.getItem('lastGameTime');
+    console.log('Извлеченное время игры из localStorage:', lastGameTime);
+    return lastGameTime;
   } catch (error) {
     console.error('Ошибка при получении времени игры:', error);
     return null;
@@ -112,8 +95,9 @@ async function sendNotification() {
     console.error('Ошибка при отправке уведомления:', error);
   }
 }
+
 async function checkLastGameTime() {
-  const lastGameTime = await getLastGameTime();
+  const lastGameTime = getLastGameTime();
   if (lastGameTime) {
     const now = new Date();
     const lastGameDate = new Date(lastGameTime);
@@ -134,27 +118,6 @@ async function checkLastGameTime() {
   } else {
     sendNotification();
   }
-}
-
-function openDB() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open('gameDB', 1);
-    
-    request.onupgradeneeded = function(event) {
-      const db = event.target.result;
-      if (!db.objectStoreNames.contains('gameData')) {
-        db.createObjectStore('gameData');
-      }
-    };
-
-    request.onsuccess = function(event) {
-      resolve(event.target.result);
-    };
-
-    request.onerror = function(event) {
-      reject(event.target.error);
-    };
-  });
 }
 
 //setInterval(checkLastGameTime, 24 * 60 * 60 * 1000);
