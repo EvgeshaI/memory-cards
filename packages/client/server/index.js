@@ -18,7 +18,7 @@ async function createServer() {
     const vite = await (0, vite_1.createServer)({
         server: { middlewareMode: true },
         root: clientPath,
-        appType: 'custom'
+        appType: 'custom',
     });
     app.use(vite.middlewares);
     app.get('*', async (req, res, next) => {
