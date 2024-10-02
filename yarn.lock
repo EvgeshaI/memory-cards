@@ -2493,6 +2493,11 @@
     "@types/mime" "*"
     "@types/node" "*"
 
+"@types/serviceworker@^0.0.97":
+  version "0.0.97"
+  resolved "https://registry.yarnpkg.com/@types/serviceworker/-/serviceworker-0.0.97.tgz#a0b1a76b2a3a79cc4b624b88717bc73c8ccd246d"
+  integrity sha512-SGt2lAQ0PcRR392EFNAnmjdZeWrU9o0y09/4xoY7gOunoHTt4nV/Qs2U9RQZlox8suwQnCtNS7rYqr5lNmdJ5w==
+
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
   resolved "https://registry.npmjs.org/@types/stack-utils/-/stack-utils-2.0.1.tgz"

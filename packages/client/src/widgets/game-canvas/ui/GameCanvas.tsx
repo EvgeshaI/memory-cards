@@ -75,8 +75,30 @@ export const GameCanvas = () => {
             matchedCards,
             setMatchedCards,
             setOpenCards,
-            () => {
+            async () => {
               dispatch(gameActions.saveGameTime(time));
+
+              const now = new Date().toISOString();
+              console.log('Время игры:', now);
+
+              const registration = await navigator.serviceWorker.ready;
+              if (registration.active) {
+                console.log('Service Worker контролирует страницу');
+                console.log(
+                  'Отправляем сообщение в Service Worker о времени игры',
+                  {
+                    type: 'SET_LAST_GAME_TIME',
+                    lastGameTime: now,
+                  },
+                );
+                registration.active.postMessage({
+                  type: 'SET_LAST_GAME_TIME',
+                  lastGameTime: now,
+                });
+              } else {
+                console.log('Service Worker не контролирует текущую страницу');
+              }
+
               navigate(routePaths[RouteNames.END_GAME]);
             },
           );
