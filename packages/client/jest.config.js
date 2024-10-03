@@ -1,8 +1,7 @@
-import dotenv from 'dotenv';
+const { defaults } = require('jest-config');
 
-dotenv.config();
-
-export default {
+module.exports = {
+  ...defaults,
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/src/**/*.test.{ts,tsx}'],
