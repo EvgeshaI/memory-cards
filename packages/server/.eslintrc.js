@@ -5,11 +5,6 @@ module.exports = {
     node: true,
     serviceworker: true
   },
-  settings: {
-    react: {
-     version: "detect",
-    },
-  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
