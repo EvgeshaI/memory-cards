@@ -17,6 +17,12 @@ self.addEventListener("install", event => {
 });
 
 self.addEventListener('fetch', event => {
+  const { url } = event.request;
+
+  if (url.includes('/save-last-game-time') || url.includes('/subscribe') || url.includes('localhost:3001')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) {
@@ -39,7 +45,7 @@ self.addEventListener('fetch', event => {
   );
 });
 
-self.addEventListener("activate", event => {
+self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => Promise.all(
       cacheNames.filter(() => true)
@@ -48,80 +54,37 @@ self.addEventListener("activate", event => {
   );
 });
 
-self.addEventListener('message', async (event) => {
-  if (event.data && event.data.type === 'SET_LAST_GAME_TIME') {
-    const lastGameTime = event.data.lastGameTime;
-    console.log('Получено время последней игры:', lastGameTime);
+self.addEventListener('push', (event) => {
+  const data = event.data ? event.data.json() : {};
 
-    setLastGameTime(lastGameTime);
-  }
+  const title = data.title || 'Memory cards';
+  const body = data.body || 'Вы не тренировались сегодня. Заходите и поиграйте!';
+  const icon = data.icon || './notification-icon.png';
+
+  const options = {
+    body,
+    icon
+  };
+
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+  );
 });
 
-function setLastGameTime(time) {
-  try {
-    console.log('Сохраняем время в localStorage:', time);
-    localStorage.setItem('lastGameTime', time);
-    console.log('Время последней игры сохранено');
-  } catch (error) {
-    console.error('Ошибка при сохранении времени игры:', error);
-  }
-}
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
 
-function getLastGameTime() {
-  try {
-    const lastGameTime = localStorage.getItem('lastGameTime');
-    console.log('Извлеченное время игры из localStorage:', lastGameTime);
-    return lastGameTime;
-  } catch (error) {
-    console.error('Ошибка при получении времени игры:', error);
-    return null;
-  }
-}
-
-async function sendNotification() {
-  if (Notification.permission !== 'granted') {
-    console.log('Уведомления не разрешены');
-    return;
-  }
-
-  try {
-    console.log('Попытка отправить уведомление');
-    await self.registration.showNotification('Memory cards', {
-      body: 'Вы не тренировались сегодня. Заходите и поиграйте',
-      icon: './notification-icon.png',
-    });
-    console.log('Уведомление отправлено успешно');
-  } catch (error) {
-    console.error('Ошибка при отправке уведомления:', error);
-  }
-}
-
-async function checkLastGameTime() {
-  const lastGameTime = getLastGameTime();
-  if (lastGameTime) {
-    const now = new Date();
-    const lastGameDate = new Date(lastGameTime);
-
-    if (isNaN(lastGameDate.getTime())) {
-      console.error('Некорректное значение даты:', lastGameTime);
-    } else {
-      console.log('Текущее время:', now);
-      console.log('Время последней игры:', lastGameDate);
-
-      const timeDiff = now - lastGameDate;
-      console.log('Разница во времени (мс):', timeDiff);
-
-      if (timeDiff > 1 * 60 * 1000) {
-        sendNotification();
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
+      for (let i = 0; i < clientList.length; i++) {
+        const client = clientList[i];
+        if (client.url === '/' && 'focus' in client) {
+          return client.focus();
+        }
       }
-    }
-  } else {
-    sendNotification();
-  }
-}
-
-//setInterval(checkLastGameTime, 24 * 60 * 60 * 1000);
-setInterval(() => {
-  console.log('Запускаем проверку времени последней игры');
-  checkLastGameTime();
-}, 60 * 1000);
+      if (clients.openWindow) {
+        return clients.openWindow('/');
+      }
+    })
+  );
+});

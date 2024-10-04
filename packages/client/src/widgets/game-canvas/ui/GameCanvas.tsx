@@ -9,6 +9,7 @@ import {
   shuffleCards,
 } from '@/entities/game';
 import { RouteNames, routePaths } from '@/shared/constants/router';
+import { sendGameTimeToServer } from '@/shared/api/notifications';
 import cls from './GameCanvas.module.scss';
 
 export const GameCanvas = () => {
@@ -77,26 +78,13 @@ export const GameCanvas = () => {
             setOpenCards,
             async () => {
               dispatch(gameActions.saveGameTime(time));
-
               const now = new Date().toISOString();
-              console.log('Время игры:', now);
 
-              const registration = await navigator.serviceWorker.ready;
-              if (registration.active) {
-                console.log('Service Worker контролирует страницу');
-                console.log(
-                  'Отправляем сообщение в Service Worker о времени игры',
-                  {
-                    type: 'SET_LAST_GAME_TIME',
-                    lastGameTime: now,
-                  },
-                );
-                registration.active.postMessage({
-                  type: 'SET_LAST_GAME_TIME',
-                  lastGameTime: now,
-                });
-              } else {
-                console.log('Service Worker не контролирует текущую страницу');
+              const storedSubscription =
+                localStorage.getItem('pushSubscription');
+              if (storedSubscription) {
+                const subscription = JSON.parse(storedSubscription);
+                await sendGameTimeToServer(subscription, now);
               }
 
               navigate(routePaths[RouteNames.END_GAME]);
