@@ -52,14 +52,14 @@ export const GameCanvas = () => {
 
   const handleEndGame = async () => {
     try {
-      await dispatch(fetchNewLeader(time));
+      await dispatch(fetchNewLeader(time)).unwrap();
       dispatch(gameActions.saveGameTime(time));
       navigate(routePaths[RouteNames.END_GAME]);
     } catch (error) {
       notifications.show({
         title: 'error',
-        message: 'Ошибка при отправке лидера на сервер'
-      })
+        message: 'Ошибка при отправке лидера на сервер',
+      });
     }
   };
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
