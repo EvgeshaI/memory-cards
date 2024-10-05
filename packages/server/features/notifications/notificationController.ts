@@ -15,6 +15,17 @@ const lastGameTimes: Array<{
   lastGameTime: string;
 }> = [];
 
+const NOTIFICATION_INTERVAL_PROD = 24 * 60 * 60 * 1000;
+const NOTIFICATION_INTERVAL_TEST = 1 * 60 * 1000;
+
+const NOTIFICATION_INTERVAL =
+  process.env.NODE_ENV === 'production'
+    ? NOTIFICATION_INTERVAL_PROD
+    : NOTIFICATION_INTERVAL_TEST;
+
+console.log('Текущий интервал:', NOTIFICATION_INTERVAL);
+console.log('Текущая среда:', process.env.NODE_ENV);
+
 export function saveLastGameTime(req: Request, res: Response) {
   const { subscription, lastGameTime } = req.body;
 
@@ -40,7 +51,7 @@ export function sendDailyNotification() {
 
     if (
       userGameTime &&
-      isTimeToSendNotification(userGameTime.lastGameTime, 1 * 60 * 1000)
+      isTimeToSendNotification(userGameTime.lastGameTime, NOTIFICATION_INTERVAL)
     ) {
       const notificationPayload = {
         title: 'Memory cards',

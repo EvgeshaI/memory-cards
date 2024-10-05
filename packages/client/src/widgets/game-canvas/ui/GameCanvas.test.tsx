@@ -6,6 +6,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { gameReducer } from '@/entities/game';
 import { GameCanvas } from './GameCanvas';
 
+jest.mock('@/shared/api/notifications', () => ({
+  handleGameTimeAndSubscription: jest.fn(),
+}));
+
 interface GameState {
   numCards: number;
   emojis: string[];

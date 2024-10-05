@@ -15,16 +15,16 @@ app.use(express.json());
 
 const port = Number(process.env.SERVER_PORT) || 3001;
 
-const vapidKeys = {
-  publicKey:
-    'BLJjCoT17qM-rhpiCG-bg6RTCjoSlN5OzoDOK66b9BWJaTYt8_10EKj5C5pIwfvP3JIUI6Fn94Gc1vYdk3-8Wis',
-  privateKey: 'ZnLUli0XRm3Z0P2Mf1sF1s6KXPmEIL0GatiZjVKP_cY',
+const vapidCredentials = {
+  publicKey: process.env.VITE_PUBLIC_VAPID_KEY || '',
+  privateKey: process.env.PRIVATE_VAPID_KEY || '',
+  contactEmail: process.env.VAPID_CONTACT_EMAIL,
 };
 
 webPush.setVapidDetails(
-  'mailto:u.agarova@yandex.ru',
-  vapidKeys.publicKey,
-  vapidKeys.privateKey,
+  `mailto:${vapidCredentials.contactEmail}`,
+  vapidCredentials.publicKey,
+  vapidCredentials.privateKey,
 );
 
 createClientAndConnect();

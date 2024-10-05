@@ -5,13 +5,16 @@ interface PushSubscription {
     auth: string;
   };
 }
+
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
 export async function sendGameTimeToServer(
   subscription: PushSubscription,
   time: string,
 ) {
   try {
     const response = await fetch(
-      'http://localhost:3001/notifications/save-last-game-time',
+      `${apiBaseUrl}/notifications/save-last-game-time`,
       {
         method: 'POST',
         body: JSON.stringify({ subscription, lastGameTime: time }),

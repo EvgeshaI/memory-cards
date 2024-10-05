@@ -19,7 +19,9 @@ self.addEventListener("install", event => {
 self.addEventListener('fetch', event => {
   const { url } = event.request;
 
-  if (url.includes('/save-last-game-time') || url.includes('/subscribe') || url.includes('localhost:3001')) {
+  const currentOrigin = self.location.origin;
+
+  if (url.includes('/save-last-game-time') || url.includes('/subscribe') || url.includes(currentOrigin)) {
     return;
   }
 

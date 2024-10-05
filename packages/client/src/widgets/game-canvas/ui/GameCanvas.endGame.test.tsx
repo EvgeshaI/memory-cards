@@ -6,6 +6,10 @@ import { gameReducer } from '@/entities/game';
 import { GameCanvas } from './GameCanvas';
 import '@testing-library/jest-dom';
 
+jest.mock('@/shared/api/notifications', () => ({
+  handleGameTimeAndSubscription: jest.fn(),
+}));
+
 const initialState = {
   game: {
     numCards: 6,

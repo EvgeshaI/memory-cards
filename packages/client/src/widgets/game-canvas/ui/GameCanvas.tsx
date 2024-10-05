@@ -7,9 +7,9 @@ import {
   gameActions,
   selectData,
   shuffleCards,
+  handleGameTimeAndSubscription,
 } from '@/entities/game';
 import { RouteNames, routePaths } from '@/shared/constants/router';
-import { sendGameTimeToServer } from '@/shared/api/notifications';
 import cls from './GameCanvas.module.scss';
 
 export const GameCanvas = () => {
@@ -78,14 +78,7 @@ export const GameCanvas = () => {
             setOpenCards,
             async () => {
               dispatch(gameActions.saveGameTime(time));
-              const now = new Date().toISOString();
-
-              const storedSubscription =
-                localStorage.getItem('pushSubscription');
-              if (storedSubscription) {
-                const subscription = JSON.parse(storedSubscription);
-                await sendGameTimeToServer(subscription, now);
-              }
+              await handleGameTimeAndSubscription();
 
               navigate(routePaths[RouteNames.END_GAME]);
             },

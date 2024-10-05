@@ -11,6 +11,10 @@ jest.mock('@/entities/game', () => ({
   shuffleCards: jest.fn((cards) => cards),
 }));
 
+jest.mock('@/shared/api/notifications', () => ({
+  handleGameTimeAndSubscription: jest.fn(),
+}));
+
 interface GameState {
   numCards: number;
   emojis: string[];

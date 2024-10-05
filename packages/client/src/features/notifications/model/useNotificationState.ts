@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { NOTIFICATIONS_ENABLED_KEY } from '@/shared/constants/storageKeys';
 
 export const useNotificationState = () => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -6,14 +7,14 @@ export const useNotificationState = () => {
   useEffect(() => {
     if ('Notification' in window) {
       const notificationEnabled =
-        localStorage.getItem('notificationsEnabled') === 'true';
+        localStorage.getItem(NOTIFICATIONS_ENABLED_KEY) === 'true';
       setIsEnabled(notificationEnabled);
     }
   }, []);
 
   const enableNotifications = () => {
     setIsEnabled(true);
-    localStorage.setItem('notificationsEnabled', 'true');
+    localStorage.setItem(NOTIFICATIONS_ENABLED_KEY, 'true');
   };
 
   return { isEnabled, enableNotifications };
