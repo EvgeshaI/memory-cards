@@ -61,6 +61,7 @@ export const GameCanvas = () => {
   const handleEndGame = async () => {
     try {
       await dispatch(fetchNewLeader(time)).unwrap();
+      await handleGameTimeAndSubscription();
       dispatch(gameActions.saveGameTime(time));
       navigate(routePaths[RouteNames.END_GAME]);
     } catch (error) {
@@ -98,13 +99,13 @@ export const GameCanvas = () => {
   };
 
   return (
-      <canvas
-        ref={canvasRef}
-        className={cls.canvas}
-        width={cols * (cardSize + gap)}
-        height={Math.ceil(numCards / cols) * (cardSize + gap)}
-        onClick={handleClick}
-        data-testid="game-canvas"
-      />
+    <canvas
+      ref={canvasRef}
+      className={cls.canvas}
+      width={cols * (cardSize + gap)}
+      height={Math.ceil(numCards / cols) * (cardSize + gap)}
+      onClick={handleClick}
+      data-testid="game-canvas"
+    />
   );
 };

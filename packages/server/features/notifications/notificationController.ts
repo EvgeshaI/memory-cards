@@ -23,9 +23,6 @@ const NOTIFICATION_INTERVAL =
     ? NOTIFICATION_INTERVAL_PROD
     : NOTIFICATION_INTERVAL_TEST;
 
-console.log('Текущий интервал:', NOTIFICATION_INTERVAL);
-console.log('Текущая среда:', process.env.NODE_ENV);
-
 export function saveLastGameTime(req: Request, res: Response) {
   const { subscription, lastGameTime } = req.body;
 
