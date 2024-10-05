@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { App } from './app';
-import { subscribeToPush } from './features/notifications';
+import { subscribeToPush } from './shared/api/subscribeToPush';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);

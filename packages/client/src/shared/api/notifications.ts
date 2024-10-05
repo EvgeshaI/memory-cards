@@ -1,3 +1,5 @@
+import { PUSH_SUBSCRIPTION_KEY } from '@/shared/constants/storageKeys';
+
 interface PushSubscription {
   endpoint: string;
   keys: {
@@ -25,7 +27,7 @@ export async function sendGameTimeToServer(
     );
 
     if (response.status === 410) {
-      localStorage.removeItem('pushSubscription');
+      localStorage.removeItem(PUSH_SUBSCRIPTION_KEY);
       return;
     }
 

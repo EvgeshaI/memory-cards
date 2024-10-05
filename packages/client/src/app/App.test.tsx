@@ -5,7 +5,7 @@ jest.mock('@/shared/api/notifications', () => ({
   handleGameTimeAndSubscription: jest.fn(),
 }));
 
-jest.mock('@/features/notifications/model/subscribeToPush', () => ({
+jest.mock('@/shared/api/subscribeToPush', () => ({
   subscribeToPush: jest.fn(),
 }));
 
