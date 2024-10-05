@@ -1,10 +1,10 @@
-import { render, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { gameReducer } from '@/entities/game';
-import { GameCanvas } from './GameCanvas';
-import '@testing-library/jest-dom';
+import { fireEvent, render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
+import { gameReducer } from '@/entities/game'
+import { GameCanvas } from './GameCanvas'
+import '@testing-library/jest-dom'
 
 jest.mock('@/shared/api/notifications', () => ({
   handleGameTimeAndSubscription: jest.fn(),
@@ -15,8 +15,18 @@ const initialState = {
     numCards: 6,
     emojis: ['🎉', '😈', '🧠', '🐱', '🐶', '🍕'],
     gameTime: 0,
+    leaders: []
   },
 };
+jest.mock('@/entities/user', () => ({
+  useUserData: jest.fn(() => ({
+    user: {
+      avatar: 'test-avatar-url',
+      first_name: 'Test User',
+      score: 100,
+    },
+  })),
+}));
 
 const createMockStore = (state = initialState) =>
   configureStore({

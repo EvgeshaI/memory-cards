@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { notifications } from '@mantine/notifications';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import {
   checkMatch,
   drawCards,
+  fetchNewLeader,
   gameActions,
   selectData,
   shuffleCards,
@@ -56,6 +58,18 @@ export const GameCanvas = () => {
     }
   }, [cards, openCards, matchedCards, cols]);
 
+  const handleEndGame = async () => {
+    try {
+      await dispatch(fetchNewLeader(time)).unwrap();
+      dispatch(gameActions.saveGameTime(time));
+      navigate(routePaths[RouteNames.END_GAME]);
+    } catch (error) {
+      notifications.show({
+        title: 'error',
+        message: 'Ошибка при отправке лидера на сервер',
+      });
+    }
+  };
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current!.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -76,12 +90,7 @@ export const GameCanvas = () => {
             matchedCards,
             setMatchedCards,
             setOpenCards,
-            async () => {
-              dispatch(gameActions.saveGameTime(time));
-              await handleGameTimeAndSubscription();
-
-              navigate(routePaths[RouteNames.END_GAME]);
-            },
+            () => handleEndGame(),
           );
         }, 1000);
       }
@@ -89,13 +98,13 @@ export const GameCanvas = () => {
   };
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={cls.canvas}
-      width={cols * (cardSize + gap)}
-      height={Math.ceil(numCards / cols) * (cardSize + gap)}
-      onClick={handleClick}
-      data-testid="game-canvas"
-    />
+      <canvas
+        ref={canvasRef}
+        className={cls.canvas}
+        width={cols * (cardSize + gap)}
+        height={Math.ceil(numCards / cols) * (cardSize + gap)}
+        onClick={handleClick}
+        data-testid="game-canvas"
+      />
   );
 };

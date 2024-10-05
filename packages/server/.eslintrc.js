@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2020: true,
     node: true,
-    serviceworker: true
+    serviceworker: true,
   },
   extends: [
     'eslint:recommended',
@@ -18,12 +18,12 @@ module.exports = {
   rules: {
     '@typescript-eslint/ban-ts-comment': 1,
     '@typescript-eslint/no-var-requires': 'off',
-    "no-restricted-globals": [
-      "error",
+    'no-restricted-globals': [
+      'error',
       {
-        "name": "self",
-        "message": "Use the global 'self' in service worker context"
-      }
-    ]
+        name: 'self',
+        message: "Use the global 'self' in service worker context",
+      },
+    ],
   },
 };
