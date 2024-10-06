@@ -9,7 +9,7 @@ const path_1 = __importDefault(require("path"));
 const promises_1 = __importDefault(require("fs/promises"));
 const vite_1 = require("vite");
 dotenv_1.default.config();
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3000;
 const clientPath = path_1.default.join(__dirname, '..');
 async function createServer() {
     const app = (0, express_1.default)();
