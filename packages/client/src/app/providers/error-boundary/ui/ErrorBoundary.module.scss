@@ -1,24 +1,24 @@
 .errorBoundaryContainer {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .errorBoundaryContainer h1 {
-    font-size: 2em;
-    color: rgb(48 70 211 / 50%);
-  }
-  
-  .errorBoundaryContainer a {
-    display: inline-block;
-    margin: 10px auto;
-    padding: 8px 16px;
-    color: var(--background-white);
-    background-color: rgb(48 70 211 / 50%);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .errorBoundaryContainer a:hover {
-    background-color: #bcafa9; 
-  }
+  text-align: center;
+  padding: 20px;
+}
+
+.errorBoundaryContainer h1 {
+  font-size: 2em;
+  color: rgb(48 70 211 / 50%);
+}
+
+.errorBoundaryContainer a {
+  display: inline-block;
+  margin: 10px auto;
+  padding: 8px 16px;
+  color: var(--background-white);
+  background-color: rgb(48 70 211 / 50%);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.errorBoundaryContainer a:hover {
+  background-color: #bcafa9;
+}
