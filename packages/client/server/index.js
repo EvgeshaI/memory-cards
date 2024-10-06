@@ -4,14 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const promises_1 = __importDefault(require("fs/promises"));
 const vite_1 = require("vite");
-const port = process.env.PORT || 80;
+dotenv_1.default.config();
+const port = process.env.PORT || 3002;
 const clientPath = path_1.default.join(__dirname, '..');
-const isDev = process.env.NODE_ENV === 'development';
 async function createServer() {
     const app = (0, express_1.default)();
     const vite = await (0, vite_1.createServer)({
