@@ -1,15 +1,10 @@
-interface CardAnimation {
-  progress: number;
-  isOpening: boolean;
-}
-
 export interface GameState {
+  openCards: number[];
+  matchedCards: number[];
+  cardAnimations: Record<number, any>;
   numCards: number;
   emojis: string[];
   gameTime: number;
-  cardAnimations: Record<number, CardAnimation>;
-  openCards: number[];
-  matchedCards: number[];
   leaders: Array<Leader>;
 }
 
@@ -18,6 +13,7 @@ export interface Leader {
   name: string;
   count: number;
 }
+
 export interface NotificationProps {
   type: 'success' | 'error';
   message: string;

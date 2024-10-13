@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GameState } from '@/entities/game/model/types';
+import { GameState, Leader } from '@/entities/game/model/types';
 
 const initialState: GameState = {
   numCards: 6,
@@ -20,6 +20,9 @@ const gameSlice = createSlice({
     },
     saveGameTime(state, action: PayloadAction<number>) {
       state.gameTime = action.payload;
+    },
+    setLeaders: (state, action: PayloadAction<Array<Leader>>) => {
+      state.leaders = action.payload;
     },
     setOpenCards(state, action: PayloadAction<number[]>) {
       state.openCards = action.payload;

@@ -10,8 +10,6 @@ jest.mock('@/shared/api/notifications', () => ({
   handleGameTimeAndSubscription: jest.fn(),
 }));
 
-global.URL.createObjectURL = jest.fn(() => 'mocked-url');
-
 const initialState = {
   game: {
     numCards: 6,
@@ -32,7 +30,6 @@ jest.mock('@/entities/user', () => ({
 
 const createMockStore = (state = initialState) =>
   configureStore({
-    // @ts-expect-error скорей всего нужно поправить GameState
     reducer: { game: gameReducer },
     preloadedState: state,
   });

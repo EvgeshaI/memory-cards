@@ -9,8 +9,6 @@ jest.mock('@/shared/api/subscribeToPush', () => ({
   subscribeToPush: jest.fn(),
 }));
 
-global.URL.createObjectURL = jest.fn(() => 'mocked-url');
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 global.fetch = jest.fn(() =>
