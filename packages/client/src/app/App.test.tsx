@@ -1,6 +1,16 @@
 import { render } from '@testing-library/react';
 import { App } from './App';
 
+jest.mock('@/shared/api/notifications', () => ({
+  handleGameTimeAndSubscription: jest.fn(),
+}));
+
+jest.mock('@/shared/api/subscribeToPush', () => ({
+  subscribeToPush: jest.fn(),
+}));
+
+global.URL.createObjectURL = jest.fn(() => 'mocked-url');
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 global.fetch = jest.fn(() =>

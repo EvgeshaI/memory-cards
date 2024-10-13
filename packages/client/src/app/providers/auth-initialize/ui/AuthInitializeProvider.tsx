@@ -1,16 +1,10 @@
-import {
-  FC,
-  PropsWithChildren,
-  isValidElement,
-  useEffect,
-  useState,
-} from 'react';
+import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Box, LoadingOverlay } from '@mantine/core';
 import { loadUserData } from '@/entities/user';
 import { useAppDispatch } from '@/shared/lib/store';
 
-export const AuthInitializeProvider: FC<PropsWithChildren> = (props) => {
-  const { children } = props;
+export const AuthInitializeProvider = () => {
   const dispatch = useAppDispatch();
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
@@ -32,9 +26,5 @@ export const AuthInitializeProvider: FC<PropsWithChildren> = (props) => {
     );
   }
 
-  if (children && isValidElement(children)) {
-    return children;
-  }
-
-  return null;
+  return <Outlet />;
 };

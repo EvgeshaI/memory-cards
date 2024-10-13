@@ -5,6 +5,7 @@ import { FullscreenButton, PaperContainer } from '@/shared/ui';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { gameActions, selectData } from '@/entities/game';
+import { NotificationButton } from '@/features/notifications';
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ export const GameSettings = () => {
         </Button>
       </Link>
       <FullscreenButton />
+      <NotificationButton />
     </PaperContainer>
   );
 };

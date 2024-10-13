@@ -3,13 +3,15 @@ import { RouterProvider as Provider } from 'react-router-dom';
 import { createRouter } from '../model/config';
 
 interface Props {
+  authInitializer: ReactNode;
   errorElement: ReactNode;
 }
 
 export const RouterProvider: FC<Props> = (props) => {
-  const { errorElement } = props;
+  const { errorElement, authInitializer } = props;
 
   const router = createRouter({
+    authInitializer,
     errorElement,
   });
 

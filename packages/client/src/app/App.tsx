@@ -1,6 +1,7 @@
 import '@/shared/config/yup';
 import '@/shared/config/dayjs';
 import { Notifications } from '@mantine/notifications';
+import { startServiceWorker } from '@/shared/lib/startServiceWorker/startServiceWorker';
 import {
   RouterProvider,
   StoreProvider,
@@ -10,6 +11,8 @@ import {
 } from './providers';
 import './styles/index.scss';
 
+startServiceWorker('/serviceWorker.js');
+
 export const App = () => (
   <ErrorBoundary>
     <StoreProvider>
@@ -17,9 +20,12 @@ export const App = () => (
         <Notifications position="top-right" zIndex={1000} />
 
         <div className="app">
-          <AuthInitializeProvider>
-            <RouterProvider errorElement={<ErrorBoundary hasError />} />
-          </AuthInitializeProvider>
+          {typeof window !== 'undefined' && (
+            <RouterProvider
+              authInitializer={<AuthInitializeProvider />}
+              errorElement={<ErrorBoundary hasError />}
+            />
+          )}
         </div>
       </MantineProvider>
     </StoreProvider>

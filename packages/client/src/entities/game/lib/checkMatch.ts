@@ -1,21 +1,53 @@
-export const checkMatch = (
-  firstCardIndex: number,
-  secondCardIndex: number,
-  cards: string[],
-  matchedCards: number[],
-  setMatchedCards: React.Dispatch<React.SetStateAction<number[]>>,
-  setOpenCards: React.Dispatch<React.SetStateAction<number[]>>,
-  startCardAnimation: (cardIndex: number, isOpening: boolean) => void,
-  onGameEnd: () => void,
-) => {
+import { NavigateFunction } from 'react-router-dom';
+import { AppDispatch } from '@/app/providers';
+import { gameActions } from '../model';
+import { routePaths, RouteNames } from '@/shared/constants/router';
+
+interface ICheckMatch {
+  firstCardIndex: number;
+  secondCardIndex: number;
+  cards: string[];
+  numCards: number;
+  matchedCards: number[];
+  time: number;
+  dispatch: AppDispatch;
+  navigate: NavigateFunction;
+}
+
+export const checkMatch = ({
+  firstCardIndex,
+  secondCardIndex,
+  cards,
+  numCards,
+  matchedCards,
+  time,
+  dispatch,
+  navigate,
+}: ICheckMatch) => {
   if (cards[firstCardIndex] === cards[secondCardIndex]) {
-    setMatchedCards((prev) => [...prev, firstCardIndex, secondCardIndex]);
-    setOpenCards([]);
+    dispatch(gameActions.addMatchedCard(firstCardIndex));
+    dispatch(gameActions.addMatchedCard(secondCardIndex));
+    dispatch(gameActions.removeOpenCard(firstCardIndex));
+    dispatch(gameActions.removeOpenCard(secondCardIndex));
+
+    if (matchedCards.length + 2 === numCards) {
+      dispatch(gameActions.saveGameTime(time));
+      navigate(routePaths[RouteNames.END_GAME]);
+    }
   } else {
-    startCardAnimation(firstCardIndex, false);
-    startCardAnimation(secondCardIndex, false);
-  }
-  if (matchedCards.length + 2 === cards.length) {
-    onGameEnd();
+    dispatch(
+      gameActions.updateCardAnimation({
+        key: firstCardIndex,
+        progress: 0,
+        isOpening: false,
+      }),
+    );
+    dispatch(
+      gameActions.updateCardAnimation({
+        key: secondCardIndex,
+        progress: 0,
+        isOpening: false,
+      }),
+    );
   }
 };

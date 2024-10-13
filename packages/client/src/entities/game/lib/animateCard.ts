@@ -1,57 +1,54 @@
+import { AppDispatch } from '@/app/providers';
+import { gameActions } from '../model';
+
 export const animateCard = (
-  cardAnimations: { [key: number]: { progress: number; isOpening: boolean } },
-  setCardAnimations: React.Dispatch<
-    React.SetStateAction<{
-      [key: number]: { progress: number; isOpening: boolean };
-    }>
-  >,
-  openCards: number[],
-  setOpenCards: React.Dispatch<React.SetStateAction<number[]>>,
+  dispatch: AppDispatch,
+  getState: () => RootState,
   checkMatch: (index1: number, index2: number) => void,
 ) => {
   let animationFrameId: number;
 
   const animate = () => {
-    setCardAnimations((prev) => {
-      const newAnimations: {
-        [key: number | string]: { progress: number; isOpening: boolean };
-      } = {};
+    const { cardAnimations } = getState().game;
+    const keys = Object.keys(cardAnimations);
 
-      Object.entries(prev).forEach(([key, { progress, isOpening }]) => {
-        const newProgress = progress + 0.05;
-        if (newProgress < 1) {
-          newAnimations[key] = { progress: newProgress, isOpening };
-        } else {
-          const cardIndex = parseInt(key, 10);
+    keys.forEach((key) => {
+      const { progress, isOpening } = cardAnimations[parseInt(key, 10)];
+      const newProgress = progress + 0.05;
 
-          if (isOpening) {
-            setOpenCards((prevOpen) => {
-              if (!prevOpen.includes(cardIndex)) {
-                const newOpenCards = [...prevOpen, cardIndex];
-                if (newOpenCards.length === 2) {
-                  setTimeout(() => {
-                    checkMatch(newOpenCards[0], newOpenCards[1]);
-                  }, 500);
-                }
+      if (newProgress < 1) {
+        dispatch(
+          gameActions.updateCardAnimation({
+            key: parseInt(key, 10),
+            progress: newProgress,
+            isOpening,
+          }),
+        );
+      } else {
+        const cardIndex = parseInt(key, 10);
 
-                return newOpenCards;
-              }
-              return prevOpen;
-            });
-          } else {
-            setOpenCards((prevOpen) =>
-              prevOpen.filter((index) => index !== cardIndex),
-            );
+        dispatch(gameActions.removeCardAnimation(cardIndex));
+
+        if (isOpening) {
+          dispatch(gameActions.addOpenCard(cardIndex));
+
+          const { openCards } = getState().game;
+
+          const newOpenCards = [...openCards, cardIndex];
+          if (newOpenCards.length === 2) {
+            setTimeout(() => {
+              checkMatch(newOpenCards[0], newOpenCards[1]);
+            }, 500);
           }
+        } else {
+          dispatch(gameActions.removeOpenCard(cardIndex));
         }
-      });
-
-      if (Object.keys(newAnimations).length > 0) {
-        animationFrameId = requestAnimationFrame(animate);
       }
-
-      return newAnimations;
     });
+
+    if (Object.keys(getState().game.cardAnimations).length > 0) {
+      animationFrameId = requestAnimationFrame(animate);
+    }
   };
 
   animationFrameId = requestAnimationFrame(animate);
