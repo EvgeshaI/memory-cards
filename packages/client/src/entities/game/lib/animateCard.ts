@@ -1,4 +1,3 @@
-import { AppDispatch } from '@/app/providers';
 import { gameActions } from '../model';
 
 export const animateCard = (

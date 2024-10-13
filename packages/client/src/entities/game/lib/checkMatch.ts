@@ -1,7 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
-import { AppDispatch } from '@/app/providers';
-import { gameActions } from '../model';
 import { routePaths, RouteNames } from '@/shared/constants/router';
+import { gameActions } from '../model';
 
 interface ICheckMatch {
   firstCardIndex: number;
