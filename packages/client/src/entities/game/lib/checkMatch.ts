@@ -1,21 +1,52 @@
-import React from 'react';
+import { NavigateFunction } from 'react-router-dom';
+import { routePaths, RouteNames } from '@/shared/constants/router';
+import { gameActions } from '../model';
 
-export const checkMatch = (
-  firstCardIndex: number,
-  currentCardIndex: number,
-  cards: string[],
-  matchedCards: number[],
-  setMatchedCards: React.Dispatch<React.SetStateAction<number[]>>,
-  setOpenCards: React.Dispatch<React.SetStateAction<number[]>>,
-  onGameEnd: () => void,
-) => {
-  if (cards[firstCardIndex] === cards[currentCardIndex]) {
-    setMatchedCards((prev) => [...prev, firstCardIndex, currentCardIndex]);
-  }
+interface ICheckMatch {
+  firstCardIndex: number;
+  secondCardIndex: number;
+  cards: string[];
+  numCards: number;
+  matchedCards: number[];
+  time: number;
+  dispatch: AppDispatch;
+  navigate: NavigateFunction;
+}
 
-  setOpenCards([]);
+export const checkMatch = ({
+  firstCardIndex,
+  secondCardIndex,
+  cards,
+  numCards,
+  matchedCards,
+  time,
+  dispatch,
+  navigate,
+}: ICheckMatch) => {
+  if (cards[firstCardIndex] === cards[secondCardIndex]) {
+    dispatch(gameActions.addMatchedCard(firstCardIndex));
+    dispatch(gameActions.addMatchedCard(secondCardIndex));
+    dispatch(gameActions.removeOpenCard(firstCardIndex));
+    dispatch(gameActions.removeOpenCard(secondCardIndex));
 
-  if (matchedCards.length + 2 === cards.length) {
-    onGameEnd();
+    if (matchedCards.length + 2 === numCards) {
+      dispatch(gameActions.saveGameTime(time));
+      navigate(routePaths[RouteNames.END_GAME]);
+    }
+  } else {
+    dispatch(
+      gameActions.updateCardAnimation({
+        key: firstCardIndex,
+        progress: 0,
+        isOpening: false,
+      }),
+    );
+    dispatch(
+      gameActions.updateCardAnimation({
+        key: secondCardIndex,
+        progress: 0,
+        isOpening: false,
+      }),
+    );
   }
 };
