@@ -1,4 +1,4 @@
-import { Client } from 'pg'
+import { Client } from 'pg';
 
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } =
   process.env;

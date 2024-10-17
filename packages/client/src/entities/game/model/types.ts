@@ -1,4 +1,7 @@
-export interface GameSchema {
+export interface GameState {
+  openCards: number[];
+  matchedCards: number[];
+  cardAnimations: Record<number, any>;
   numCards: number;
   emojis: string[];
   gameTime: number;
@@ -10,6 +13,7 @@ export interface Leader {
   name: string;
   count: number;
 }
+
 export interface NotificationProps {
   type: 'success' | 'error';
   message: string;

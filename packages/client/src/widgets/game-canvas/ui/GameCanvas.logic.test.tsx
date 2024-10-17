@@ -3,7 +3,7 @@ import { act } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
-import { gameReducer } from '@/entities/game';
+import { gameReducer, GameState } from '@/entities/game';
 import { GameCanvas } from './GameCanvas';
 
 jest.mock('@/entities/game', () => ({
@@ -25,17 +25,13 @@ jest.mock('@/shared/api/notifications', () => ({
   handleGameTimeAndSubscription: jest.fn(),
 }));
 
-interface GameState {
-  numCards: number;
-  emojis: string[];
-  gameTime: number;
-  leaders: [];
-}
-
 const defaultGameState: GameState = {
   numCards: 6,
   emojis: ['🎉', '😈', '🧠', '🐱', '🐶', '🍕'],
   gameTime: 0,
+  cardAnimations: {},
+  openCards: [],
+  matchedCards: [],
   leaders: [],
 };
 
