@@ -31,5 +31,8 @@ body {
   --background-highlight: #363A5C;
   --mantine-color-body: #363A5C;
   --dark-text-color: #ced5ef;
-  --mantine-color-text: #fff;
+}
+
+[data-theme='dark'] .settings-header-text {
+  --accent-color: #ffffff;
 }

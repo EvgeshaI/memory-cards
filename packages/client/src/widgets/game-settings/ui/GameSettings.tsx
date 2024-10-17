@@ -17,7 +17,12 @@ export const GameSettings = () => {
   };
   return (
     <PaperContainer text="Настройки">
-      <Text size="lg" mb="md" color="var(--accent-color)">
+      <Text
+        size="lg"
+        mb="md"
+        className="settings-header-text"
+        color="var(--accent-color)"
+      >
         выберите количество карточек
       </Text>
       <Select
