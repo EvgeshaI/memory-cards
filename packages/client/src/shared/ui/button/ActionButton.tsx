@@ -18,7 +18,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   <Button
     className={clsx('action-button', className)}
     variant="subtle"
-    color={color}
+    style={{ color: `var(--${color})` }}
     onClick={onClick}
   >
     {children}
