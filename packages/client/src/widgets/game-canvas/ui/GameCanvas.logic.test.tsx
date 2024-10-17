@@ -3,9 +3,8 @@ import { act } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
-import { gameReducer } from '@/entities/game/index';
+import { gameReducer, GameState } from '@/entities/game';
 import { GameCanvas } from './GameCanvas';
-import { GameState } from '@/entities/game';
 
 jest.mock('@/entities/game', () => ({
   ...jest.requireActual('@/entities/game'),
