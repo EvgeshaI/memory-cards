@@ -15,6 +15,9 @@ const initialState = {
     numCards: 6,
     emojis: ['🎉', '😈', '🧠', '🐱', '🐶', '🍕'],
     gameTime: 0,
+    cardAnimations: {},
+    openCards: [],
+    matchedCards: [],
     leaders: [],
   },
 };
