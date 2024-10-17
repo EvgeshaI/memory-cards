@@ -6,6 +6,7 @@ import { RouteNames, routePaths } from '@/shared/constants/router';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { gameActions, selectData } from '@/entities/game';
 import { NotificationButton } from '@/features/notifications';
+import { ThemeToggle } from '@/features/theming/ui/ThemeToggle';
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();
@@ -37,6 +38,7 @@ export const GameSettings = () => {
       </Link>
       <FullscreenButton />
       <NotificationButton />
+      <ThemeToggle />
     </PaperContainer>
   );
 };

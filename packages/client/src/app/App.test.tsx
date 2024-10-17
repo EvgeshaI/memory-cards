@@ -9,6 +9,10 @@ jest.mock('@/shared/api/subscribeToPush', () => ({
   subscribeToPush: jest.fn(),
 }));
 
+jest.mock('@/shared/api/themeService', () => ({
+  themeService: jest.fn(),
+}));
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 global.fetch = jest.fn(() =>

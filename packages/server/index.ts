@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
 import webPush from 'web-push';
+import { themeRoutes } from './features/theming/routes';
 import { notificationRoutes } from './features/notifications/routes';
 import { subscriptionRoutes } from './features/subscriptions/routes';
 import { setupCronJobs } from './features/cron/cronJobs';
@@ -31,6 +32,7 @@ createClientAndConnect();
 
 app.use('/notifications', notificationRoutes);
 app.use('/subscriptions', subscriptionRoutes);
+app.use('/theme', themeRoutes);
 
 setupCronJobs();
 

@@ -15,7 +15,7 @@ export const ProfileActions: React.FC<ProfileActionsProps> = ({
     <div className={cls.actionsLeft}>
       <ActionButton
         className={cls.actionButton}
-        color="#3E4CBC"
+        color="text-color"
         onClick={onPasswordChange}
       >
         Изменить пароль
@@ -24,7 +24,7 @@ export const ProfileActions: React.FC<ProfileActionsProps> = ({
     <div className={cls.actionsRight}>
       <ActionButton
         className={cls.actionButton}
-        color="#FF5555"
+        color="error-color"
         onClick={onLogout}
       >
         Выйти
