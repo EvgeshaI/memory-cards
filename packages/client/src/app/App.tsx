@@ -8,6 +8,7 @@ import {
   MantineProvider,
   AuthInitializeProvider,
   ErrorBoundary,
+  ThemeProvider,
 } from './providers';
 import './styles/index.scss';
 
@@ -21,7 +22,9 @@ export const App = () => (
 
         <div className="app">
           <AuthInitializeProvider>
-            <RouterProvider errorElement={<ErrorBoundary hasError />} />
+            <ThemeProvider>
+              <RouterProvider errorElement={<ErrorBoundary hasError />} />
+            </ThemeProvider>
           </AuthInitializeProvider>
         </div>
       </MantineProvider>

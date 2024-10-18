@@ -6,36 +6,23 @@ import {
   useState,
 } from 'react';
 import { Box, LoadingOverlay } from '@mantine/core';
-import { loadUserData, useUserData } from '@/entities/user';
+import { loadUserData } from '@/entities/user';
 import { useAppDispatch } from '@/shared/lib/store';
-import { setTheme } from '@/features/theming';
-import { loadTheme } from '@/shared/api/themeService';
 
 export const AuthInitializeProvider: FC<PropsWithChildren> = (props) => {
   const { children } = props;
   const dispatch = useAppDispatch();
-  const { user } = useUserData();
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   useEffect(() => {
-    const initializeApp = async () => {
-      await dispatch(loadUserData());
-
-      if (user) {
-        try {
-          const serverTheme = await loadTheme(user.id);
-          dispatch(setTheme(serverTheme));
-        } catch (error) {
-          console.error('Не удалось загрузить тему с сервера');
-        }
-      }
-      setIsInitialized(true);
-    };
-
     if (!isInitialized) {
-      initializeApp();
+      dispatch(loadUserData())
+        .catch(() => Promise.resolve())
+        .finally(() => {
+          setIsInitialized(true);
+        });
     }
-  }, [dispatch, isInitialized, user]);
+  }, [dispatch, isInitialized]);
 
   if (!isInitialized) {
     return (
