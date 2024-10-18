@@ -1,11 +1,11 @@
-import { BASE_URL } from '@/shared/constants/api';
+import { YANDEX_API_URL } from '@/shared/constants/api';
 
 export const changeAvatar = async (userID: string, file: File) => {
   const formData = new FormData();
   formData.append('avatar', file);
 
   try {
-    const response = await fetch(`${BASE_URL}/user/profile/avatar`, {
+    const response = await fetch(`${YANDEX_API_URL}/user/profile/avatar`, {
       method: 'PUT',
       body: formData,
       credentials: 'include',

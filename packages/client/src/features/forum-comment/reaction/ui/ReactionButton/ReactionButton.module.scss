@@ -1,0 +1,15 @@
+.root {
+  background: var(--reaction-background);
+  border-radius: 50px;
+  min-width: 30px;
+
+  &.active {
+    background: var(--reaction-active-background);
+  }
+
+  .section {
+    &[data-position='left'] {
+      margin-inline-end: 3px;
+    }
+  }
+}

@@ -1,36 +1,31 @@
-import { Stack, Title } from '@mantine/core';
 import clsx from 'clsx';
-import { FC, useEffect, useState } from 'react';
-import { AddCommentForm } from '@/features/forum-comment/add';
-import {
-  FORUM_TOPIC_COMMENTS,
-  ForumCommentCard,
-} from '@/entities/forum-comment';
-import { Topic, TopicCard } from '@/entities/forum-topic';
+import { Stack, Title } from '@mantine/core';
+import { Navigate } from 'react-router-dom';
+import { AddCommentForm } from '@/features/forum-comment';
+import { TopicCard, useGetTopicByIdQuery } from '@/entities/forum-topic';
 import { Card, ScrollArea } from '@/shared/ui';
+import { RouteNames, routePaths } from '@/shared/constants/router';
 import { ForumTopicDetailsSkeleton } from './ForumTopicDetailsSkeleton';
+import { CommentCard } from '../CommentCard/CommentCard';
 import cls from './ForumTopicDetails.module.scss';
 
-interface Props {
-  topic: Topic;
+interface ForumTopicDetailsProps {
+  topicId: string | number;
   className?: string;
 }
 
-export const ForumTopicDetails: FC<Props> = (props) => {
-  const { topic, className } = props;
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+export const ForumTopicDetails = ({
+  topicId,
+  className,
+}: ForumTopicDetailsProps) => {
+  const { data: topic, isFetching } = useGetTopicByIdQuery(topicId);
 
-  useEffect(() => {
-    // Временно, для тестирования
-    const timeoutId = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  if (isLoading) {
+  if (isFetching) {
     return <ForumTopicDetailsSkeleton className={className} />;
+  }
+
+  if (!topic) {
+    return <Navigate to={routePaths[RouteNames.FORUM]} replace />;
   }
 
   return (
@@ -41,16 +36,17 @@ export const ForumTopicDetails: FC<Props> = (props) => {
         <Stack className={cls.blocks} gap={15} h="100%">
           <TopicCard
             className={cls.topic}
-            topic={topic}
-            renderTitle={(item) => item.description}
+            title={topic.description}
+            author={topic.author}
+            commentsCount={topic.comments.length}
           />
 
           <Card className={cls.card}>
             <Stack h="100%" gap={40}>
               <ScrollArea className={cls.comments}>
                 <Stack gap={15}>
-                  {FORUM_TOPIC_COMMENTS.map((comment) => (
-                    <ForumCommentCard key={comment.id} comment={comment} />
+                  {topic.comments.map((comment) => (
+                    <CommentCard key={comment.id} comment={comment} />
                   ))}
                 </Stack>
               </ScrollArea>

@@ -20,10 +20,12 @@ export const App = () => (
         <Notifications position="top-right" zIndex={1000} />
 
         <div className="app">
-          <RouterProvider
-            authInitializer={<AuthInitializeProvider />}
-            errorElement={<ErrorBoundary hasError />}
-          />
+          {typeof window !== 'undefined' && (
+            <RouterProvider
+              authInitializer={<AuthInitializeProvider />}
+              errorElement={<ErrorBoundary hasError />}
+            />
+          )}
         </div>
       </MantineProvider>
     </StoreProvider>

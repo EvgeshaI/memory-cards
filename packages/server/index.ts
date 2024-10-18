@@ -4,6 +4,8 @@ import express from 'express';
 import webPush from 'web-push';
 import { notificationRoutes } from './features/notifications/routes';
 import { subscriptionRoutes } from './features/subscriptions/routes';
+import { reactionsRouter } from './controllers/reactionsController';
+import { forumRouter } from './controllers/forumController';
 import { setupCronJobs } from './features/cron/cronJobs';
 import { createClientAndConnect } from './db';
 
@@ -31,6 +33,8 @@ createClientAndConnect();
 
 app.use('/notifications', notificationRoutes);
 app.use('/subscriptions', subscriptionRoutes);
+app.use('/api/v1/reactions', reactionsRouter);
+app.use('/api/v1/forum', forumRouter);
 
 setupCronJobs();
 

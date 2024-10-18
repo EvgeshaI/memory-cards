@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Divider, Group, Text } from '@mantine/core';
-import { RESOURCES_URL } from '@/shared/constants/api';
+import { YANDEX_RESOURCES_URL } from '@/shared/constants/api';
 import { timeFormat } from '@/shared/lib';
 
 interface PlayerInfoProps {
@@ -13,7 +13,7 @@ export const PlayerInfo: React.FC<PlayerInfoProps> = ({
   name,
   count,
 }) => {
-  const avatarUrl = avatar ? `${RESOURCES_URL}${avatar}` : '';
+  const avatarUrl = avatar ? `${YANDEX_RESOURCES_URL}${avatar}` : '';
   const time = timeFormat(count);
   return (
     <div>

@@ -3,7 +3,7 @@ import { useUserData } from '@/entities/user';
 import { useLogout } from '@/features/auth';
 import { handleAvatarChange } from '@/features/profile';
 import { Loader, Notification } from '@/shared/ui';
-import { RESOURCES_URL } from '@/shared/constants/api';
+import { YANDEX_RESOURCES_URL } from '@/shared/constants/api';
 import { PasswordModal } from '../passwordModal/PasswordModal';
 import { ProfileInfo } from '../profileInfo/ProfileInfo';
 import cls from './Profile.module.scss';
@@ -28,7 +28,7 @@ export const ProfileSection: React.FC = () => {
       </Notification>
     );
 
-  const avatarUrl = avatar ? `${RESOURCES_URL}${avatar}` : '';
+  const avatarUrl = avatar ? `${YANDEX_RESOURCES_URL}${avatar}` : '';
 
   return (
     <div className={cls.root}>

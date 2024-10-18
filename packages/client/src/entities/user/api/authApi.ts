@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/shared/constants/api';
+import { YANDEX_API_URL } from '@/shared/constants/api';
 
 export const fetchRegData = async (
   first_name: string,
@@ -9,7 +9,7 @@ export const fetchRegData = async (
   phone: string,
 ) => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/signup`, {
+    const response = await fetch(`${YANDEX_API_URL}/auth/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const fetchRegData = async (
 
 export const fetchLoginData = async (login: string, password: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/signin`, {
+    const response = await fetch(`${YANDEX_API_URL}/auth/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export const fetchLoginData = async (login: string, password: string) => {
 
 export const fetchUserData = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/user`, {
+    const response = await fetch(`${YANDEX_API_URL}/auth/user`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -87,7 +87,7 @@ export const fetchUserData = async () => {
 
 export const logout = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/logout`, {
+    const response = await fetch(`${YANDEX_API_URL}/auth/logout`, {
       method: 'POST',
       credentials: 'include',
     });

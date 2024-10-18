@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/shared/constants/api';
+import { YANDEX_API_URL } from '@/shared/constants/api';
 import { Leader } from '@/entities/game/model/types';
 import { postRequest } from '../lib/postRequest';
 
@@ -12,7 +12,7 @@ export const sendLeaderToServer = (user: Leader) => {
     teamName: 'memoryCards',
   };
 
-  return postRequest(`${BASE_URL}/leaderboard`, formData);
+  return postRequest(`${YANDEX_API_URL}/leaderboard`, formData);
 };
 
 export const fetchLeadersFromServer = () => {
@@ -22,5 +22,5 @@ export const fetchLeadersFromServer = () => {
     limit: 5,
   };
 
-  return postRequest(`${BASE_URL}/leaderboard/all`, formData);
+  return postRequest(`${YANDEX_API_URL}/leaderboard/all`, formData);
 };
