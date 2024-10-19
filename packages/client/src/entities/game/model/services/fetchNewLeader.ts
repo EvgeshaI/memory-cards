@@ -1,5 +1,5 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { sendLeaderToServer } from '../../api/leaderboardApi'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { sendLeaderToServer } from '../../api/leaderboardApi';
 
 export const fetchNewLeader = createAsyncThunk(
   'game/fetchNewLeader',
@@ -23,4 +23,3 @@ export const fetchNewLeader = createAsyncThunk(
     }
   },
 );
-

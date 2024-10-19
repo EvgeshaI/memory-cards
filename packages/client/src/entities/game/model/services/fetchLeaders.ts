@@ -1,7 +1,7 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { mapLeaders } from '@/entities/game/lib/mapLeaders'
-import { gameActions } from '../slice/gameSlice'
-import { fetchLeadersFromServer } from '../../api/leaderboardApi'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { mapLeaders } from '@/entities/game/lib/mapLeaders';
+import { gameActions } from '../slice/gameSlice';
+import { fetchLeadersFromServer } from '../../api/leaderboardApi';
 
 export const fetchLeaders = createAsyncThunk(
   'game/fetchLeaders',

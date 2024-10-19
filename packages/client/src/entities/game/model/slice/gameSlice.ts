@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { GameSchema, Leader } from '@/entities/game/model/types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { GameSchema, Leader } from '@/entities/game/model/types';
 
 const initialState: GameSchema = {
   numCards: 6,

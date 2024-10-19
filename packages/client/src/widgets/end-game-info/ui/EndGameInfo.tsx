@@ -1,12 +1,12 @@
-import React from 'react'
-import { Button, Group, Text } from '@mantine/core'
-import { NavLink } from 'react-router-dom'
-import { RouteNames, routePaths } from '@/shared/constants/router'
-import { PaperContainer } from '@/shared/ui'
-import { useAppSelector } from '@/shared/lib/store'
-import { selectData } from '@/entities/game'
-import { timeFormat } from '@/shared/lib'
-import cls from './EndGameInfo.module.scss'
+import React from 'react';
+import { Button, Group, Text } from '@mantine/core';
+import { NavLink } from 'react-router-dom';
+import { RouteNames, routePaths } from '@/shared/constants/router';
+import { PaperContainer } from '@/shared/ui';
+import { useAppSelector } from '@/shared/lib/store';
+import { selectData } from '@/entities/game';
+import { timeFormat } from '@/shared/lib';
+import cls from './EndGameInfo.module.scss';
 
 export const EndGameInfo = () => {
   const { gameTime } = useAppSelector(selectData);

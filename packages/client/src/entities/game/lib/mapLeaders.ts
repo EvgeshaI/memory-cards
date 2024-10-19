@@ -1,4 +1,4 @@
-import { Leader } from '@/entities/game/model/types'
+import { Leader } from '@/entities/game/model/types';
 
 interface MyField {
   name: string;

@@ -20,6 +20,10 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "service-worker", "public/serviceWorker.js"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "service-worker", "public/serviceWorker.js", "server/index.d.ts", "server/index.ts"],
+  "exclude": [],
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.server.json" }
+  ]
 }

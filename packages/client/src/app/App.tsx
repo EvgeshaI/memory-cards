@@ -21,11 +21,12 @@ export const App = () => (
         <Notifications position="top-right" zIndex={1000} />
 
         <div className="app">
-          <AuthInitializeProvider>
-            <ThemeProvider>
-              <RouterProvider errorElement={<ErrorBoundary hasError />} />
-            </ThemeProvider>
-          </AuthInitializeProvider>
+          <ThemeProvider>
+            <RouterProvider
+              authInitializer={<AuthInitializeProvider />}
+              errorElement={<ErrorBoundary hasError />}
+            />
+          </ThemeProvider>
         </div>
       </MantineProvider>
     </StoreProvider>

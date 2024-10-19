@@ -1,7 +1,7 @@
-import React from 'react'
-import { Avatar, Divider, Group, Text } from '@mantine/core'
-import { RESOURCES_URL } from '@/shared/constants/api'
-import { timeFormat } from '@/shared/lib'
+import React from 'react';
+import { Avatar, Divider, Group, Text } from '@mantine/core';
+import { RESOURCES_URL } from '@/shared/constants/api';
+import { timeFormat } from '@/shared/lib';
 
 interface PlayerInfoProps {
   avatar?: string;

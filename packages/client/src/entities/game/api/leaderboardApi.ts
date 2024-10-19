@@ -1,6 +1,6 @@
-import { BASE_URL } from '@/shared/constants/api'
-import { Leader } from '@/entities/game/model/types'
-import { postRequest } from '../lib/postRequest'
+import { BASE_URL } from '@/shared/constants/api';
+import { Leader } from '@/entities/game/model/types';
+import { postRequest } from '../lib/postRequest';
 
 export const sendLeaderToServer = (user: Leader) => {
   const formData = {
