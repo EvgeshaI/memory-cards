@@ -8,6 +8,7 @@ import {
   MantineProvider,
   AuthInitializeProvider,
   ErrorBoundary,
+  ThemeProvider,
 } from './providers';
 import './styles/index.scss';
 
@@ -20,12 +21,14 @@ export const App = () => (
         <Notifications position="top-right" zIndex={1000} />
 
         <div className="app">
-          {typeof window !== 'undefined' && (
-            <RouterProvider
-              authInitializer={<AuthInitializeProvider />}
-              errorElement={<ErrorBoundary hasError />}
-            />
-          )}
+          <ThemeProvider>
+            {typeof window !== 'undefined' && (
+              <RouterProvider
+                authInitializer={<AuthInitializeProvider />}
+                errorElement={<ErrorBoundary hasError />}
+              />
+            )}
+          </ThemeProvider>
         </div>
       </MantineProvider>
     </StoreProvider>

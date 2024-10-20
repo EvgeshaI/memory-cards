@@ -12,10 +12,13 @@
 
 .userName {
   font-size: 24px;
-  font-weight: bold;
 }
 
 .userEmail {
   font-size: 20px;
   margin-top: 10px;
+}
+
+[data-theme='dark'] .userDetails {
+  color: var(--text-color);
 }
