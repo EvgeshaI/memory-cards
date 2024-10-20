@@ -9,10 +9,10 @@ module.exports = {
   testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/src/**/*.test.{ts,tsx}'],
   globals: {
-    __SERVER_PORT__: JSON.stringify(process.env.SERVER_PORT),
-    __SERVER_API_URL__: JSON.stringify(process.env.SERVER_API_URL),
-    __YANDEX_API_URL__: JSON.stringify(process.env.YANDEX_API_URL),
-    __YANDEX_RESOURCES_URL__: JSON.stringify(process.env.YANDEX_RESOURCES_URL),
+    __SERVER_PORT__: JSON.stringify(process.env.SERVER_PORT ?? 3001),
+    __SERVER_API_URL__: JSON.stringify(process.env.SERVER_API_URL ?? ''),
+    __YANDEX_API_URL__: JSON.stringify(process.env.YANDEX_API_URL ?? ''),
+    __YANDEX_RESOURCES_URL__: JSON.stringify(process.env.YANDEX_RESOURCES_URL ?? ''),
   },
   moduleNameMapper: {
     '\\.s?css$': 'babel-jest',
