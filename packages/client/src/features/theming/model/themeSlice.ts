@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Theme } from '@/shared/constants/theme';
-import { loadThemeFromLocalStorage } from './useThemeState';
 
 const initialState: { theme: Theme } = {
-  theme: loadThemeFromLocalStorage() || Theme.LIGHT,
+  theme: Theme.LIGHT,
 };
 
 const themeSlice = createSlice({
