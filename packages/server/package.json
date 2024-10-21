@@ -20,6 +20,7 @@
     "node-cron": "^3.0.3",
     "pg": "^8.8.0",
     "prettier": "^2.7.1",
+    "sequelize": "^6.37.4",
     "web-push": "^3.6.7"
   },
   "devDependencies": {
