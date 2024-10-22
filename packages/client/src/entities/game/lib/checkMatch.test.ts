@@ -1,4 +1,16 @@
+import { NavigateFunction } from 'react-router-dom';
 import { checkMatch } from './checkMatch';
+
+interface ICheckMatch {
+  firstCardIndex: number;
+  secondCardIndex: number;
+  cards: string[];
+  numCards: number;
+  matchedCards: number[];
+  time: number;
+  dispatch: AppDispatch;
+  navigate: NavigateFunction;
+}
 
 describe('checkMatch функция', () => {
   let setMatchedCards: jest.Mock;
@@ -6,6 +18,10 @@ describe('checkMatch функция', () => {
   let onGameEnd: jest.Mock;
   let cards: string[];
   let matchedCards: number[];
+  let numCards: number;
+  const dispatch = jest.fn();
+  const navigate = jest.fn();
+  let checkMatchArgs: ICheckMatch;
 
   beforeEach(() => {
     setMatchedCards = jest.fn();
@@ -13,18 +29,20 @@ describe('checkMatch функция', () => {
     onGameEnd = jest.fn();
     cards = ['🎉', '🎉', '🐱', '🐱'];
     matchedCards = [];
+    checkMatchArgs = {
+      firstCardIndex: 0,
+      secondCardIndex: 1,
+      cards,
+      numCards,
+      matchedCards,
+      time: 0,
+      dispatch,
+      navigate,
+    };
   });
 
   test('добавляются карточки в matchedCards, если они совпали', () => {
-    checkMatch(
-      0,
-      1,
-      cards,
-      matchedCards,
-      setMatchedCards,
-      setOpenCards,
-      onGameEnd,
-    );
+    checkMatch(checkMatchArgs);
 
     expect(setMatchedCards).toHaveBeenCalledWith(expect.any(Function));
     expect(setMatchedCards).toHaveBeenCalledTimes(1);
@@ -39,17 +57,10 @@ describe('checkMatch функция', () => {
   });
 
   test('очищается openCards, если карточки не совпали', () => {
-    cards = ['🎉', '🐱', '🎉', '🐱'];
+    checkMatchArgs.firstCardIndex = 0;
+    checkMatchArgs.secondCardIndex = 2;
 
-    checkMatch(
-      0,
-      1,
-      cards,
-      matchedCards,
-      setMatchedCards,
-      setOpenCards,
-      onGameEnd,
-    );
+    checkMatch(checkMatchArgs);
 
     expect(setMatchedCards).not.toHaveBeenCalled();
     expect(matchedCards).toEqual([]);

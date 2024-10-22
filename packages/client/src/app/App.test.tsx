@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import { App } from './App';
 
 jest.mock('@/shared/api/notifications', () => ({
@@ -22,8 +22,13 @@ global.window.matchMedia = jest.fn().mockImplementation(() => ({
 }));
 
 test('Example test', async () => {
-  const { container } = render(<App />);
-  const app = container.querySelector('.app');
+  // const { container } = render(<App />);
+  // const app = container.querySelector('.app');
 
-  expect(app).toBeDefined();
+  // expect(app).toBeDefined();
+  render(<App />);
+  const app = await waitFor(() => screen.getByTestId('app'));
+
+  // expect(app).toBeDefined();
+  expect(app).toBeInTheDocument();
 });

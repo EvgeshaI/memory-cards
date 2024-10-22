@@ -4,8 +4,8 @@ exports[`GameCanvas - тесты со снимками рендер с 6 кар�
 <DocumentFragment>
   <canvas
     data-testid="game-canvas"
-    height="202"
-    width="303"
+    height="354"
+    width="366"
   />
 </DocumentFragment>
 `;
@@ -14,8 +14,8 @@ exports[`GameCanvas - тесты со снимками рендер с 12 кар
 <DocumentFragment>
   <canvas
     data-testid="game-canvas"
-    height="303"
-    width="404"
+    height="516"
+    width="478"
   />
 </DocumentFragment>
 `;
@@ -24,8 +24,8 @@ exports[`GameCanvas - тесты со снимками рендер с 20 кар
 <DocumentFragment>
   <canvas
     data-testid="game-canvas"
-    height="404"
-    width="505"
+    height="678"
+    width="590"
   />
 </DocumentFragment>
 `;
@@ -34,8 +34,8 @@ exports[`GameCanvas - тесты со снимками состояние игр
 <DocumentFragment>
   <canvas
     data-testid="game-canvas"
-    height="202"
-    width="303"
+    height="354"
+    width="366"
   />
 </DocumentFragment>
 `;
