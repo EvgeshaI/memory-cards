@@ -23,6 +23,7 @@ export default defineConfig({
     __YANDEX_RESOURCES_URL__: JSON.stringify(process.env.YANDEX_RESOURCES_URL),
     __EXTERNAL_SERVER_URL__: JSON.stringify(process.env.EXTERNAL_SERVER_URL),
     __INTERNAL_SERVER_URL__: JSON.stringify(process.env.INTERNAL_SERVER_URL),
+    __PUBLIC_VAPID_KEY__: JSON.stringify(process.env.VITE_PUBLIC_VAPID_KEY),
   },
   plugins: [
     svgr({

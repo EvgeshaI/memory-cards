@@ -1,4 +1,4 @@
-import { YANDEX_API_URL } from '@/shared/constants/api';
+import { YANDEX_API_URL } from '@/shared/config/env';
 
 export const fetchRegData = async (
   first_name: string,

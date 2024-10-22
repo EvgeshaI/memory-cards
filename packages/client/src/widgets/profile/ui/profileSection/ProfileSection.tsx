@@ -3,7 +3,7 @@ import { useUserData } from '@/entities/user';
 import { useLogout } from '@/features/auth';
 import { handleAvatarChange } from '@/features/profile';
 import { Loader, Notification } from '@/shared/ui';
-import { YANDEX_RESOURCES_URL } from '@/shared/constants/api';
+import { YANDEX_RESOURCES_URL } from '@/shared/config/env';
 import { PasswordModal } from '../passwordModal/PasswordModal';
 import { ProfileInfo } from '../profileInfo/ProfileInfo';
 import cls from './Profile.module.scss';

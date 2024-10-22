@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Divider, Group, Text } from '@mantine/core';
-import { YANDEX_RESOURCES_URL } from '@/shared/constants/api';
+import { YANDEX_RESOURCES_URL } from '@/shared/config/env';
 import { timeFormat } from '@/shared/lib';
 
 interface PlayerInfoProps {

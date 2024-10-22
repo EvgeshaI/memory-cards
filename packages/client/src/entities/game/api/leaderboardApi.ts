@@ -1,4 +1,4 @@
-import { YANDEX_API_URL } from '@/shared/constants/api';
+import { YANDEX_API_URL } from '@/shared/config/env';
 import { Leader } from '@/entities/game/model/types';
 import { postRequest } from '../lib/postRequest';
 

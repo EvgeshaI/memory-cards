@@ -1,5 +1,5 @@
 import { rtkApi } from '@/shared/api/rtkApi';
-import { SERVER_API_URL } from '@/shared/constants/api';
+import { SERVER_API_URL } from '@/shared/config/env';
 import { Reaction } from './types';
 
 const api = rtkApi.injectEndpoints({
