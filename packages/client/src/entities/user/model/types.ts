@@ -9,4 +9,5 @@ export interface User {
 export interface UserSchema {
   data?: User;
   isLoading: boolean;
+  isInitialized: boolean;
 }

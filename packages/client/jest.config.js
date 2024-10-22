@@ -13,6 +13,8 @@ module.exports = {
     __SERVER_API_URL__: JSON.stringify(process.env.SERVER_API_URL ?? ''),
     __YANDEX_API_URL__: JSON.stringify(process.env.YANDEX_API_URL ?? ''),
     __YANDEX_RESOURCES_URL__: JSON.stringify(process.env.YANDEX_RESOURCES_URL ?? ''),
+    __EXTERNAL_SERVER_URL__: JSON.stringify(process.env.EXTERNAL_SERVER_URL ?? ''),
+    __INTERNAL_SERVER_URL__: JSON.stringify(process.env.INTERNAL_SERVER_URL ?? ''),
   },
   moduleNameMapper: {
     '\\.s?css$': 'babel-jest',

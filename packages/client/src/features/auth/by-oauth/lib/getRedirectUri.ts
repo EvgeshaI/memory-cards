@@ -1,4 +1,5 @@
 import { RouteNames, routePaths } from '@/shared/constants/router';
+import { SERVER_HOST } from '@/shared/constants/api';
 
 export const getRedirectUri = () =>
-  `${window.location.origin}${routePaths[RouteNames.OAUTH]}`;
+  `${SERVER_HOST}${routePaths[RouteNames.OAUTH]}`;

@@ -1,1 +1,2 @@
-export { RouterProvider } from './ui/RouterProvider';
+export * from './model';
+export * from './ui';

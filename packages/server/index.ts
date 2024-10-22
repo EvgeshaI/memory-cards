@@ -10,7 +10,7 @@ import { forumRouter } from './controllers/forumController';
 import { setupCronJobs } from './features/cron/cronJobs';
 import { createClientAndConnect } from './db';
 
-dotenv.config();
+dotenv.config({ path: '../../.env' });
 
 const app = express();
 app.use(cors());
