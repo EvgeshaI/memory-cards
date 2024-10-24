@@ -3,23 +3,23 @@ import React from 'react';
 import '@testing-library/jest-dom';
 // import { App } from './App';
 
-jest.mock('@/shared/lib/startServiceWorker/startServiceWorker', () => ({
-  startServiceWorker: jest.fn(),
-}));
+// jest.mock('@/shared/lib/startServiceWorker/startServiceWorker', () => ({
+//   startServiceWorker: jest.fn(),
+// }));
 
-jest.mock('@/shared/api/notifications', () => ({
-  handleGameTimeAndSubscription: jest.fn(),
-}));
+// jest.mock('@/shared/api/notifications', () => ({
+//   handleGameTimeAndSubscription: jest.fn(),
+// }));
 
-jest.mock('@/shared/api/subscribeToPush', () => ({
-  subscribeToPush: jest.fn(),
-}));
+// jest.mock('@/shared/api/subscribeToPush', () => ({
+//   subscribeToPush: jest.fn(),
+// }));
 
-jest.mock('@mantine/notifications', () => ({
-  Notifications: ({ children }: { children: React.ReactNode }) => (
-    <div>{children}</div>
-  ),
-}));
+// jest.mock('@mantine/notifications', () => ({
+//   Notifications: ({ children }: { children: React.ReactNode }) => (
+//     <div>{children}</div>
+//   ),
+// }));
 
 jest.mock('./providers', () => ({
   RouterProvider: ({

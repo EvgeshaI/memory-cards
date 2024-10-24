@@ -6,9 +6,9 @@
 // import { gameReducer, GameState } from '@/entities/game';
 // import { GameCanvas } from './GameCanvas';
 
-jest.mock('@/shared/api/notifications', () => ({
-  handleGameTimeAndSubscription: jest.fn(),
-}));
+// jest.mock('@/shared/api/notifications', () => ({
+//   handleGameTimeAndSubscription: jest.fn(),
+// }));
 
 // const initialState: GameState = {
 //   numCards: 6,
@@ -19,15 +19,15 @@ jest.mock('@/shared/api/notifications', () => ({
 //   matchedCards: [],
 //   leaders: [],
 // };
-jest.mock('@/entities/user', () => ({
-  useUserData: jest.fn(() => ({
-    user: {
-      avatar: 'test-avatar-url',
-      first_name: 'Test User',
-      score: 100,
-    },
-  })),
-}));
+// jest.mock('@/entities/user', () => ({
+//   useUserData: jest.fn(() => ({
+//     user: {
+//       avatar: 'test-avatar-url',
+//       first_name: 'Test User',
+//       score: 100,
+//     },
+//   })),
+// }));
 
 // const createMockStore = (numCards: number) =>
 //   configureStore({
@@ -85,3 +85,5 @@ describe('GameCanvas - тесты со снимками', () => {
   //   expect(asFragment()).toMatchSnapshot();
   // });
 });
+
+export {};
