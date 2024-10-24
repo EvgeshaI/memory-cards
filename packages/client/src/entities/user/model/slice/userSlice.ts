@@ -4,6 +4,7 @@ import { UserSchema, User } from '../types';
 
 const initialState: UserSchema = {
   isLoading: false,
+  isInitialized: false,
 };
 
 const userSlice = createSlice({
@@ -24,9 +25,11 @@ const userSlice = createSlice({
     builder.addCase(loadUserData.fulfilled, (state, { payload }) => {
       state.data = payload;
       state.isLoading = false;
+      state.isInitialized = true;
     });
     builder.addCase(loadUserData.rejected, (state) => {
       state.isLoading = false;
+      state.isInitialized = true;
     });
   },
 });

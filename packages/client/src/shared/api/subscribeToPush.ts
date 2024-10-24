@@ -1,7 +1,5 @@
 import { urlBase64ToUint8Array } from '@/shared/lib';
-
-const vapidPublicKey = import.meta.env.VITE_PUBLIC_VAPID_KEY;
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+import { PUBLIC_VAPID_KEY, SERVER_API_URL } from '@/shared/config/env';
 
 export async function subscribeToPush(registration: ServiceWorkerRegistration) {
   if (!('PushManager' in window)) {
@@ -18,13 +16,13 @@ export async function subscribeToPush(registration: ServiceWorkerRegistration) {
     } else {
       subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
+        applicationServerKey: urlBase64ToUint8Array(PUBLIC_VAPID_KEY),
       });
 
       localStorage.setItem('pushSubscription', JSON.stringify(subscription));
     }
 
-    await fetch(`${apiBaseUrl}/subscriptions/subscribe`, {
+    await fetch(`${SERVER_API_URL}/subscriptions/subscribe`, {
       method: 'POST',
       body: JSON.stringify(subscription),
       headers: {

@@ -1,19 +1,24 @@
-import { FC, ReactNode } from 'react';
-import { RouterProvider as Provider } from 'react-router-dom';
-import { createRouter } from '../model/config';
+import { ReactNode } from 'react';
+import {
+  createBrowserRouter,
+  RouterProvider as Provider,
+} from 'react-router-dom';
+import { getRoutes } from '../model';
 
-interface Props {
+interface RouterProviderProps {
   authInitializer: ReactNode;
   errorElement: ReactNode;
 }
 
-export const RouterProvider: FC<Props> = (props) => {
-  const { errorElement, authInitializer } = props;
-
-  const router = createRouter({
+export const RouterProvider = ({
+  errorElement,
+  authInitializer,
+}: RouterProviderProps) => {
+  const routes = getRoutes({
     authInitializer,
     errorElement,
   });
+  const router = createBrowserRouter(routes);
 
   return <Provider router={router} />;
 };

@@ -1,17 +1,24 @@
 import dayjs from 'dayjs';
-import { FC } from 'react';
+import { memo, ReactNode } from 'react';
 import { Group, Stack, Text, Avatar } from '@mantine/core';
-import { Comment } from '../../model/types';
+import { Comment } from '../../api';
 
-interface Props {
+interface CommentCardProps {
   comment: Comment;
   className?: string;
+  reactionListSlot?: ReactNode;
+  addReactionSlot?: ReactNode;
+  replySlot?: ReactNode;
 }
 
-export const CommentCard: FC<Props> = (props) => {
-  const { comment, className } = props;
-
-  return (
+export const CommentCard = memo(
+  ({
+    comment,
+    className,
+    reactionListSlot,
+    addReactionSlot,
+    replySlot,
+  }: CommentCardProps) => (
     <Stack className={className} gap={10}>
       <Group gap={20}>
         <Avatar size={40} alt="Аватар" src={comment.avatar} />
@@ -29,6 +36,14 @@ export const CommentCard: FC<Props> = (props) => {
       <Text fz={12} c="var(--dark-text-color)">
         {comment.text}
       </Text>
+
+      <Group gap={10}>
+        {reactionListSlot}
+
+        {addReactionSlot}
+      </Group>
+
+      {replySlot}
     </Stack>
-  );
-};
+  ),
+);

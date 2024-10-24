@@ -1,0 +1,10 @@
+.root {
+  --reaction-emoji-size: 13px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--reaction-emoji-size);
+  height: var(--reaction-emoji-size);
+  font-size: var(--reaction-emoji-size);
+}
