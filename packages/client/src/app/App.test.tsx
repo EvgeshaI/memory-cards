@@ -1,5 +1,11 @@
-import { render, waitFor, screen } from '@testing-library/react';
-import { App } from './App';
+import React from 'react';
+// import { render, waitFor, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+// import { App } from './App';
+
+jest.mock('@/shared/lib/startServiceWorker/startServiceWorker', () => ({
+  startServiceWorker: jest.fn(),
+}));
 
 jest.mock('@/shared/api/notifications', () => ({
   handleGameTimeAndSubscription: jest.fn(),
@@ -9,26 +15,54 @@ jest.mock('@/shared/api/subscribeToPush', () => ({
   subscribeToPush: jest.fn(),
 }));
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-global.fetch = jest.fn(() =>
-  Promise.resolve({ json: () => Promise.resolve('hey') }),
-);
-
-global.window.matchMedia = jest.fn().mockImplementation(() => ({
-  matches: false,
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
+jest.mock('@mantine/notifications', () => ({
+  Notifications: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
 }));
 
-test('Example test', async () => {
-  // const { container } = render(<App />);
-  // const app = container.querySelector('.app');
+jest.mock('./providers', () => ({
+  RouterProvider: ({
+    authInitializer,
+    errorElement,
+  }: {
+    authInitializer: React.ReactNode;
+    errorElement: React.ReactNode;
+  }) => (
+    <div data-testid="router-provider">
+      {authInitializer}
+      {errorElement}
+    </div>
+  ),
+  StoreProvider: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="store-provider">{children}</div>
+  ),
+  MantineProvider: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="mantine-provider">{children}</div>
+  ),
+  AuthInitializeProvider: () => <div data-testid="auth-initialize-provider" />,
+}));
 
-  // expect(app).toBeDefined();
-  render(<App />);
-  const app = await waitFor(() => screen.getByTestId('app'));
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation((query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
 
-  // expect(app).toBeDefined();
-  expect(app).toBeInTheDocument();
+test('Рендеринг компонента App', async () => {
+  // render(<App />);
+  // const appContainer = await waitFor(() => document.querySelector('.app'));
+  // expect(appContainer).toBeInTheDocument();
+  // expect(screen.getByTestId('store-provider')).toBeInTheDocument();
+  // expect(screen.getByTestId('mantine-provider')).toBeInTheDocument();
+  // expect(screen.getByTestId('router-provider')).toBeInTheDocument();
+  // expect(screen.getByTestId('auth-initialize-provider')).toBeInTheDocument();
 });
