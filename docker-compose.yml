@@ -15,6 +15,9 @@ services:
     environment:
       CLIENT_PORT: ${CLIENT_PORT}
       SERVER_PORT: ${SERVER_PORT}
+    networks:
+      - awesome
+  
 
   server:
     container_name: prakticum-server
@@ -31,6 +34,9 @@ services:
       SERVER_PORT: ${SERVER_PORT}
     depends_on:
       - postgres
+    networks:
+      - awesome
+  
 
   postgres:
     image: postgres:14
@@ -44,3 +50,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: newPassword
       POSTGRES_DB: my-db-name
+    networks:
+      - awesome
+
+
+networks:
+  awesome:
+    driver: bridge 
