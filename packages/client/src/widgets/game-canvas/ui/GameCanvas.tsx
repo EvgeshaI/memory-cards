@@ -78,7 +78,7 @@ export const GameCanvas = () => {
   useEffect(() => {
     const unsubscribe = animateCard(
       dispatch,
-      // @ts-expect-error  скорей всего нужно поправить GameState
+      // @ts-ignore @ts-expect-error  скорей всего нужно поправить GameState
       () => ({ game: { cardAnimations, openCards } }),
       (firstCardIndex: number, secondCardIndex: number) => {
         checkMatch({
