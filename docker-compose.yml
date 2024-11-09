@@ -17,7 +17,7 @@ services:
       SERVER_PORT: ${SERVER_PORT}
     networks:
       - awesome
-  
+
 
   server:
     container_name: prakticum-server
@@ -36,7 +36,7 @@ services:
       - postgres
     networks:
       - awesome
-  
+
 
   postgres:
     image: postgres:14
@@ -56,4 +56,4 @@ services:
 
 networks:
   awesome:
-    driver: bridge 
+    driver: bridge

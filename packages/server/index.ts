@@ -6,7 +6,8 @@ import { themeRoutes } from './features/theming/routes';
 import { notificationRoutes } from './features/notifications/routes';
 import { subscriptionRoutes } from './features/subscriptions/routes';
 import { reactionsRouter } from './controllers/reactionsController';
-import { forumRouter } from './controllers/forumController';
+import { topicRouter } from './features/topics/routes';
+import { commentRouter } from './features/comments/routes';
 import { setupCronJobs } from './features/cron/cronJobs';
 import { createClientAndConnect } from './db';
 
@@ -36,7 +37,8 @@ app.use('/notifications', notificationRoutes);
 app.use('/subscriptions', subscriptionRoutes);
 app.use('/theme', themeRoutes);
 app.use('/api/v1/reactions', reactionsRouter);
-app.use('/api/v1/forum', forumRouter);
+app.use('/api/v1/topics', topicRouter);
+app.use('/api/v1/comments', commentRouter);
 
 setupCronJobs();
 

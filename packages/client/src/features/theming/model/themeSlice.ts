@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Theme } from '@/shared/constants/theme';
 
-const initialState: { theme: Theme } = {
+export interface ThemeSchema {
+  theme: Theme;
+}
+
+const initialState: ThemeSchema = {
   theme: Theme.LIGHT,
 };
 
