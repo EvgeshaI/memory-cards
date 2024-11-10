@@ -11,9 +11,10 @@ interface ICheckMatch {
   time: number;
   dispatch: AppDispatch;
   navigate: NavigateFunction;
+  onEndGame?: () => Promise<void>;
 }
 
-export const checkMatch = ({
+export const checkMatch = async ({
   firstCardIndex,
   secondCardIndex,
   cards,
@@ -22,6 +23,7 @@ export const checkMatch = ({
   time,
   dispatch,
   navigate,
+  onEndGame,
 }: ICheckMatch) => {
   if (cards[firstCardIndex] === cards[secondCardIndex]) {
     dispatch(gameActions.addMatchedCard(firstCardIndex));
@@ -31,7 +33,11 @@ export const checkMatch = ({
 
     if (matchedCards.length + 2 === numCards) {
       dispatch(gameActions.saveGameTime(time));
-      navigate(routePaths[RouteNames.END_GAME]);
+      if (onEndGame) {
+        await onEndGame();
+      } else {
+        navigate(routePaths[RouteNames.END_GAME]);
+      }
     }
   } else {
     dispatch(

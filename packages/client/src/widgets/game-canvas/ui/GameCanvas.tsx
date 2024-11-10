@@ -6,6 +6,7 @@ import {
   GAP,
 } from '@/entities/game/model/constants/game';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
+import { handleEndGame } from '@/entities/game/handlers/gameEndHandler';
 import {
   selectData,
   drawCards,
@@ -13,10 +14,8 @@ import {
   animateCard,
   checkMatch,
   gameActions,
+  clickCard,
 } from '@/entities/game';
-
-import { clickCard } from '@/entities/game/lib/clickCard';
-
 import cls from './GameCanvas.module.scss';
 
 export const GameCanvas = () => {
@@ -90,6 +89,7 @@ export const GameCanvas = () => {
           time,
           dispatch,
           navigate,
+          onEndGame: () => handleEndGame(time, dispatch, navigate),
         });
       },
     );

@@ -19,7 +19,7 @@ export const fetchLeadersFromServer = () => {
   const formData = {
     ratingFieldName: 'memoCardsTime',
     cursor: 0,
-    limit: 5,
+    limit: 20,
   };
 
   return postRequest(`${YANDEX_API_URL}/leaderboard/all`, formData);

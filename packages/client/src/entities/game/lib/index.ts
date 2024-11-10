@@ -1,3 +1,4 @@
+export { clickCard } from './clickCard';
 export { loadImage } from './loadImage';
 export { shuffleCards } from './shuffleCards';
 export { checkMatch } from './checkMatch';

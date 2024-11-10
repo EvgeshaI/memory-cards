@@ -17,9 +17,10 @@ export const LeadersList = () => {
     dispatch(fetchLeaders());
   }, [dispatch]);
 
-  const filteredAndSortedPlayers = [...leaders].sort(
-    (a, b) => a.count - b.count,
-  );
+  const filteredAndSortedPlayers = [...leaders]
+    .sort((a, b) => a.count - b.count)
+    .slice(0, 10);
+
   return (
     <Container w="100%">
       <PaperContainer text="Лидерборд">
