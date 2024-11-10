@@ -1,13 +1,10 @@
 import { Container } from '@mantine/core';
-import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
-import { RouteNames, routePaths } from '@/shared/constants/router';
 import { PaperContainer } from '@/shared/ui/paper';
 import { PlayerInfo } from '@/entities/user/ui';
 import { selectData } from '@/entities/game';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { fetchLeaders } from '@/entities/game/model/services';
-import cls from './LeadersList.module.scss';
 
 export const LeadersList = () => {
   const dispatch = useAppDispatch();
@@ -33,9 +30,6 @@ export const LeadersList = () => {
           />
         ))}
       </PaperContainer>
-      <NavLink to={routePaths[RouteNames.MAIN]} className={cls.link}>
-        Вернуться на главную
-      </NavLink>
     </Container>
   );
 };

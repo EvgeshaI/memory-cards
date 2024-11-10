@@ -23,7 +23,7 @@ export const GameSettings = () => {
         className="settings-header-text"
         color="var(--accent-color)"
       >
-        выберите количество карточек
+        Выберите количество карточек
       </Text>
       <Select
         placeholder="6"
@@ -38,7 +38,7 @@ export const GameSettings = () => {
       />
       <Link to={routePaths[RouteNames.GAME]} style={{ textDecoration: 'none' }}>
         <Button fullWidth radius="md" size="md" color="var(--accent-color)">
-          играть
+          Играть
         </Button>
       </Link>
       <FullscreenButton />

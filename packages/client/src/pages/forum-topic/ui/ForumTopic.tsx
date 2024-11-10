@@ -19,13 +19,13 @@ export const ForumTopic = () => {
 
           <Anchor
             component={NavLink}
-            to={routePaths[RouteNames.MAIN]}
+            to={routePaths[RouteNames.FORUM]}
             c="var(--text-color)"
             underline="never"
             fw={500}
             ml="auto"
           >
-            Вернуться на главную
+            Вернуться к списку топиков
           </Anchor>
         </Stack>
       </Container>

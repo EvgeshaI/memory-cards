@@ -48,7 +48,7 @@ export const Sidebar = () => {
               Ваш профиль
             </NavLink>
           </li>
-          <li className={cls.navItem}>
+          <li className={`${cls.navItem} ${cls.logoutButton}`}>
             <div onClick={open}>Выйти</div>
           </li>
         </ul>

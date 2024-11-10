@@ -31,12 +31,12 @@ export const EndGameInfo = () => {
         color="var(--accent-color)"
       >
         <NavLink to={routePaths[RouteNames.START_GAME]} className={cls.link}>
-          играть снова
+          Играть снова
         </NavLink>
       </Button>
       <Button w="70%" radius="md" size="md" color="var(--accent-color)">
         <NavLink to={routePaths[RouteNames.MAIN]} className={cls.link}>
-          на главную
+          На главную
         </NavLink>
       </Button>
     </PaperContainer>
