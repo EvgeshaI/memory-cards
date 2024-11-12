@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "tsc --project tsconfig.server.json && cross-env NODE_ENV=development EXTERNAL_SERVER_URL='http://localhost:3000' INTERNAL_SERVER_URL='http://localhost:3000' node server/index.js",
-    "build": "tsc --project tsconfig.server.json && vite build && vite build --ssr src/entry-server.tsx --outDir dist/server",
+    "build": "tsc --project tsconfig.server.json && vite build && vite build --ssr src/app/server.tsx --outDir dist/server",
     "preview": "node server/index.js",
     "lint:ts": "eslint \"./src/**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"./src/**/*.{ts,tsx}\" --fix",
