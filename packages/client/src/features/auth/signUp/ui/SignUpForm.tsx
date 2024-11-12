@@ -11,6 +11,7 @@ import {
   Title,
 } from '@mantine/core';
 import { Button, TextInput, PasswordInput } from '@/shared/ui';
+import { useSanitizedSubmit } from '@/shared/lib';
 import { routePaths, RouteNames } from '@/shared/constants/router';
 import { useSignUpForm } from '../model/hooks/useSignUpForm';
 import cls from './SignUpForm.module.scss';
@@ -24,11 +25,13 @@ export const RegistrationForm: FC<Props> = (props) => {
   const { control, handleSubmit, onSubmit, errors, isLoading } =
     useSignUpForm();
 
+  const handleSanitizedSubmit = useSanitizedSubmit(onSubmit);
+
   return (
     <div className={cls.regContainer}>
       <LoadingOverlay visible={isLoading} />
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleSanitizedSubmit)}>
         <Stack gap={30}>
           <Stack gap={20}>
             <Title

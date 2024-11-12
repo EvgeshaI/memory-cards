@@ -27,7 +27,21 @@ export const ChangeAvatar: React.FC<ChangeAvatarProps> = ({
 
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSelectedFile(e.target.files?.[0] || null);
+      const file = e.target.files?.[0] || null;
+      if (
+        file &&
+        !['image/jpeg', 'image/png', 'image/gif', 'image/heic'].includes(
+          file.type,
+        )
+      ) {
+        setNotification({
+          type: 'error',
+          message: 'Допустимы изображения в формате JPEG, PNG, GIF или HEIC',
+        });
+        setSelectedFile(null);
+        return;
+      }
+      setSelectedFile(file);
       setNotification(null);
     },
     [],
@@ -66,6 +80,7 @@ export const ChangeAvatar: React.FC<ChangeAvatarProps> = ({
         type="file"
         ref={fileInputRef}
         style={{ display: 'none' }}
+        accept="image/jpeg, image/png, image/gif, image/heic"
         onChange={handleFileChange}
       />
 

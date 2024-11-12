@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 import { Button, TextInput, Textarea, Stack } from '@mantine/core';
+import { useSanitizedSubmit } from '@/shared/lib';
 import { useAddTopicForm } from '../../model/hooks/useAddTopicForm';
 
 interface Props {
@@ -13,8 +14,10 @@ export const AddTopicForm: FC<Props> = (props) => {
     onSuccess,
   });
 
+  const handleSanitizedSubmit = useSanitizedSubmit(onSubmit);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleSanitizedSubmit)}>
       <Stack gap={50}>
         <Stack gap={20}>
           <Controller

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useUserData } from '@/entities/user';
-import { useLogout } from '@/features/auth';
 import { handleAvatarChange } from '@/features/profile';
 import { Loader, Notification } from '@/shared/ui';
 import { YANDEX_RESOURCES_URL } from '@/shared/config/env';
@@ -10,7 +9,6 @@ import cls from './Profile.module.scss';
 
 export const ProfileSection: React.FC = () => {
   const { user, isLoading } = useUserData();
-  const { handleLogout } = useLogout();
   const [avatar, setAvatarUrl] = useState(user?.avatar || '');
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
 
@@ -42,7 +40,6 @@ export const ProfileSection: React.FC = () => {
           handleAvatarChange(newAvatarUrl, setAvatarUrl)
         }
         onPasswordChange={() => setPasswordModalOpen(true)}
-        onLogout={handleLogout}
       />
       <PasswordModal
         isOpen={isPasswordModalOpen}

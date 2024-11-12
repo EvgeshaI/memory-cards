@@ -11,7 +11,6 @@ interface ProfileInfoProps {
   email: string;
   onAvatarChange: (newAvatarUrl: string) => void;
   onPasswordChange: () => void;
-  onLogout: () => void;
 }
 
 export const ProfileInfo: React.FC<ProfileInfoProps> = ({
@@ -22,7 +21,6 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({
   email,
   onAvatarChange,
   onPasswordChange,
-  onLogout,
 }) => (
   <div className={cls.profileInfo}>
     <ChangeAvatar
@@ -38,6 +36,6 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({
       <p className={cls.userEmail}>{email}</p>
     </div>
 
-    <ProfileActions onPasswordChange={onPasswordChange} onLogout={onLogout} />
+    <ProfileActions onPasswordChange={onPasswordChange} />
   </div>
 );

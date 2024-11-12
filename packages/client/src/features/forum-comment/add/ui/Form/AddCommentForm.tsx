@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 import { Button, Group, Textarea } from '@mantine/core';
+import { useSanitizedSubmit } from '@/shared/lib';
 import { useAddCommentForm } from '../../model/hooks/useAddCommentForm';
 
 interface Props {
@@ -13,8 +14,10 @@ export const AddCommentForm: FC<Props> = (props) => {
     onSuccess,
   });
 
+  const handleSanitizedSubmit = useSanitizedSubmit(onSubmit);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleSanitizedSubmit)}>
       <Group gap={10}>
         <Controller
           name="text"

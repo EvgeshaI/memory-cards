@@ -12,6 +12,7 @@ import {
 } from '@mantine/core';
 import { TextInput, PasswordInput, Button } from '@/shared/ui';
 import { routePaths, RouteNames } from '@/shared/constants/router';
+import { useSanitizedSubmit } from '@/shared/lib';
 import { useSignInForm } from '../model/hooks/useSignInForm';
 import cls from './SignInForm.module.scss';
 
@@ -24,11 +25,13 @@ export const AuthorizationForm: FC<Props> = (props) => {
   const { control, handleSubmit, onSubmit, errors, isLoading } =
     useSignInForm();
 
+  const handleSanitizedSubmit = useSanitizedSubmit(onSubmit);
+
   return (
     <div className={cls.authContainer}>
       <LoadingOverlay visible={isLoading} />
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleSanitizedSubmit)}>
         <Stack gap={30}>
           <Stack gap={20}>
             <Title

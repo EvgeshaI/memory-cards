@@ -2,6 +2,7 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 import { LoadingOverlay } from '@mantine/core';
 import { Notification, PasswordInput, Group, Button } from '@/shared/ui';
+import { useSanitizedSubmit } from '@/shared/lib';
 import { useChangePasswordForm } from '../model/hooks/useChangePasswordForm';
 import cls from './ChangePassword.module.scss';
 
@@ -21,11 +22,13 @@ export const ChangePassword: React.FC<ChangePasswordFormProps> = (props) => {
     errorMessage,
   } = useChangePasswordForm({ userId });
 
+  const handleSanitizedSubmit = useSanitizedSubmit(onSubmit);
+
   return (
     <div className={cls.root}>
       <LoadingOverlay visible={isLoading} />
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleSanitizedSubmit)}>
         {success && (
           <Notification withCloseButton={false} color="green" title="Успешно">
             Пароль изменен
