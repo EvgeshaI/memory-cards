@@ -1,22 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Box, LoadingOverlay } from '@mantine/core';
-import { loadUserData } from '@/entities/user';
-import { useAppDispatch } from '@/shared/lib/store';
+import { loadUserData, selectIsInitialized } from '@/entities/user';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 
 export const AuthInitializeProvider = () => {
   const dispatch = useAppDispatch();
-  const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const isInitialized = useAppSelector(selectIsInitialized);
 
   useEffect(() => {
     if (!isInitialized) {
-      dispatch(loadUserData())
-        .catch(() => Promise.resolve())
-        .finally(() => {
-          setIsInitialized(true);
-        });
+      dispatch(loadUserData()).catch(() => Promise.resolve());
     }
-  }, [dispatch, isInitialized]);
+  }, [isInitialized]);
 
   if (!isInitialized) {
     return (

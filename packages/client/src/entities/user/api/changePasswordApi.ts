@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/shared/constants/api';
+import { YANDEX_API_URL } from '@/shared/config/env';
 
 export const changePassword = async (
   userId: string,
@@ -6,7 +6,7 @@ export const changePassword = async (
   newPassword: string,
 ) => {
   try {
-    const response = await fetch(`${BASE_URL}/user/password`, {
+    const response = await fetch(`${YANDEX_API_URL}/user/password`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

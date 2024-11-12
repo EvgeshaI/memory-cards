@@ -1,50 +1,25 @@
 import { fireEvent, render } from '@testing-library/react';
 import { act } from 'react';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
+import configureMockStore from 'redux-mock-store';
 import { MemoryRouter } from 'react-router-dom';
-import { gameReducer } from '@/entities/game';
 import { GameCanvas } from './GameCanvas';
 
-jest.mock('@/shared/api/notifications', () => ({
-  handleGameTimeAndSubscription: jest.fn(),
-}));
-
-interface GameState {
-  numCards: number;
-  emojis: string[];
-  gameTime: number;
-  leaders: [];
-}
-
-const initialState: GameState = {
-  numCards: 6,
-  emojis: ['🎉', '😈', '🧠', '🐱', '🐶', '🍕', '🚀', '🌟', '🧁', '🍔'],
-  gameTime: 0,
-  leaders: [],
+const initialState = {
+  game: {
+    numCards: 6,
+    emojis: ['🎉', '😈', '🧠', '🐱', '🐶', '🍕', '🚀', '🌟', '🧁', '🍔'],
+    gameTime: 0,
+    cardAnimations: {},
+    openCards: [],
+    matchedCards: [],
+    leaders: [],
+  },
 };
-jest.mock('@/entities/user', () => ({
-  useUserData: jest.fn(() => ({
-    user: {
-      avatar: 'test-avatar-url',
-      first_name: 'Test User',
-      score: 100,
-    },
-  })),
-}));
 
-const createMockStore = (numCards: number) =>
-  configureStore({
-    reducer: { game: gameReducer },
-    preloadedState: {
-      game: {
-        ...initialState,
-        numCards,
-      },
-    },
-  });
+const mockStore = configureMockStore();
 
-const renderWithStore = (store: ReturnType<typeof createMockStore>) =>
+const renderWithStore = (store: any) =>
   render(
     <MemoryRouter>
       <Provider store={store}>
@@ -55,28 +30,42 @@ const renderWithStore = (store: ReturnType<typeof createMockStore>) =>
 
 describe('GameCanvas - тесты со снимками', () => {
   test('рендер с 6 карточками', () => {
-    const store = createMockStore(6);
+    const store = mockStore({
+      game: {
+        ...initialState.game,
+        numCards: 6,
+      },
+    });
     const { asFragment } = renderWithStore(store);
-
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('рендер с 12 карточками', () => {
-    const store = createMockStore(12);
+    const store = mockStore({
+      game: {
+        ...initialState.game,
+        numCards: 12,
+      },
+    });
     const { asFragment } = renderWithStore(store);
-
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('рендер с 20 карточками', () => {
-    const store = createMockStore(20);
+    const store = mockStore({
+      game: {
+        ...initialState.game,
+        numCards: 20,
+      },
+    });
     const { asFragment } = renderWithStore(store);
-
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('состояние игрового поля после переворота карточки', () => {
-    const store = createMockStore(6);
+    const store = mockStore({
+      game: initialState.game,
+    });
     const { asFragment, getByTestId } = renderWithStore(store);
 
     const canvas = getByTestId('game-canvas');
@@ -85,5 +74,11 @@ describe('GameCanvas - тесты со снимками', () => {
     });
 
     expect(asFragment()).toMatchSnapshot();
+    const actions = store.getActions();
+    expect(actions).toContainEqual(
+      expect.objectContaining({
+        type: 'game/updateCardAnimation',
+      }),
+    );
   });
 });

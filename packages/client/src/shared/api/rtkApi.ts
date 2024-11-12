@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASE_URL } from '@/shared/constants/api';
+import { YANDEX_API_URL } from '@/shared/config/env';
 
 export const rtkApi = createApi({
   reducerPath: 'rtkApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL,
+    baseUrl: YANDEX_API_URL,
   }),
   endpoints: () => ({}),
 });

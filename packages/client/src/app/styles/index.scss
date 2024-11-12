@@ -20,4 +20,22 @@ body {
   --card-background: #3e4cbc2b;
   --scrollbar-background: var(--card-background);
   --scrollbar-thumb-background: #3e4cbc80;
+  --reaction-background: #bcc1e4;
+  --reaction-picker-background: var(--accent-color);
+  --reaction-active-background: #8a92d4;
+}
+
+[data-theme='dark'] {
+  --primary-color: #90caf9;
+  --background-base: #1C2347;
+  --background-muted: rgb(80 82 114 / 20%);
+  --accent-color: #565F98;
+  --text-color: #fff;
+  --background-highlight: #363A5C;
+  --mantine-color-body: #363A5C;
+  --dark-text-color: #ced5ef;
+}
+
+[data-theme='dark'] .settings-header-text {
+  --accent-color: #fff;
 }

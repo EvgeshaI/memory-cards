@@ -24,7 +24,7 @@ interface RoutePaths {
   [RouteNames.END_GAME]: string;
   [RouteNames.AUTHORIZATION]: string;
   [RouteNames.REGISTRATION]: string;
-  [RouteNames.FORUM_TOPIC]: (id: string) => string;
+  [RouteNames.FORUM_TOPIC]: (id: string | number) => string;
   [RouteNames.OAUTH]: string;
 }
 
@@ -35,7 +35,7 @@ export const routePaths: RoutePaths = {
   [RouteNames.PROFILE]: '/profile',
   [RouteNames.FORBIDDEN]: '/forbidden',
   [RouteNames.FORUM]: '/forum',
-  [RouteNames.FORUM_TOPIC]: (id: string) => `/forum/${id}`,
+  [RouteNames.FORUM_TOPIC]: (id: string | number) => `/forum/${id}`,
   [RouteNames.LEADERBOARD]: '/leaderboard',
   [RouteNames.START_GAME]: '/startGame',
   [RouteNames.GAME]: '/game',

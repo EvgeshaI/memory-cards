@@ -18,9 +18,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
   },
-  "include": ["src", "service-worker", "public/serviceWorker.js", "server/index.d.ts", "server/index.ts"],
+  "include": ["src", "service-worker", "public/serviceWorker.js", "server/**/*"],
   "exclude": [],
   "references": [
     { "path": "./tsconfig.node.json" },

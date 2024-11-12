@@ -1,1 +1,1 @@
-export { ForumTopicDetails } from './ForumTopicDetails';
+export { ForumTopicDetails } from './ForumTopicDetails/ForumTopicDetails';

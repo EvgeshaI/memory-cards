@@ -76,4 +76,4 @@
 `docker compose up {sevice_name}`, например `docker compose up server`
 
 ## Видео демонстрации
-[Видео с демонстрацией работоспособности и функциональности приложения](https://disk.yandex.ru/i/1Mm728mrPkdGOQ)
+[Видео с демонстрацией работоспособности и функциональности приложения](https://disk.yandex.ru/i/qYyAV4aTYAsPzQ)
